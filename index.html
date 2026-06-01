@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StackTracker — the live momentum index for AI infrastructure</title>
+<meta name="description" content="A live, momentum-ranked tracker of open-source AI infrastructure — agent frameworks, inference engines, vector DBs, gateways, LLMOps — recomputed daily from real GitHub velocity by an AI agent.">
+<meta property="og:title" content="StackTracker — live AI-infra momentum index">
+<meta property="og:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub commit velocity, release cadence, and trend. Built + run by an agent.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg">
+<style>
+  :root{
+    --ink:#16140f; --ink-soft:#3b372f; --paper:#f4f1ea; --paper-2:#ebe7dd; --paper-3:#e3ddd0;
+    --line:#d9d3c6; --muted:#7a7264; --accent:#c2410c; --sea:#0f766e; --sea-soft:#13988c;
+    --serif:"Fraunces",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  ::selection{background:var(--accent);color:var(--paper)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 36px}
+  .mono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  a{color:inherit}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(9px);
+    background:color-mix(in srgb,var(--paper) 78%,transparent);border-bottom:1px solid transparent;transition:border-color .4s}
+  nav.scrolled{border-color:var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:500;font-size:17px;letter-spacing:-.01em;text-decoration:none}
+  .mark{width:24px;height:24px;position:relative;flex:0 0 auto}
+  .mark::before,.mark::after{content:"";position:absolute;border-radius:50%;border:1.5px solid var(--ink)}
+  .mark::before{inset:0}.mark::after{inset:6px;background:var(--accent);border-color:var(--accent)}
+  .brand b{font-weight:600}.brand .by{color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.1em}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-decoration:none;opacity:.65;transition:opacity .25s}
+  .nav-links a:hover{opacity:1}
+  @media(max-width:720px){.nav-links a.hidem{display:none}}
+
+  /* hero */
+  header.hero{padding:130px 0 44px}
+  .eyebrow{display:flex;align-items:center;gap:12px;color:var(--muted);margin-bottom:26px;flex-wrap:wrap}
+  .eyebrow .dot{width:7px;height:7px;background:var(--sea);border-radius:50%;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(15,118,110,.4)}50%{opacity:.4;box-shadow:0 0 0 6px rgba(15,118,110,0)}}
+  h1{font-size:clamp(40px,6.5vw,82px);font-weight:300;line-height:.98;letter-spacing:-.035em;max-width:16ch}
+  h1 em{color:var(--accent)}
+  .lede{margin-top:26px;font-size:clamp(17px,1.9vw,21px);max-width:54ch;color:var(--ink-soft);font-weight:300}
+  .meta-row{display:flex;gap:36px;margin-top:34px;flex-wrap:wrap}
+  .meta-row .m b{display:block;font-size:30px;font-weight:400;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+  .meta-row .m span{color:var(--muted);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+
+  /* trending */
+  .trending{border-top:1px solid var(--line);padding:40px 0 8px}
+  .trending h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+  .trend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .trend-card{border:1px solid var(--line);background:var(--paper-2);padding:22px 22px;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:transform .35s var(--ease),background .35s}
+  .trend-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--sea));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .trend-card:hover{transform:translateY(-3px);background:var(--paper-3)}.trend-card:hover::before{transform:scaleX(1)}
+  .trend-card .tn{font-size:21px;font-weight:400;letter-spacing:-.01em;margin-bottom:4px}
+  .trend-card .delta{font-family:var(--mono);font-size:12px;color:var(--sea);font-weight:500}
+  .trend-card .tcat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.trend-grid{grid-template-columns:1fr}}
+
+  /* filters + table */
+  .controls{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:40px;padding-top:34px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);background:transparent;border-radius:30px;padding:8px 15px;cursor:pointer;transition:.25s}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .sortnote{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+  .rows{margin-top:18px;border-top:1px solid var(--line)}
+  .row{display:grid;grid-template-columns:34px 1.7fr 150px 132px 96px 30px;gap:20px;align-items:center;
+    padding:20px 8px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+    position:relative;transition:background .3s,padding-left .3s var(--ease)}
+  .row:hover{background:var(--paper-2);padding-left:18px}
+  .row::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .3s var(--ease)}
+  .row:hover::after{transform:scaleY(1)}
+  .row.hide{display:none}
+  .rank{font-family:var(--mono);font-size:15px;color:var(--muted);font-weight:500}
+  .rank.top{color:var(--accent)}
+  .name h3{font-size:20px;font-weight:400;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .name .owner{color:var(--muted)}
+  .name .arch{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted);border:1px solid var(--line);padding:2px 6px;border-radius:4px}
+  .name p{color:var(--ink-soft);font-size:13.5px;font-weight:300;margin-top:3px;font-family:var(--serif)}
+  .name .rel{font-family:var(--mono);font-size:10.5px;color:var(--sea);letter-spacing:.04em;margin-top:5px}
+  .mom{display:flex;flex-direction:column;gap:6px}
+  .mom .bar{height:6px;background:var(--paper-3);border:1px solid var(--line);border-radius:3px;overflow:hidden;position:relative}
+  .mom .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sea),var(--accent));border-radius:3px}
+  .mom .val{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between}
+  .mom .val b{color:var(--ink);font-weight:500}
+  .spark{width:100%;height:34px;display:block}
+  .spark .ph{font-family:var(--mono);font-size:9.5px;color:var(--muted);letter-spacing:.06em}
+  .stars{text-align:right;font-variant-numeric:tabular-nums}
+  .stars b{font-family:var(--serif);font-size:19px;font-weight:400;display:block;letter-spacing:-.01em}
+  .stars .trend{font-family:var(--mono);font-size:11px}
+  .stars .up{color:var(--sea)}.stars .flat{color:var(--muted)}.stars .dn{color:var(--accent)}
+  .go{font-size:16px;color:var(--accent);opacity:0;transition:.3s var(--ease);justify-self:end}
+  .row:hover .go{opacity:1}
+  .colhead{display:grid;grid-template-columns:34px 1.7fr 150px 132px 96px 30px;gap:20px;padding:0 8px 12px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .colhead .r3{text-align:right}
+  @media(max-width:880px){
+    .row,.colhead{grid-template-columns:28px 1fr 96px;gap:14px}
+    .row .mom,.colhead .c-mom,.row .go{display:none}
+    .spark{display:none}
+  }
+
+  footer{border-top:1px solid var(--ink);margin-top:80px;padding:64px 0 44px;background:var(--ink);color:var(--paper)}
+  footer h2{font-size:clamp(26px,4vw,42px);font-weight:300;letter-spacing:-.025em;margin-bottom:20px;max-width:20ch}
+  footer h2 em{color:var(--accent)}
+  footer p{color:#c9c1b3;font-weight:300;max-width:62ch;margin-bottom:16px;line-height:1.6}
+  footer .how{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a2620;border:1px solid #2a2620;margin:34px 0 40px}
+  footer .how div{background:var(--ink);padding:22px 20px}
+  footer .how .mono{color:var(--sea-soft);margin-bottom:8px}
+  footer .how p{color:#c9c1b3;font-size:14px;margin:0}
+  .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;color:#b9b1a3;font-family:var(--mono);font-size:12px}
+  .foot-row a{color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s}
+  .foot-row a:hover{border-color:var(--accent)}
+  @media(max-width:680px){footer .how{grid-template-columns:1fr}}
+
+  .loading{padding:60px 0;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<nav id="nav"><div class="wrap nav-in">
+  <a class="brand" href="/"><span class="mark"></span><b>StackTracker</b><span class="by">· a Kymata Labs product</span></a>
+  <div class="nav-links">
+    <a href="#index">The index</a>
+    <a href="#how" class="hidem">How it's made</a>
+    <a href="https://kymatalabs-techtalevisions-projects.vercel.app/" class="hidem">Kymata Labs ↗</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow mono"><span class="dot"></span><span id="liveline">Live · recomputed daily by an agent</span></div>
+  <h1>The live <em>momentum index</em> for AI infrastructure.</h1>
+  <p class="lede">Who's actually shipping — and who's coasting? StackTracker ranks the open-source AI-infra stack by real GitHub velocity: commit cadence, release recency, and 4-week trend. No vibes, no static maps.</p>
+  <div class="meta-row" id="metarow"></div>
+</div></header>
+
+<section class="trending"><div class="wrap">
+  <h2><span class="dot" style="width:7px;height:7px;background:var(--accent);border-radius:50%;display:inline-block"></span> Trending this week</h2>
+  <div class="trend-grid" id="trending"></div>
+</div></section>
+
+<section id="index"><div class="wrap">
+  <div class="controls">
+    <div class="filters" id="filters"></div>
+    <div class="sortnote">Ranked by momentum ↓</div>
+  </div>
+  <div class="colhead">
+    <span>#</span><span>Project</span><span class="c-mom">Momentum</span><span class="c-mom">Commit activity (6mo)</span><span class="r3">Stars</span><span></span>
+  </div>
+  <div class="rows" id="rows"><div class="loading">Loading the index…</div></div>
+</div></section>
+
+<footer id="how"><div class="wrap">
+  <span class="mono" style="color:var(--sea-soft)">How it's made</span>
+  <h2>A self-updating intelligence product, <em>built and run by an AI agent.</em></h2>
+  <p>StackTracker isn't hand-maintained. An autonomous agent pulls live signals from the GitHub API for every project in the index, computes a momentum score, and redeploys this page — every day. The code, the scoring, and the cron that runs it were all built by the same agent stack that runs <a href="https://kymatalabs-techtalevisions-projects.vercel.app/" style="color:var(--sea-soft)">Kymata Labs</a>.</p>
+  <div class="how">
+    <div><div class="mono">1 · Pull</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
+    <div><div class="mono">2 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + 4-week trend (20%).</p></div>
+    <div><div class="mono">3 · Ship</div><p>A GitHub Action recomputes <code>data.json</code> and redeploys — no human in the loop.</p></div>
+  </div>
+  <div class="foot-row">
+    <span id="footgen">Data regenerated daily</span>
+    <span>© 2026 Kymata Labs · StackTracker</span>
+    <a href="https://kymatalabs-techtalevisions-projects.vercel.app/">kymatalabs ↗</a>
+  </div>
+</div></footer>
+
+<script src="app.js"></script>
+</body>
+</html>

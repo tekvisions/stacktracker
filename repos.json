@@ -1,0 +1,30 @@
+{
+  "_comment": "Curated AI-infrastructure repos. Momentum is computed from real GitHub signals (commit velocity + release recency + trend) by build_data.py. Edit this list to add/remove; the daily cron recomputes data.json.",
+  "categories": ["Agents", "Inference", "Vector DB", "LLMOps", "Gateway"],
+  "repos": [
+    { "repo": "langchain-ai/langchain",        "category": "Agents",   "blurb": "The framework that defined LLM app composition — chains, tools, agents." },
+    { "repo": "langchain-ai/langgraph",         "category": "Agents",   "blurb": "Graph-based stateful agent orchestration from the LangChain team." },
+    { "repo": "run-llama/llama_index",          "category": "Agents",   "blurb": "Data framework for connecting LLMs to your private data." },
+    { "repo": "crewAIInc/crewAI",               "category": "Agents",   "blurb": "Role-playing multi-agent crews that collaborate on tasks." },
+    { "repo": "microsoft/autogen",              "category": "Agents",   "blurb": "Multi-agent conversation framework from Microsoft Research." },
+    { "repo": "pydantic/pydantic-ai",           "category": "Agents",   "blurb": "Type-safe agent framework from the Pydantic team." },
+    { "repo": "browser-use/browser-use",        "category": "Agents",   "blurb": "Let agents drive a real browser — the fastest-rising agent tool." },
+    { "repo": "vllm-project/vllm",              "category": "Inference","blurb": "High-throughput, memory-efficient LLM serving (PagedAttention)." },
+    { "repo": "ggml-org/llama.cpp",             "category": "Inference","blurb": "LLM inference in C/C++ — the engine behind local AI everywhere." },
+    { "repo": "ollama/ollama",                  "category": "Inference","blurb": "Run open models locally with one command." },
+    { "repo": "sgl-project/sglang",             "category": "Inference","blurb": "Fast serving runtime with RadixAttention for structured generation." },
+    { "repo": "NVIDIA/TensorRT-LLM",           "category": "Inference","blurb": "NVIDIA's toolkit for the fastest LLM inference on its GPUs." },
+    { "repo": "qdrant/qdrant",                  "category": "Vector DB","blurb": "Rust-built vector database optimized for filtered search." },
+    { "repo": "weaviate/weaviate",              "category": "Vector DB","blurb": "Open-source vector database with built-in hybrid search." },
+    { "repo": "milvus-io/milvus",               "category": "Vector DB","blurb": "Cloud-native vector database for billion-scale similarity search." },
+    { "repo": "chroma-core/chroma",             "category": "Vector DB","blurb": "The embedding database that made RAG prototyping trivial." },
+    { "repo": "pgvector/pgvector",              "category": "Vector DB","blurb": "Vector similarity search inside Postgres." },
+    { "repo": "BerriAI/litellm",                "category": "Gateway",  "blurb": "One API for 100+ LLM providers — the universal gateway." },
+    { "repo": "Portkey-AI/gateway",             "category": "Gateway",  "blurb": "Fast, open-source AI gateway with routing and guardrails." },
+    { "repo": "langfuse/langfuse",              "category": "LLMOps",   "blurb": "Open-source LLM observability, tracing, and evals." },
+    { "repo": "Arize-ai/phoenix",               "category": "LLMOps",   "blurb": "ML/LLM observability and evaluation in a notebook or server." },
+    { "repo": "comfyanonymous/ComfyUI",         "category": "LLMOps",   "blurb": "Node-graph backend for diffusion pipelines — the power-user's canvas." },
+    { "repo": "flowiseai/Flowise",              "category": "Agents",   "blurb": "Drag-and-drop builder for LLM apps and agents." },
+    { "repo": "unslothai/unsloth",              "category": "LLMOps",   "blurb": "2x faster, 70% less memory LLM fine-tuning." }
+  ]
+}
