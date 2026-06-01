@@ -209,7 +209,14 @@ def main() -> int:
     json.dump(data, open(out_path, "w"), indent=2)
     series_len = len(items[0]["monthly_commits"]) if items else 0
     print(f"wrote {out_path}: {len(items)} repos, {series_len}-month series", file=sys.stderr)
-    return 0 if items else 1
+    # resilience guard: a partial/rate-limited run (most repos missing) must FAIL so
+    # the cron skips commit+deploy and the last-good page stays live, not a half-empty one.
+    expected = len(cfg.get("repos", []))
+    floor = max(5, int(expected * 0.6))
+    if len(items) < floor:
+        print(f"GUARD: only {len(items)}/{expected} repos fetched (< {floor}); refusing to publish.", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
