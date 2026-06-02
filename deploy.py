@@ -31,10 +31,55 @@ def req(url, data=None, headers=None, method=None):
         return e.code, e.read()
 
 
+
+def _preflight_overwrite_guard():
+    """Refuse to clobber a project that already serves a REAL production site.
+
+    This pipeline ships *static* sites (framework=None, no git ref). A real app
+    (e.g. Next.js) has a framework and/or a git-linked production deployment.
+    If we see one, abort — deploying static files would destroy it. This is the
+    guard that would have prevented the 2026-06-01 kymatalabs clobber. Force with
+    ALLOW_OVERWRITE=1.
+    """
+    if os.environ.get("ALLOW_OVERWRITE") == "1":
+        return
+    st, resp = req(f"https://api.vercel.com/v9/projects/{PROJECT}?teamId={TEAM}",
+                   headers={"Authorization": f"Bearer {TOKEN}"})
+    if st == 404:
+        return  # project doesn't exist yet -> first deploy, nothing to overwrite
+    if st >= 400:
+        # cannot verify (401/403/5xx) -> FAIL CLOSED, don't risk a clobber
+        print(f"REFUSING to deploy: could not verify project '{PROJECT}' "
+              f"(HTTP {st}). Failing closed to protect any existing site. "
+              f"Re-run with ALLOW_OVERWRITE=1 only if you intend to deploy anyway.",
+              file=sys.stderr)
+        sys.exit(2)
+    try:
+        proj = json.loads(resp)
+    except Exception:
+        print(f"REFUSING to deploy: project '{PROJECT}' response was unparseable; "
+              f"failing closed. Re-run with ALLOW_OVERWRITE=1 to force.", file=sys.stderr)
+        sys.exit(2)
+    fw = proj.get("framework")
+    prod = (proj.get("targets") or {}).get("production") or {}
+    ref = (prod.get("meta") or {}).get("githubCommitRef")
+    if fw or ref:
+        sha = (prod.get("meta") or {}).get("githubCommitSha", "")[:10]
+        print(
+            f"REFUSING to deploy: project '{PROJECT}' already serves a real "
+            f"production site (framework={fw!r}, prod git ref={ref!r} {sha}).\n"
+            f"This pipeline ships static files and would DESTROY it. "
+            f"Re-run with ALLOW_OVERWRITE=1 only if you truly intend to replace it.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+
+
 def main():
     if not TOKEN:
         print("VERCEL_TOKEN not set", file=sys.stderr)
         return 1
+    _preflight_overwrite_guard()
     files = []
     for dp, dn, fn in os.walk(ROOT):
         dn[:] = [d for d in dn if d not in SKIP]
