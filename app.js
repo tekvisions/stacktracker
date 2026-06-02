@@ -32,8 +32,8 @@
     }).join(" ");
     var lastX=(w-pad).toFixed(1), lastY=(h-pad-((arr[n-1]-min)/range)*(h-2*pad)).toFixed(1);
     return '<svg class="spark" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" aria-hidden="true">'
-      + '<polyline points="'+pts+'" fill="none" stroke="#0f766e" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>'
-      + '<circle cx="'+lastX+'" cy="'+lastY+'" r="2" fill="#c2410c"/></svg>';
+      + '<polyline points="'+pts+'" fill="none" stroke="#3dffa6" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" opacity="0.92"/>'
+      + '<circle cx="'+lastX+'" cy="'+lastY+'" r="2" fill="#9affd0"/></svg>';
   }
 
   function trendArrow(delta){
