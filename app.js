@@ -19,6 +19,8 @@
     return Math.round(d/365)+"y ago";
   }
   function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+  // slug: lowercase, url-safe, from "owner-name" — MUST match build_data.py's slugify()
+  function slugify(owner,name){ return (owner+"-"+name).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
 
   // SVG sparkline from a numeric array
   function sparkline(arr, w, h){
@@ -42,8 +44,55 @@
     return '<span class="trend flat">→ steady</span>';
   }
 
+  // ── sort state (default: rank/momentum desc) ──
+  var ALL_REPOS=[];
+  var curFilter="All";
+  var sortKey="momentum", sortDir="desc";
+  var SORT_VAL={
+    momentum:function(r){return r.momentum||0;},
+    stars:function(r){return r.stars||0;},
+    commits:function(r){return r.recent4w_commits||0;}
+  };
+  var SORT_LABEL={momentum:"momentum",stars:"stars",commits:"commits/mo"};
+
+  function rowHTML(r){
+    var capped = r.recent4w_commits>=3000 ? "3000+" : r.recent4w_commits;
+    var rel = r.last_release ? '<div class="rel">'+esc(r.last_release)+' · '+relDate(r.last_release_at)+'</div>' : '';
+    var arch = r.archived ? '<span class="arch">archived</span>' : '';
+    var slug = slugify(r.owner, r.name);
+    var hidden = (curFilter!=="All" && r.category!==curFilter) ? ' hide' : '';
+    return '<a class="row'+hidden+'" data-cat="'+esc(r.category)+'" href="/p/'+esc(slug)+'/">'
+      +'<span class="rank'+(r.rank<=3?' top':'')+'">'+r.rank+'</span>'
+      +'<div class="name"><h3>'+esc(r.name)+' <span class="owner">/ '+esc(r.owner)+'</span> '+arch+'</h3>'
+        +'<p>'+esc(r.blurb)+'</p>'+rel+'</div>'
+      +'<div class="mom"><div class="bar"><i style="width:'+r.momentum+'%"></i></div>'
+        +'<div class="val"><b>'+r.momentum+'</b><span>'+capped+' commits/mo</span></div></div>'
+      +'<div>'+sparkline(r.monthly_commits, 132, 34)+'</div>'
+      +'<div class="stars"><b>'+fmtStars(r.stars)+'</b>'+trendArrow(r.commit_delta)+'</div>'
+      +'<span class="go">↗</span></a>';
+  }
+
+  function applySort(){
+    var get=SORT_VAL[sortKey]||SORT_VAL.momentum;
+    var sorted=ALL_REPOS.slice().sort(function(a,b){
+      var av=get(a), bv=get(b), d=av-bv;
+      if(d===0) d=(a.rank||0)-(b.rank||0); // stable tiebreak by rank
+      return sortDir==="asc"? d : -d;
+    });
+    document.getElementById("rows").innerHTML = sorted.map(rowHTML).join("");
+    // header indicators + aria-sort
+    document.querySelectorAll(".colhead .sortable").forEach(function(btn){
+      var k=btn.getAttribute("data-sort"), ind=btn.querySelector(".ind");
+      if(k===sortKey){ btn.setAttribute("aria-sort", sortDir==="asc"?"ascending":"descending"); if(ind) ind.textContent=sortDir==="asc"?"▲":"▼"; }
+      else { btn.setAttribute("aria-sort","none"); if(ind) ind.textContent="▾"; }
+    });
+    var note=document.getElementById("sortnote");
+    if(note) note.textContent="Sorted by "+(SORT_LABEL[sortKey]||sortKey)+" "+(sortDir==="asc"?"↑":"↓");
+  }
+
   function render(data){
     var repos=data.repos||[];
+    ALL_REPOS=repos;
     var byKey={}; repos.forEach(function(r){byKey[r.repo]=r;});
 
     // meta
@@ -72,31 +121,45 @@
       return '<button class="chip'+(i===0?' active':'')+'" data-filter="'+esc(c)+'" aria-pressed="'+(i===0)+'">'+esc(c)+'</button>';
     }).join("");
 
-    // rows
-    document.getElementById("rows").innerHTML = repos.map(function(r){
-      var capped = r.recent4w_commits>=3000 ? "3000+" : r.recent4w_commits;
-      var rel = r.last_release ? '<div class="rel">'+esc(r.last_release)+' · '+relDate(r.last_release_at)+'</div>' : '';
-      var arch = r.archived ? '<span class="arch">archived</span>' : '';
-      return '<a class="row" data-cat="'+esc(r.category)+'" href="'+esc(r.html_url)+'" target="_blank" rel="noopener">'
-        +'<span class="rank'+(r.rank<=3?' top':'')+'">'+r.rank+'</span>'
-        +'<div class="name"><h3>'+esc(r.name)+' <span class="owner">/ '+esc(r.owner)+'</span> '+arch+'</h3>'
-          +'<p>'+esc(r.blurb)+'</p>'+rel+'</div>'
-        +'<div class="mom"><div class="bar"><i style="width:'+r.momentum+'%"></i></div>'
-          +'<div class="val"><b>'+r.momentum+'</b><span>'+capped+' commits/mo</span></div></div>'
-        +'<div>'+sparkline(r.monthly_commits, 132, 34)+'</div>'
-        +'<div class="stars"><b>'+fmtStars(r.stars)+'</b>'+trendArrow(r.commit_delta)+'</div>'
-        +'<span class="go">↗</span></a>';
-    }).join("");
+    // rows (sorted) — default momentum desc
+    applySort();
+
+    // ItemList JSON-LD for home (top ~50 by rank) — SEO/AEO/GEO
+    try{
+      var list=repos.slice(0,50).map(function(r,i){
+        return {"@type":"ListItem","position":i+1,"url":"https://stacktracker.kymatalabs.com/p/"+slugify(r.owner,r.name)+"/","name":r.owner+"/"+r.name};
+      });
+      var ld={"@context":"https://schema.org","@type":"ItemList","name":"StackTracker — AI-infra momentum index","numberOfItems":list.length,"itemListOrder":"https://schema.org/ItemListOrderDescending","itemListElement":list};
+      var el=document.getElementById("ld-itemlist");
+      if(!el){ el=document.createElement("script"); el.type="application/ld+json"; el.id="ld-itemlist"; document.head.appendChild(el); }
+      el.textContent=JSON.stringify(ld);
+    }catch(e){}
 
     // filter behavior
     var chips=document.querySelectorAll(".chip");
     chips.forEach(function(chip){
       chip.addEventListener("click", function(){
         chips.forEach(function(c){var on=c===chip;c.classList.toggle("active",on);c.setAttribute("aria-pressed",on);});
-        var f=chip.getAttribute("data-filter");
+        curFilter=chip.getAttribute("data-filter");
         document.querySelectorAll(".row").forEach(function(row){
-          row.classList.toggle("hide", f!=="All" && row.getAttribute("data-cat")!==f);
+          row.classList.toggle("hide", curFilter!=="All" && row.getAttribute("data-cat")!==curFilter);
         });
+      });
+    });
+
+    // sort behavior — click toggles asc/desc; keyboard accessible (native <button>)
+    document.querySelectorAll(".colhead .sortable").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var k=btn.getAttribute("data-sort");
+        if(k===sortKey){ sortDir = sortDir==="asc"?"desc":"asc"; }
+        else { sortKey=k; sortDir="desc"; }
+        applySort();
+        // re-apply active category filter after re-render
+        if(curFilter!=="All"){
+          document.querySelectorAll(".row").forEach(function(row){
+            row.classList.toggle("hide", row.getAttribute("data-cat")!==curFilter);
+          });
+        }
       });
     });
   }

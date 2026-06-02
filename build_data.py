@@ -216,6 +216,13 @@ def main() -> int:
     if len(items) < floor:
         print(f"GUARD: only {len(items)}/{expected} repos fetched (< {floor}); refusing to publish.", file=sys.stderr)
         return 1
+    # static detail pages + sitemap + llms.txt — keeps /p/<slug> fresh on every cron run.
+    try:
+        from gen_details import generate_details
+        slugs = generate_details(data, HERE)
+        print(f"generated {len(slugs)} detail pages + sitemap.xml + llms.txt", file=sys.stderr)
+    except Exception as e:
+        print(f"WARN: detail-page generation failed: {e}", file=sys.stderr)
     return 0
 
 
