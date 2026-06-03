@@ -15,8 +15,8 @@ Momentum = commit velocity (55%) + release recency (25%) + 6-month commit trend 
 - Operator: Kymata Labs (https://kymatalabs.com/).
 
 ## Routes
-- `/` — the full momentum-ranked index (sortable by momentum, stars, commits/mo; filterable by category).
-- `/p/<slug>` — per-repo detail page: full stats, momentum breakdown, 6-month commit sparkline, and outbound links. Slug is the lowercased `owner-name`.
+- `/` — the full momentum-ranked index. Filter by category; sort by momentum, stars, commits/mo, 4-week trend, or name; instant client-side search.
+- `/p/<slug>` — per-repo deep-dive: stat grid (momentum, rank, stars, commits/30d), the weighted score breakdown (velocity 55% + release recency 25% + commit trend 20%), a 6-month commit-volume chart, latest-release detail, category peers (linked), full repository metadata, and outbound links. Slug is the lowercased `owner-name`.
 
 ## Index (current ranking)
 - [weaviate/weaviate](https://stacktracker.kymatalabs.com/p/weaviate-weaviate/) — Vector DB, momentum 100/100, 16,258★

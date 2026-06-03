@@ -59,27 +59,57 @@
 
   <div class="statgrid">
     <div class="s accent"><b>100</b><span>Momentum</span></div>
+    <div class="s"><b>#1</b><span>Overall rank</span></div>
     <div class="s"><b>16k</b><span>Stars</span></div>
-    <div class="s"><b>1,303</b><span>Forks</span></div>
-    <div class="s"><b>533</b><span>Open issues</span></div>
+    <div class="s"><b>847</b><span>Commits / 30d</span></div>
   </div>
 
-  <section class="dt-panel">
+  <section class="dt-panel hero-panel">
     <h2>Momentum signal</h2>
     <div class="dt-momentum">
-      <span class="score">100</span>
-      <div class="bar"><i style="width:100%"></i></div>
+      <div class="score-wrap"><span class="score" data-count="100">100</span><span class="score-of">/ 100</span></div>
+      <div class="dt-momentum-body">
+        <div class="bar" role="meter" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Momentum score 100 of 100"><i style="width:100%"></i></div>
+        <div class="rank-ctx"><span class="rc">#1 of 24 tracked</span><span class="rc">#1 of 5 in Vector DB</span></div>
+      </div>
     </div>
-    <div class="dt-meta" style="margin-top:22px">
-      <div><span class="k">Commits · last 30d</span><span class="v">847</span></div>
-      <div><span class="k">Commits · prior 30d</span><span class="v">391</span></div>
+    <div class="dt-meta" style="margin-top:24px">
+      <div><span class="k">Commits &middot; last 30d</span><span class="v">847</span></div>
+      <div><span class="k">Commits &middot; prior 30d</span><span class="v">391</span></div>
       <div><span class="k">Month-over-month</span><span class="v up">&#9650; +456 vs prior month</span></div>
     </div>
   </section>
 
   <section class="dt-panel">
-    <h2>Commit volume · last 6 months</h2>
-    <svg class="dt-spark" viewBox="0 0 720 140" preserveAspectRatio="none" role="img" aria-label="Monthly commit volume, last 6 months"><polygon points="6,134 6.0,93.3 147.6,84.0 289.2,58.2 430.8,56.0 572.4,134.0 714.0,6.0 714,134" fill="var(--phos-trail)" stroke="none"/><polyline points="6.0,93.3 147.6,84.0 289.2,58.2 430.8,56.0 572.4,134.0 714.0,6.0" fill="none" stroke="var(--scope-trace)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="6.0" cy="93.3" r="2.2" fill="var(--scope-trace)" opacity=".7"/><circle cx="147.6" cy="84.0" r="2.2" fill="var(--scope-trace)" opacity=".7"/><circle cx="289.2" cy="58.2" r="2.2" fill="var(--scope-trace)" opacity=".7"/><circle cx="430.8" cy="56.0" r="2.2" fill="var(--scope-trace)" opacity=".7"/><circle cx="572.4" cy="134.0" r="2.2" fill="var(--scope-trace)" opacity=".7"/><circle cx="714.0" cy="6.0" r="2.2" fill="var(--scope-trace)" opacity=".7"/><circle cx="714.0" cy="6.0" r="3.4" fill="var(--scope-dot)"/></svg>
+    <h2>Score breakdown</h2>
+    <p class="dt-note">Momentum is a weighted blend of three live GitHub signals. Each bar shows that signal's normalized strength (0&ndash;100) and the points it contributes to the 100/100 total.</p>
+    <div class="cmp-list"><div class="cmp"><div class="cmp-head"><span class="cmp-name">Commit velocity</span><span class="cmp-w">55% weight</span><span class="cmp-pts">+55.0 pts</span></div><div class="cmp-track"><i style="width:100.0%"></i></div><div class="cmp-foot"><span class="cmp-desc">How hard the repo is shipping right now (caps at ~400 commits/30d).</span><span class="cmp-raw">847 commits / 30d &middot; 100/100</span></div></div><div class="cmp"><div class="cmp-head"><span class="cmp-name">Release recency</span><span class="cmp-w">25% weight</span><span class="cmp-pts">+25.0 pts</span></div><div class="cmp-track"><i style="width:100.0%"></i></div><div class="cmp-foot"><span class="cmp-desc">How recently a stable release shipped (full credit &lt; 30d, decays to ~270d).</span><span class="cmp-raw">released 7d ago &middot; 100/100</span></div></div><div class="cmp"><div class="cmp-head"><span class="cmp-name">Commit trend</span><span class="cmp-w">20% weight</span><span class="cmp-pts">+20.0 pts</span></div><div class="cmp-track"><i style="width:100.0%"></i></div><div class="cmp-foot"><span class="cmp-desc">This 30-day window versus the one before it — acceleration or cool-off.</span><span class="cmp-raw">+117% vs prior 30d &middot; 100/100</span></div></div></div>
+    <div class="cmp-total"><span class="ct-eq">0.55 &middot; velocity &nbsp;+&nbsp; 0.25 &middot; recency &nbsp;+&nbsp; 0.20 &middot; trend</span><span class="ct-val">= 100 / 100</span></div>
+  </section>
+
+  <section class="dt-panel">
+    <h2>Commit volume &middot; last 6 months</h2>
+    <p class="dt-note">Six rolling 30-day windows of commit counts, pulled straight from the GitHub commits API &mdash; the same series that drives the velocity and trend signals above.</p>
+    <svg class="dt-chart" viewBox="0 0 760 210" role="img" aria-label="Monthly commit volume over the last 6 months: 536, 569, 661, 669, 391, 847 commits per 30-day window, oldest to newest."><line x1="8" y1="180.0" x2="752" y2="180.0" class="ch-grid"/><line x1="8" y1="103.0" x2="752" y2="103.0" class="ch-grid"/><line x1="8" y1="26.0" x2="752" y2="26.0" class="ch-grid"/><polygon points="8.0,180.0 8.0,82.5 156.8,76.5 305.6,59.8 454.4,58.4 603.2,108.9 752.0,26.0 752.0,180.0" fill="var(--phos-trail)" stroke="none"/><polyline points="8.0,82.5 156.8,76.5 305.6,59.8 454.4,58.4 603.2,108.9 752.0,26.0" fill="none" stroke="var(--scope-trace)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="8.0" cy="82.5" r="2.6" fill="var(--scope-trace)" opacity=".85"/><text x="8.0" y="73.5" class="ch-val" text-anchor="middle">536</text><text x="8.0" y="201.0" class="ch-x" text-anchor="middle">-5mo</text><circle cx="156.8" cy="76.5" r="2.6" fill="var(--scope-trace)" opacity=".85"/><text x="156.8" y="67.5" class="ch-val" text-anchor="middle">569</text><text x="156.8" y="201.0" class="ch-x" text-anchor="middle">-4mo</text><circle cx="305.6" cy="59.8" r="2.6" fill="var(--scope-trace)" opacity=".85"/><text x="305.6" y="50.8" class="ch-val" text-anchor="middle">661</text><text x="305.6" y="201.0" class="ch-x" text-anchor="middle">-3mo</text><circle cx="454.4" cy="58.4" r="2.6" fill="var(--scope-trace)" opacity=".85"/><text x="454.4" y="49.4" class="ch-val" text-anchor="middle">669</text><text x="454.4" y="201.0" class="ch-x" text-anchor="middle">-2mo</text><circle cx="603.2" cy="108.9" r="2.6" fill="var(--scope-trace)" opacity=".85"/><text x="603.2" y="99.9" class="ch-val" text-anchor="middle">391</text><text x="603.2" y="201.0" class="ch-x" text-anchor="middle">-1mo</text><circle cx="752.0" cy="26.0" r="2.6" fill="var(--scope-trace)" opacity=".85"/><text x="752.0" y="17.0" class="ch-val" text-anchor="middle">847</text><text x="752.0" y="201.0" class="ch-x" text-anchor="middle">now</text><circle cx="752.0" cy="26.0" r="4" fill="var(--scope-dot)"/></svg>
+  </section>
+
+  <section class="dt-panel">
+    <h2>Latest release</h2>
+    <div class="release">
+      <div class="rel-tag">v1.37.6</div>
+      <div class="rel-when">shipped 7d ago</div>
+    </div>
+    <div class="dt-meta" style="margin-top:20px">
+      <div><span class="k">Release recency signal</span><span class="v">25.0 of 25 pts</span></div>
+      <div><span class="k">Last code push</span><span class="v">2d ago</span></div>
+      <div><span class="k">Release tag</span><span class="v">v1.37.6</span></div>
+    </div>
+  </section>
+
+  <section class="dt-panel" id="peers">
+    <h2>Category peers &middot; Vector DB</h2>
+    <p class="dt-note">Other tracked Vector DB projects, ranked by live momentum. The fastest way to see where weaviate sits in its lane.</p>
+    <div class="peer-grid"><a class="peer" href="/p/qdrant-qdrant/"><div class="peer-top"><span class="peer-rank">#2</span><span class="peer-mom">94</span></div><div class="peer-name">qdrant</div><div class="peer-meta"><span>32k&#9733;</span><span class="peer-d up">&#9650; 413/mo</span></div></a><a class="peer" href="/p/milvus-io-milvus/"><div class="peer-top"><span class="peer-rank">#13</span><span class="peer-mom">57</span></div><div class="peer-name">milvus</div><div class="peer-meta"><span>45k&#9733;</span><span class="peer-d dn">&#9660; 49/mo</span></div></a><a class="peer" href="/p/chroma-core-chroma/"><div class="peer-top"><span class="peer-rank">#18</span><span class="peer-mom">45</span></div><div class="peer-name">chroma</div><div class="peer-meta"><span>28k&#9733;</span><span class="peer-d dn">&#9660; 20/mo</span></div></a><a class="peer" href="/p/pgvector-pgvector/"><div class="peer-top"><span class="peer-rank">#23</span><span class="peer-mom">8</span></div><div class="peer-name">pgvector</div><div class="peer-meta"><span>22k&#9733;</span><span class="peer-d dn">&#9660; 12/mo</span></div></a></div>
   </section>
 
   <section class="dt-panel">
@@ -87,12 +117,16 @@
     <div class="dt-meta">
       <div><span class="k">Language</span><span class="v">Go</span></div>
       <div><span class="k">Category</span><span class="v">Vector DB</span></div>
-      <div><span class="k">Last release</span><span class="v">v1.37.6 &middot; 6d ago</span></div>
-      <div><span class="k">Last pushed</span><span class="v">today</span></div>
       <div><span class="k">Stars</span><span class="v">16,258</span></div>
       <div><span class="k">Forks</span><span class="v">1,303</span></div>
       <div><span class="k">Open issues</span><span class="v">533</span></div>
+      <div><span class="k">Last pushed</span><span class="v">2d ago</span></div>
+      <div><span class="k">Last release</span><span class="v">v1.37.6 &middot; 7d ago</span></div>
       <div><span class="k">Archived</span><span class="v">no</span></div>
+    </div>
+    <div class="dt-links">
+      <a class="dt-btn primary" href="https://github.com/weaviate/weaviate" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+      <a class="dt-btn" href="https://weaviate.io/developers/weaviate/" target="_blank" rel="noopener">Homepage &#8599;</a>
     </div>
   </section>
 </div></main>
@@ -112,17 +146,56 @@
   </div>
 </div></footer>
 <script>
+/* theme toggle + nav scroll state (shared with index.html) */
 (function(){
-  var btn=document.getElementById("themeToggle"); if(!btn) return;
-  btn.addEventListener("click",function(){
+  var btn=document.getElementById("themeToggle");
+  if(btn){btn.addEventListener("click",function(){
     var cur=document.documentElement.dataset.theme==="light"?"light":"dark";
     var next=cur==="light"?"dark":"light";
     document.documentElement.dataset.theme=next;
     try{localStorage.setItem("theme",next);}catch(e){}
     var mc=document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute("content",next==="light"?"#eef3f0":"#070a09");
-  });
+    window.dispatchEvent(new CustomEvent("themechange",{detail:next}));
+  });}
   var nav=document.getElementById("nav");
   if(nav){var on=function(){nav.classList.toggle("scrolled",window.scrollY>20)};window.addEventListener("scroll",on,{passive:true});on();}
+})();
+/* count-up for the momentum score (respects reduced-motion) */
+(function(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var el=document.querySelector(".score[data-count]"); if(!el) return;
+  var target=parseFloat(el.getAttribute("data-count"))||0; if(target<=0){return;}
+  var start=null, dur=850;
+  function step(now){ if(start===null)start=now; var t=Math.min((now-start)/dur,1);
+    var e=1-Math.pow(1-t,3); el.textContent=Math.round(target*e); if(t<1)requestAnimationFrame(step); else el.textContent=target; }
+  el.textContent="0"; requestAnimationFrame(step);
+})();
+/* oscilloscope hero — phosphor trace, theme-aware (mirrors index.html) */
+(function(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var cv=document.getElementById("scope"); if(!cv) return;
+  var ctx=cv.getContext("2d"), W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2), t=0, raf;
+  var BG="#070a09", TRACE="61,255,166", DOT="#9affd0";
+  function hexToRGB(h){h=h.trim();if(h[0]!=="#")return null;if(h.length===4)h="#"+h[1]+h[1]+h[2]+h[2]+h[3]+h[3];var n=parseInt(h.slice(1),16);return (n>>16&255)+","+(n>>8&255)+","+(n&255);}
+  function readTheme(){var cs=getComputedStyle(document.documentElement);
+    BG=(cs.getPropertyValue("--scope-bg")||"#070a09").trim()||"#070a09";
+    TRACE=hexToRGB((cs.getPropertyValue("--scope-trace")||"#3dffa6").trim())||"61,255,166";
+    DOT=(cs.getPropertyValue("--scope-dot")||"#9affd0").trim()||"#9affd0";}
+  function fadeRGB(){var rgb=hexToRGB(BG)||"7,10,9";return "rgba("+rgb+",0.16)";}
+  function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);}
+  function wave(x){var k=x/W;return Math.sin(k*6.0+t*1.1)*0.46+Math.sin(k*15.0-t*1.7)*0.18+Math.sin(k*31.0+t*2.3)*0.07;}
+  function frame(){ctx.globalCompositeOperation="source-over";ctx.fillStyle=fadeRGB();ctx.fillRect(0,0,W,H);
+    var midY=H*0.52,amp=H*0.30;ctx.globalCompositeOperation="lighter";
+    for(var pass=0;pass<2;pass++){ctx.beginPath();
+      for(var x=0;x<=W;x+=2){var y=midY-wave(x)*amp;if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}
+      ctx.lineWidth=pass===0?7:1.6;ctx.strokeStyle=pass===0?"rgba("+TRACE+",0.07)":"rgba("+TRACE+",0.85)";
+      ctx.shadowColor="rgba("+TRACE+",0.7)";ctx.shadowBlur=pass===0?0:12;ctx.stroke();}
+    var bx=(t*120)%W,by=midY-wave(bx)*amp;ctx.beginPath();ctx.arc(bx,by,2.6,0,6.2832);ctx.fillStyle=DOT;ctx.shadowBlur=16;ctx.fill();ctx.shadowBlur=0;
+    t+=0.016;raf=requestAnimationFrame(frame);}
+  readTheme();size();window.addEventListener("resize",size);
+  window.addEventListener("themechange",function(){readTheme();ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);});
+  document.addEventListener("visibilitychange",function(){if(document.hidden){cancelAnimationFrame(raf);}else{raf=requestAnimationFrame(frame);}});
+  ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);raf=requestAnimationFrame(frame);
 })();
 </script>
 </body>

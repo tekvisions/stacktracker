@@ -58,27 +58,38 @@
   <div class="meta-row" id="metarow"></div>
 </div></header>
 
-<section class="trending"><div class="wrap">
+<section class="trending" data-reveal><div class="wrap">
   <h2><span style="width:7px;height:7px;background:var(--phos);border-radius:50%;display:inline-block;box-shadow:0 0 10px var(--phos)"></span> Trending this cycle</h2>
   <div class="trend-grid" id="trending"></div>
 </div></section>
 
 <section id="index"><div class="wrap">
   <div class="controls">
-    <div class="filters" id="filters"></div>
-    <div class="sortnote" id="sortnote">Ranked by momentum ↓</div>
+    <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+    <div class="search-wrap">
+      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search" class="search" type="search" placeholder="Probe the index…" aria-label="Search projects by name, owner, category, or language" autocomplete="off" spellcheck="false">
+      <button id="searchClear" class="search-clear" type="button" aria-label="Clear search" hidden>✕</button>
+    </div>
   </div>
-  <div class="colhead">
-    <span>#</span><span>Project</span>
-    <span class="c-mom"><button class="sortable" type="button" data-sort="momentum" aria-sort="descending">Momentum <span class="ind">▼</span></button></span>
-    <span class="c-mom"><button class="sortable" type="button" data-sort="commits" aria-sort="none">Commits/mo <span class="ind">▾</span></button></span>
-    <span class="r3"><button class="sortable" type="button" data-sort="stars" aria-sort="none">Stars <span class="ind">▾</span></button></span>
-    <span></span>
+  <div class="colhead" role="row">
+    <span role="columnheader">#</span>
+    <span role="columnheader"><button class="sortable" type="button" data-sort="name" aria-sort="none">Project <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span class="c-mom" role="columnheader"><button class="sortable" type="button" data-sort="momentum" aria-sort="descending">Momentum <span class="ind" aria-hidden="true">▼</span></button></span>
+    <span class="c-mom" role="columnheader"><button class="sortable" type="button" data-sort="commits" aria-sort="none">Commits/mo <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span class="c-trend" role="columnheader"><button class="sortable" type="button" data-sort="trend" aria-sort="none">4-wk trend <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span class="r3" role="columnheader"><button class="sortable" type="button" data-sort="stars" aria-sort="none">Stars <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span aria-hidden="true"></span>
   </div>
-  <div class="rows" id="rows"><div class="loading">Acquiring signal…</div></div>
+  <div class="rows" id="rows" role="rowgroup" aria-live="polite" aria-busy="true"><div class="loading">Acquiring signal…</div></div>
+  <div class="noresults" id="noresults" hidden>
+    <span class="nr-line">— no signal matches <b id="nr-q"></b> —</span>
+    <button class="nr-reset" id="nr-reset" type="button">Reset filters</button>
+  </div>
+  <div class="sortnote resultnote" id="sortnote" aria-live="polite">Ranked by momentum ↓</div>
 </div></section>
 
-<footer id="how"><div class="wrap">
+<footer id="how" data-reveal><div class="wrap">
   <span class="mono" style="color:var(--phos)">How it's made</span>
   <h2>A self-updating intelligence instrument, <em>built and run by an AI agent.</em></h2>
   <p>StackTracker isn't hand-maintained. An autonomous agent pulls live signals from the GitHub API for every project in the index, computes a momentum score, and redeploys this page — every day. The code, the scoring, and the cron that runs it were all built by the same agent stack that runs <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>

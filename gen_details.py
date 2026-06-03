@@ -70,33 +70,93 @@ def fmt_stars(n) -> str:
     return str(n)
 
 
-def sparkline_svg(arr, w=720, h=140) -> str:
-    """Larger monthly_commits sparkline for the detail page."""
-    if not arr or len(arr) < 2:
-        return '<div class="dt-spark"><span class="ph">— sparkline warming up —</span></div>'
-    mx, mn = max(arr), min(arr)
-    rng = (mx - mn) or 1
-    n = len(arr)
-    pad = 6
-    pts = []
-    for i, v in enumerate(arr):
-        x = pad + i * (w - 2 * pad) / (n - 1)
-        y = h - pad - ((v - mn) / rng) * (h - 2 * pad)
-        pts.append(f"{x:.1f},{y:.1f}")
-    poly = " ".join(pts)
-    area = f"{pad},{h-pad} " + poly + f" {w-pad},{h-pad}"
-    lx = w - pad
-    ly = h - pad - ((arr[-1] - mn) / rng) * (h - 2 * pad)
-    dots = ""
-    for i, v in enumerate(arr):
-        x = pad + i * (w - 2 * pad) / (n - 1)
-        y = h - pad - ((v - mn) / rng) * (h - 2 * pad)
-        dots += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.2" fill="var(--scope-trace)" opacity=".7"/>'
+def momentum_components(recent4: int, prior4: int, days_release):
+    """Recompute the three momentum sub-scores EXACTLY as build_data.momentum()
+    does, so the detail page can show the weighted breakdown + the math.
+    Returns a dict of 0..1 component values, their weights, and weighted points.
+    Kept byte-for-byte equivalent to build_data.momentum() — if that changes,
+    change this too (there's a CI-style assertion in __main__ self-check)."""
+    act = min(recent4 / 400.0, 1.0)
+    if days_release is None:
+        rel = 0.2
+    else:
+        rel = max(0.0, 1.0 - max(0.0, days_release - 30) / 240.0)
+    if prior4 > 0:
+        tr = min(max((recent4 - prior4) / prior4 * 0.5 + 0.5, 0.0), 1.0)
+    else:
+        tr = 0.7 if recent4 > 0 else 0.5
+    weights = {"act": 0.55, "rel": 0.25, "tr": 0.20}
+    comps = {"act": act, "rel": rel, "tr": tr}
+    points = {k: round(100 * weights[k] * comps[k], 1) for k in comps}
+    total = round(100 * sum(weights[k] * comps[k] for k in comps))
+    return {"comps": comps, "weights": weights, "points": points, "total": max(0, min(100, total))}
+
+
+def _days_since(iso):
+    if not iso:
+        return None
+    try:
+        dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+        return (datetime.now(timezone.utc) - dt).total_seconds() / 86400.0
+    except Exception:
+        return None
+
+
+def _component_row(label: str, desc: str, frac: float, weight: float, pts: float, raw: str) -> str:
+    pct = max(0.0, min(1.0, frac)) * 100
     return (
-        f'<svg class="dt-spark" viewBox="0 0 {w} {h}" preserveAspectRatio="none" role="img" aria-label="Monthly commit volume, last 6 months">'
+        f'<div class="cmp">'
+        f'<div class="cmp-head"><span class="cmp-name">{_esc(label)}</span>'
+        f'<span class="cmp-w">{int(weight*100)}% weight</span>'
+        f'<span class="cmp-pts">+{pts:.1f} pts</span></div>'
+        f'<div class="cmp-track"><i style="width:{pct:.1f}%"></i></div>'
+        f'<div class="cmp-foot"><span class="cmp-desc">{_esc(desc)}</span>'
+        f'<span class="cmp-raw">{_esc(raw)} &middot; {pct:.0f}/100</span></div>'
+        f'</div>'
+    )
+
+
+def commit_chart(arr, w=760, h=210) -> str:
+    """Detail-page commit-volume chart: phosphor-trace area + value-labelled
+    points + a baseline graticule, drawn at the chart's true aspect (no x/y
+    distortion — preserveAspectRatio is on so it scales cleanly). Values are
+    the 6 monthly (30-day) commit buckets, oldest → newest."""
+    if not arr or len(arr) < 2:
+        return '<div class="dt-chart-empty"><span class="ph">— commit signal warming up —</span></div>'
+    n = len(arr)
+    padL, padR, padT, padB = 8, 8, 26, 30
+    mx = max(arr)
+    top = mx if mx > 0 else 1
+    plotw, ploth = w - padL - padR, h - padT - padB
+    def X(i): return padL + i * plotw / (n - 1)
+    def Y(v): return padT + ploth - (v / top) * ploth
+    pts = [(X(i), Y(v)) for i, v in enumerate(arr)]
+    poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    base = padT + ploth
+    area = f"{X(0):.1f},{base:.1f} " + poly + f" {X(n-1):.1f},{base:.1f}"
+    # horizontal graticule lines (0, mid, max)
+    grid = ""
+    for g in (0.0, 0.5, 1.0):
+        gy = padT + ploth - g * ploth
+        grid += f'<line x1="{padL}" y1="{gy:.1f}" x2="{w-padR}" y2="{gy:.1f}" class="ch-grid"/>'
+    # value labels at each point + month-offset labels along the baseline
+    labels = ""
+    for i, (x, y) in enumerate(pts):
+        v = arr[i]
+        labels += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.6" fill="var(--scope-trace)" opacity=".85"/>'
+        labels += f'<text x="{x:.1f}" y="{y-9:.1f}" class="ch-val" text-anchor="middle">{v}</text>'
+        mo = n - 1 - i
+        ml = "now" if mo == 0 else f"-{mo}mo"
+        labels += f'<text x="{x:.1f}" y="{h-9:.1f}" class="ch-x" text-anchor="middle">{ml}</text>'
+    lx, ly = pts[-1]
+    return (
+        f'<svg class="dt-chart" viewBox="0 0 {w} {h}" role="img" '
+        f'aria-label="Monthly commit volume over the last 6 months: {", ".join(str(v) for v in arr)} commits per 30-day window, oldest to newest.">'
+        f'{grid}'
         f'<polygon points="{area}" fill="var(--phos-trail)" stroke="none"/>'
-        f'<polyline points="{poly}" fill="none" stroke="var(--scope-trace)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
-        f'{dots}<circle cx="{lx:.1f}" cy="{ly:.1f}" r="3.4" fill="var(--scope-dot)"/></svg>'
+        f'<polyline points="{poly}" fill="none" stroke="var(--scope-trace)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'
+        f'{labels}'
+        f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="4" fill="var(--scope-dot)"/></svg>'
     )
 
 
@@ -143,22 +203,62 @@ FOOTER = """<footer><div class="wrap">
 </div></footer>"""
 
 THEME_SCRIPT = """<script>
+/* theme toggle + nav scroll state (shared with index.html) */
 (function(){
-  var btn=document.getElementById("themeToggle"); if(!btn) return;
-  btn.addEventListener("click",function(){
+  var btn=document.getElementById("themeToggle");
+  if(btn){btn.addEventListener("click",function(){
     var cur=document.documentElement.dataset.theme==="light"?"light":"dark";
     var next=cur==="light"?"dark":"light";
     document.documentElement.dataset.theme=next;
     try{localStorage.setItem("theme",next);}catch(e){}
     var mc=document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute("content",next==="light"?"#eef3f0":"#070a09");
-  });
+    window.dispatchEvent(new CustomEvent("themechange",{detail:next}));
+  });}
   var nav=document.getElementById("nav");
   if(nav){var on=function(){nav.classList.toggle("scrolled",window.scrollY>20)};window.addEventListener("scroll",on,{passive:true});on();}
+})();
+/* count-up for the momentum score (respects reduced-motion) */
+(function(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var el=document.querySelector(".score[data-count]"); if(!el) return;
+  var target=parseFloat(el.getAttribute("data-count"))||0; if(target<=0){return;}
+  var start=null, dur=850;
+  function step(now){ if(start===null)start=now; var t=Math.min((now-start)/dur,1);
+    var e=1-Math.pow(1-t,3); el.textContent=Math.round(target*e); if(t<1)requestAnimationFrame(step); else el.textContent=target; }
+  el.textContent="0"; requestAnimationFrame(step);
+})();
+/* oscilloscope hero — phosphor trace, theme-aware (mirrors index.html) */
+(function(){
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  var cv=document.getElementById("scope"); if(!cv) return;
+  var ctx=cv.getContext("2d"), W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2), t=0, raf;
+  var BG="#070a09", TRACE="61,255,166", DOT="#9affd0";
+  function hexToRGB(h){h=h.trim();if(h[0]!=="#")return null;if(h.length===4)h="#"+h[1]+h[1]+h[2]+h[2]+h[3]+h[3];var n=parseInt(h.slice(1),16);return (n>>16&255)+","+(n>>8&255)+","+(n&255);}
+  function readTheme(){var cs=getComputedStyle(document.documentElement);
+    BG=(cs.getPropertyValue("--scope-bg")||"#070a09").trim()||"#070a09";
+    TRACE=hexToRGB((cs.getPropertyValue("--scope-trace")||"#3dffa6").trim())||"61,255,166";
+    DOT=(cs.getPropertyValue("--scope-dot")||"#9affd0").trim()||"#9affd0";}
+  function fadeRGB(){var rgb=hexToRGB(BG)||"7,10,9";return "rgba("+rgb+",0.16)";}
+  function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);}
+  function wave(x){var k=x/W;return Math.sin(k*6.0+t*1.1)*0.46+Math.sin(k*15.0-t*1.7)*0.18+Math.sin(k*31.0+t*2.3)*0.07;}
+  function frame(){ctx.globalCompositeOperation="source-over";ctx.fillStyle=fadeRGB();ctx.fillRect(0,0,W,H);
+    var midY=H*0.52,amp=H*0.30;ctx.globalCompositeOperation="lighter";
+    for(var pass=0;pass<2;pass++){ctx.beginPath();
+      for(var x=0;x<=W;x+=2){var y=midY-wave(x)*amp;if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}
+      ctx.lineWidth=pass===0?7:1.6;ctx.strokeStyle=pass===0?"rgba("+TRACE+",0.07)":"rgba("+TRACE+",0.85)";
+      ctx.shadowColor="rgba("+TRACE+",0.7)";ctx.shadowBlur=pass===0?0:12;ctx.stroke();}
+    var bx=(t*120)%W,by=midY-wave(bx)*amp;ctx.beginPath();ctx.arc(bx,by,2.6,0,6.2832);ctx.fillStyle=DOT;ctx.shadowBlur=16;ctx.fill();ctx.shadowBlur=0;
+    t+=0.016;raf=requestAnimationFrame(frame);}
+  readTheme();size();window.addEventListener("resize",size);
+  window.addEventListener("themechange",function(){readTheme();ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);});
+  document.addEventListener("visibilitychange",function(){if(document.hidden){cancelAnimationFrame(raf);}else{raf=requestAnimationFrame(frame);}});
+  ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);raf=requestAnimationFrame(frame);
 })();
 </script>"""
 
 
-def detail_html(r: dict) -> str:
+def detail_html(r: dict, all_repos: list | None = None) -> str:
+    all_repos = all_repos or []
     slug = slugify(r["owner"], r["name"])
     url = f"{BASE}/p/{slug}/"
     title = f"{r['name']} by {r['owner']} — momentum {r.get('momentum',0)}/100 · StackTracker"
@@ -166,15 +266,21 @@ def detail_html(r: dict) -> str:
     desc = f"{r['owner']}/{r['name']}: {blurb} {fmt_int(r.get('stars',0))} stars, momentum {r.get('momentum',0)}/100, {r.get('recent4w_commits',0)} commits in the last 30 days. Live GitHub velocity, recomputed daily."
     desc = desc[:300]
     cat = r.get("category", "AI infrastructure")
+    mom = r.get("momentum", 0)
     delta = r.get("commit_delta", 0)
+    recent4 = r.get("recent4w_commits", 0)
+    prior4 = r.get("prior4w_commits", 0)
+    rank = r.get("rank")
+    total_n = len(all_repos) or r.get("rank") or 0
     if delta > 3:
         dcls, dtxt = "up", f"&#9650; +{delta} vs prior month"
     elif delta < -3:
         dcls, dtxt = "dn", f"&#9660; {delta} vs prior month"
     else:
         dcls, dtxt = "", "&#8594; steady"
+    rel_at = r.get("last_release_at")
     rel_line = (
-        f"{_esc(r['last_release'])} &middot; {rel_date(r.get('last_release_at')) or '—'}"
+        f"{_esc(r['last_release'])} &middot; {rel_date(rel_at) or '—'}"
         if r.get("last_release") else "no published release"
     )
     pushed = rel_date(r.get("pushed_at")) or "—"
@@ -184,6 +290,65 @@ def detail_html(r: dict) -> str:
         if homepage else ""
     )
     archived = '<span class="arch">archived</span>' if r.get("archived") else ""
+
+    # ── momentum score breakdown (recomputed from the same inputs) ──
+    d_rel = _days_since(rel_at)
+    mc = momentum_components(recent4, prior4, d_rel)
+    act_raw = f"{recent4} commits / 30d"
+    if d_rel is None:
+        rel_raw = "no release (floor)"
+    else:
+        rel_raw = f"released {int(round(d_rel))}d ago"
+    if prior4 > 0:
+        pct_mom = (recent4 - prior4) / prior4 * 100
+        tr_raw = f"{'+' if pct_mom>=0 else ''}{pct_mom:.0f}% vs prior 30d"
+    else:
+        tr_raw = "no prior-month baseline"
+    breakdown = (
+        _component_row("Commit velocity", "How hard the repo is shipping right now (caps at ~400 commits/30d).",
+                       mc["comps"]["act"], mc["weights"]["act"], mc["points"]["act"], act_raw)
+        + _component_row("Release recency", "How recently a stable release shipped (full credit < 30d, decays to ~270d).",
+                         mc["comps"]["rel"], mc["weights"]["rel"], mc["points"]["rel"], rel_raw)
+        + _component_row("Commit trend", "This 30-day window versus the one before it — acceleration or cool-off.",
+                         mc["comps"]["tr"], mc["weights"]["tr"], mc["points"]["tr"], tr_raw)
+    )
+
+    # ── category peers (same category, by rank, excluding self) ──
+    peers = [p for p in all_repos if p.get("category") == cat and p.get("repo") != r.get("repo")]
+    peers.sort(key=lambda p: p.get("rank", 9999))
+    peer_cards = ""
+    for p in peers[:6]:
+        pslug = slugify(p["owner"], p["name"])
+        pd = p.get("commit_delta", 0)
+        pcls = "up" if pd > 3 else ("dn" if pd < -3 else "flat")
+        psign = "&#9650;" if pd > 3 else ("&#9660;" if pd < -3 else "&#8594;")
+        peer_cards += (
+            f'<a class="peer" href="/p/{_esc(pslug)}/">'
+            f'<div class="peer-top"><span class="peer-rank">#{p.get("rank","—")}</span>'
+            f'<span class="peer-mom">{p.get("momentum",0)}</span></div>'
+            f'<div class="peer-name">{_esc(p["name"])}</div>'
+            f'<div class="peer-meta"><span>{fmt_stars(p.get("stars",0))}&#9733;</span>'
+            f'<span class="peer-d {pcls}">{psign} {abs(pd)}/mo</span></div></a>'
+        )
+    peers_section = (
+        f'''  <section class="dt-panel" id="peers">
+    <h2>Category peers &middot; {_esc(cat)}</h2>
+    <p class="dt-note">Other tracked {_esc(cat)} projects, ranked by live momentum. The fastest way to see where {_esc(r["name"])} sits in its lane.</p>
+    <div class="peer-grid">{peer_cards}</div>
+  </section>'''
+        if peer_cards else ""
+    )
+
+    # rank context line
+    if rank and total_n:
+        rank_ctx = f"#{rank} of {total_n} tracked"
+        cat_peer_n = len([p for p in all_repos if p.get("category") == cat])
+        cat_rank = sorted([p for p in all_repos if p.get("category") == cat],
+                          key=lambda p: p.get("rank", 9999))
+        cat_pos = next((i + 1 for i, p in enumerate(cat_rank) if p.get("repo") == r.get("repo")), None)
+        rank_cat_ctx = f"#{cat_pos} of {cat_peer_n} in {cat}" if cat_pos else cat
+    else:
+        rank_ctx, rank_cat_ctx = "—", cat
 
     breadcrumb = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -251,41 +416,71 @@ def detail_html(r: dict) -> str:
   </div>
 
   <div class="statgrid">
-    {stat(r.get('momentum',0), 'Momentum', ' accent')}
+    {stat(mom, 'Momentum', ' accent')}
+    {stat('#'+str(rank) if rank else '—', 'Overall rank')}
     {stat(fmt_stars(r.get('stars',0)), 'Stars')}
-    {stat(fmt_int(r.get('forks',0)), 'Forks')}
-    {stat(fmt_int(r.get('open_issues',0)), 'Open issues')}
+    {stat(fmt_int(recent4), 'Commits / 30d')}
   </div>
 
-  <section class="dt-panel">
+  <section class="dt-panel hero-panel">
     <h2>Momentum signal</h2>
     <div class="dt-momentum">
-      <span class="score">{r.get('momentum',0)}</span>
-      <div class="bar"><i style="width:{r.get('momentum',0)}%"></i></div>
+      <div class="score-wrap"><span class="score" data-count="{mom}">{mom}</span><span class="score-of">/ 100</span></div>
+      <div class="dt-momentum-body">
+        <div class="bar" role="meter" aria-valuenow="{mom}" aria-valuemin="0" aria-valuemax="100" aria-label="Momentum score {mom} of 100"><i style="width:{mom}%"></i></div>
+        <div class="rank-ctx"><span class="rc">{rank_ctx}</span><span class="rc">{rank_cat_ctx}</span></div>
+      </div>
     </div>
-    <div class="dt-meta" style="margin-top:22px">
-      <div><span class="k">Commits · last 30d</span><span class="v">{fmt_int(r.get('recent4w_commits',0))}</span></div>
-      <div><span class="k">Commits · prior 30d</span><span class="v">{fmt_int(r.get('prior4w_commits',0))}</span></div>
+    <div class="dt-meta" style="margin-top:24px">
+      <div><span class="k">Commits &middot; last 30d</span><span class="v">{fmt_int(recent4)}</span></div>
+      <div><span class="k">Commits &middot; prior 30d</span><span class="v">{fmt_int(prior4)}</span></div>
       <div><span class="k">Month-over-month</span><span class="v {dcls}">{dtxt}</span></div>
     </div>
   </section>
 
   <section class="dt-panel">
-    <h2>Commit volume · last 6 months</h2>
-    {sparkline_svg(r.get('monthly_commits') or [])}
+    <h2>Score breakdown</h2>
+    <p class="dt-note">Momentum is a weighted blend of three live GitHub signals. Each bar shows that signal's normalized strength (0&ndash;100) and the points it contributes to the {mom}/100 total.</p>
+    <div class="cmp-list">{breakdown}</div>
+    <div class="cmp-total"><span class="ct-eq">0.55 &middot; velocity &nbsp;+&nbsp; 0.25 &middot; recency &nbsp;+&nbsp; 0.20 &middot; trend</span><span class="ct-val">= {mom} / 100</span></div>
   </section>
+
+  <section class="dt-panel">
+    <h2>Commit volume &middot; last 6 months</h2>
+    <p class="dt-note">Six rolling 30-day windows of commit counts, pulled straight from the GitHub commits API &mdash; the same series that drives the velocity and trend signals above.</p>
+    {commit_chart(r.get('monthly_commits') or [])}
+  </section>
+
+  <section class="dt-panel">
+    <h2>Latest release</h2>
+    <div class="release">
+      <div class="rel-tag">{_esc(r['last_release']) if r.get('last_release') else '<span class="rel-none">No published release</span>'}</div>
+      <div class="rel-when">{('shipped '+(rel_date(rel_at) or '—')) if r.get('last_release') else 'Momentum uses a recency floor for repos without a tagged release.'}</div>
+    </div>
+    <div class="dt-meta" style="margin-top:20px">
+      <div><span class="k">Release recency signal</span><span class="v">{mc['points']['rel']:.1f} of 25 pts</span></div>
+      <div><span class="k">Last code push</span><span class="v">{pushed}</span></div>
+      <div><span class="k">Release tag</span><span class="v">{_esc(r['last_release']) if r.get('last_release') else '—'}</span></div>
+    </div>
+  </section>
+
+{peers_section}
 
   <section class="dt-panel">
     <h2>Repository</h2>
     <div class="dt-meta">
       <div><span class="k">Language</span><span class="v">{_esc(r.get('language') or '—')}</span></div>
       <div><span class="k">Category</span><span class="v">{_esc(cat)}</span></div>
-      <div><span class="k">Last release</span><span class="v">{rel_line}</span></div>
-      <div><span class="k">Last pushed</span><span class="v">{pushed}</span></div>
       <div><span class="k">Stars</span><span class="v">{fmt_int(r.get('stars',0))}</span></div>
       <div><span class="k">Forks</span><span class="v">{fmt_int(r.get('forks',0))}</span></div>
       <div><span class="k">Open issues</span><span class="v">{fmt_int(r.get('open_issues',0))}</span></div>
+      <div><span class="k">Last pushed</span><span class="v">{pushed}</span></div>
+      <div><span class="k">Last release</span><span class="v">{rel_line}</span></div>
       <div><span class="k">Archived</span><span class="v">{'yes' if r.get('archived') else 'no'}</span></div>
+    </div>
+    <div class="dt-links">
+      <a class="dt-btn primary" href="{_esc(r.get('html_url'))}" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+      {home_btn}
     </div>
   </section>
 </div></main>
@@ -315,7 +510,7 @@ def generate_details(data: dict, here: str = HERE) -> list[str]:
         d = os.path.join(p_root, slug)
         os.makedirs(d, exist_ok=True)
         with open(os.path.join(d, "index.html"), "w") as f:
-            f.write(detail_html(r))
+            f.write(detail_html(r, repos))
         slugs.append(slug)
 
     _write_sitemap(here, slugs)
@@ -354,8 +549,8 @@ def _write_llms(here: str, data: dict, slugs: list[str]) -> None:
         "- Operator: Kymata Labs (https://kymatalabs.com/).",
         "",
         "## Routes",
-        "- `/` — the full momentum-ranked index (sortable by momentum, stars, commits/mo; filterable by category).",
-        "- `/p/<slug>` — per-repo detail page: full stats, momentum breakdown, 6-month commit sparkline, and outbound links. Slug is the lowercased `owner-name`.",
+        "- `/` — the full momentum-ranked index. Filter by category; sort by momentum, stars, commits/mo, 4-week trend, or name; instant client-side search.",
+        "- `/p/<slug>` — per-repo deep-dive: stat grid (momentum, rank, stars, commits/30d), the weighted score breakdown (velocity 55% + release recency 25% + commit trend 20%), a 6-month commit-volume chart, latest-release detail, category peers (linked), full repository metadata, and outbound links. Slug is the lowercased `owner-name`.",
         "",
         "## Index (current ranking)",
     ]
@@ -367,7 +562,26 @@ def _write_llms(here: str, data: dict, slugs: list[str]) -> None:
         f.write("\n".join(lines))
 
 
+def _selfcheck_momentum() -> None:
+    """Guard: momentum_components(...)['total'] MUST equal build_data.momentum(...).
+    If build_data's scoring drifts, fail loudly so the breakdown can't go stale."""
+    try:
+        from build_data import momentum as _bd_momentum
+    except Exception:
+        return  # build_data not importable (e.g. shipped dir) — skip silently
+    cases = [(847, 391, 5), (41, 112, 19), (0, 0, None), (500, 10, 400), (12, 0, None), (300, 300, 95)]
+    for recent4, prior4, d_rel in cases:
+        want = _bd_momentum(recent4, prior4, d_rel)
+        got = momentum_components(recent4, prior4, d_rel)["total"]
+        assert got == want, (
+            f"momentum breakdown drift for (recent4={recent4}, prior4={prior4}, "
+            f"days_release={d_rel}): gen_details={got} vs build_data={want}. "
+            f"Re-sync momentum_components() with build_data.momentum()."
+        )
+
+
 def main() -> int:
+    _selfcheck_momentum()
     data_path = os.path.join(HERE, "data.json")
     if not os.path.exists(data_path):
         print("data.json not found; run build_data.py first", flush=True)
