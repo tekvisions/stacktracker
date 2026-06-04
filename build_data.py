@@ -118,14 +118,18 @@ def momentum(recent4: int, prior4: int, days_release: float | None) -> int:
 
 def main() -> int:
     cfg = json.load(open(os.path.join(HERE, "repos.json")))
-    # read prior data.json to extend the star history series
+    # read prior data.json to extend the star history series AND the rank movement
+    # series (so the board can show ▲/▼ position change over time — the "race"
+    # narrative — exactly the way stars_history seeds the star sparkline).
     prior_stars = {}
+    prior_rankh = {}
     out_path = os.path.join(HERE, "data.json")
     if os.path.exists(out_path):
         try:
             prev = json.load(open(out_path))
             for r in prev.get("repos", []):
                 prior_stars[r["repo"]] = r.get("stars_history", [])
+                prior_rankh[r["repo"]] = r.get("rank_history", [])
         except Exception:
             pass
 
@@ -195,6 +199,45 @@ def main() -> int:
     items.sort(key=lambda x: x["momentum"], reverse=True)
     for i, it in enumerate(items):
         it["rank"] = i + 1
+
+    # ── movement tracking ─────────────────────────────────────────────────────
+    # Append today's (rank, momentum) to each repo's rank_history (capped 90 days),
+    # then derive position movement vs the most recent PRIOR day. rank_delta > 0
+    # means the repo CLIMBED (a smaller rank number is better). On day one there is
+    # no prior, so deltas are None and the UI shows a "new"/no-change state — the
+    # series fills in as the board runs daily (same cold-start as stars_history).
+    for it in items:
+        rh = list(prior_rankh.get(it["repo"], []))
+        # only PRIOR points with a real int rank are comparable (a malformed/None rank
+        # in the persisted history must never crash the daily cron build).
+        prior_pts = [p for p in rh if p.get("date") != today and isinstance(p.get("rank"), int)]
+        if not rh or rh[-1].get("date") != today:
+            rh.append({"date": today, "rank": it["rank"], "momentum": it["momentum"]})
+        rh = rh[-90:]  # cap 90 days
+        it["rank_history"] = rh
+        if prior_pts:
+            prev_rank = prior_pts[-1].get("rank")
+            it["rank_prev"] = prev_rank
+            it["rank_delta"] = prev_rank - it["rank"]   # prior_pts are int-rank only
+            it["peak_rank"] = min([p["rank"] for p in prior_pts] + [it["rank"]])
+            it["tracked_days"] = len(prior_pts) + 1
+        else:
+            it["rank_prev"] = None
+            it["rank_delta"] = None       # None == new/untracked (distinct from 0 == held)
+            it["peak_rank"] = it["rank"]
+            it["tracked_days"] = 1
+
+    # biggest climbers over the tracked window — the "Movers" strip. Falls back to
+    # commit_delta (always present) so the strip is populated on day one too. Default-
+    # guard the sort keys so a malformed record can never crash the daily cron build
+    # (production blast radius).
+    climbers = [x for x in items if isinstance(x.get("rank_delta"), int) and x["rank_delta"] > 0]
+    movers = sorted(climbers, key=lambda x: (x["rank_delta"], int(x.get("commit_delta") or 0)),
+                    reverse=True)[:5]
+    if not movers:
+        movers = sorted([x for x in items if int(x.get("commit_delta") or 0) > 0],
+                        key=lambda x: int(x.get("commit_delta") or 0), reverse=True)[:5]
+
     trending = sorted([x for x in items if x["commit_delta"] > 0],
                       key=lambda x: x["commit_delta"], reverse=True)[:3]
 
@@ -204,6 +247,10 @@ def main() -> int:
         "repo_count": len(items),
         "categories": cfg["categories"],
         "trending": [t["repo"] for t in trending],
+        "movers": [{"repo": mvr["repo"], "name": mvr["name"], "owner": mvr["owner"],
+                    "rank": mvr["rank"], "rank_delta": mvr.get("rank_delta"),
+                    "momentum": mvr["momentum"], "commit_delta": mvr["commit_delta"]}
+                   for mvr in movers],
         "repos": items,
     }
     json.dump(data, open(out_path, "w"), indent=2)

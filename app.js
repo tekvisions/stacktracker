@@ -83,13 +83,24 @@
   }
   function matchesFilter(r){ return curFilter==="All" || r.category===curFilter; }
 
+  /* position movement vs the prior daily run: ▲N climbed, ▼N slipped, → held.
+     rank_delta>0 means a smaller (better) rank number — i.e. climbed the board.
+     null == no prior history yet (shows nothing; fills in as the board runs daily). */
+  function moveBadge(r){
+    var d=r.rank_delta;
+    if(d==null) return '';
+    if(d>0) return '<span class="mv up" title="Climbed '+d+' since the prior run">▲'+d+'</span>';
+    if(d<0) return '<span class="mv dn" title="Slipped '+Math.abs(d)+' since the prior run">▼'+Math.abs(d)+'</span>';
+    return '<span class="mv flat" title="Held position">→</span>';
+  }
+
   function rowHTML(r){
     var capped = r.recent4w_commits>=3000 ? "3000+" : r.recent4w_commits;
     var rel = r.last_release ? '<div class="rel">'+esc(r.last_release)+' · '+relDate(r.last_release_at)+'</div>' : '';
     var arch = r.archived ? '<span class="arch">archived</span>' : '';
     var slug = slugify(r.owner, r.name);
     return '<a class="row" data-cat="'+esc(r.category)+'" href="/p/'+esc(slug)+'/">'
-      +'<span class="rank'+(r.rank<=3?' top':'')+'">'+r.rank+'</span>'
+      +'<span class="rank'+(r.rank<=3?' top':'')+'">'+r.rank+moveBadge(r)+'</span>'
       +'<div class="name"><h3>'+esc(r.name)+' <span class="owner">/ '+esc(r.owner)+'</span> '+arch+'</h3>'
         +'<p>'+esc(r.blurb)+'</p>'+rel+'</div>'
       +'<div class="mom"><div class="bar"><i style="width:'+r.momentum+'%"></i></div>'
@@ -200,6 +211,10 @@
         +'<div class="tcat">'+esc(r.category)+'</div></a>';
     }).join("") : '<div class="sortnote">No upward movers this cycle.</div>';
 
+    // movers strip — biggest climbers since the prior run (rank_delta), or top
+    // commit-surge repos on day one before position history exists.
+    renderMovers(data.movers||[]);
+
     // filters (with live per-category counts)
     var counts={}; repos.forEach(function(r){counts[r.category]=(counts[r.category]||0)+1;});
     var cats=["All"].concat(data.categories||[]);
@@ -272,6 +287,24 @@
 
     // scroll-reveal for the major sections (skipped under reduced-motion)
     initReveal();
+  }
+
+  /* movers strip: horizontally-scrollable chips linking to detail pages. Each shows
+     the position climb (▲N) when tracked, else the commit surge (+N commits/mo). */
+  function renderMovers(movers){
+    var el=D.getElementById("movers"); if(!el) return;
+    if(!movers.length){ el.hidden=true; return; }
+    var chips=movers.map(function(m,i){
+      var climbed=(typeof m.rank_delta==="number" && m.rank_delta>0);
+      var tag=climbed
+        ? '<span class="mv up">▲'+m.rank_delta+'</span>'
+        : '<span class="mv up">+'+(m.commit_delta||0)+'</span>';
+      var sub=climbed?("now #"+m.rank):((m.commit_delta||0)+" commits/mo");
+      return '<a class="mover" href="/p/'+esc(slugify(m.owner,m.name))+'/" style="--d:'+(i*50)+'ms">'
+        +tag+'<span class="mvn">'+esc(m.name)+'</span><span class="mvs">'+esc(sub)+'</span></a>';
+    }).join("");
+    el.innerHTML='<span class="movers-l">Movers</span><div class="movers-track">'+chips+'</div>';
+    el.hidden=false;
   }
 
   function initReveal(){

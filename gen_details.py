@@ -160,6 +160,50 @@ def commit_chart(arr, w=760, h=210) -> str:
     )
 
 
+def rank_chart(rhist: list, w=760, h=150) -> str:
+    """Race-position chart: an INVERTED rank-over-time trace (rank #1 plotted at the
+    top, so a climb reads as an upward line). Self-contained — the baseline is the
+    series' OWN worst rank, not an outer `total`: worst→0, best→largest, so the
+    polyline rises when the repo climbs. Points are labelled with the actual rank."""
+    ranks = [int(p.get("rank")) for p in (rhist or []) if isinstance(p.get("rank"), int)]
+    if len(ranks) < 2:
+        return '<div class="dt-chart-empty"><span class="ph">— position movement fills in as the board runs daily —</span></div>'
+    worst = max(ranks)
+    # invert: a smaller (better) rank → larger plotted value → higher on the chart
+    series = [max(1, (worst + 1) - rv) for rv in ranks]
+    n = len(series)
+    padL, padR, padT, padB = 8, 8, 26, 30
+    top = max(series) or 1
+    plotw, ploth = w - padL - padR, h - padT - padB
+    def X(i): return padL + i * plotw / (n - 1)
+    def Y(v): return padT + ploth - (v / top) * ploth
+    pts = [(X(i), Y(v)) for i, v in enumerate(series)]
+    poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    base = padT + ploth
+    area = f"{X(0):.1f},{base:.1f} " + poly + f" {X(n-1):.1f},{base:.1f}"
+    grid = ""
+    for g in (0.0, 0.5, 1.0):
+        gy = padT + ploth - g * ploth
+        grid += f'<line x1="{padL}" y1="{gy:.1f}" x2="{w-padR}" y2="{gy:.1f}" class="ch-grid"/>'
+    labels = ""
+    for i, (x, y) in enumerate(pts):
+        labels += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.6" fill="var(--scope-trace)" opacity=".85"/>'
+        labels += f'<text x="{x:.1f}" y="{y-9:.1f}" class="ch-val" text-anchor="middle">#{ranks[i]}</text>'
+        days_ago = n - 1 - i
+        ml = "now" if days_ago == 0 else f"-{days_ago}d"
+        labels += f'<text x="{x:.1f}" y="{h-9:.1f}" class="ch-x" text-anchor="middle">{ml}</text>'
+    lx, ly = pts[-1]
+    return (
+        f'<svg class="dt-chart" viewBox="0 0 {w} {h}" role="img" '
+        f'aria-label="Board position over the last {n} days tracked, oldest to newest: ranks {", ".join("#"+str(rv) for rv in ranks)}. Higher on the chart means a better rank.">'
+        f'{grid}'
+        f'<polygon points="{area}" fill="var(--phos-trail)" stroke="none"/>'
+        f'<polyline points="{poly}" fill="none" stroke="var(--scope-trace)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'
+        f'{labels}'
+        f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="4" fill="var(--scope-dot)"/></svg>'
+    )
+
+
 # ── shared chrome (matches index.html exactly) ──
 HEAD_COMMON = """<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -291,6 +335,30 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
     )
     archived = '<span class="arch">archived</span>' if r.get("archived") else ""
 
+    # ── race-position movement: the climbed/slipped badge + an inverted rank-over-
+    # time trace (rank #1 at the top, so "up = climbing"). rank_delta > 0 == climbed. ──
+    rank_delta = r.get("rank_delta")
+    rhist = r.get("rank_history") or []
+    if isinstance(rank_delta, int) and rank_delta > 0:
+        move_badge = f'<span class="d-move up" title="Climbed {rank_delta} since prior run">&#9650; {rank_delta}</span>'
+        move_word = f"climbed {rank_delta} position{'s' if rank_delta != 1 else ''}"
+    elif isinstance(rank_delta, int) and rank_delta < 0:
+        move_badge = f'<span class="d-move dn" title="Slipped {abs(rank_delta)} since prior run">&#9660; {abs(rank_delta)}</span>'
+        move_word = f"slipped {abs(rank_delta)} position{'s' if abs(rank_delta) != 1 else ''}"
+    elif isinstance(rank_delta, int):
+        move_badge = '<span class="d-move flat" title="Held position">&#8594;</span>'
+        move_word = "held position"
+    else:
+        move_badge = '<span class="d-move new" title="New to the tracked board">NEW</span>'
+        move_word = "new to the board"
+    peak = r.get("peak_rank", rank)
+    if len([p for p in rhist if isinstance(p.get("rank"), int)]) >= 2:
+        rank_panel = rank_chart(rhist)
+        rank_note = f"Position over the last {len(rhist)} days tracked &middot; best: #{peak}."
+    else:
+        rank_panel = '<div class="dt-chart-empty"><span class="ph">— position movement fills in as the board runs daily —</span></div>'
+        rank_note = "Position movement fills in as the board runs daily."
+
     # ── momentum score breakdown (recomputed from the same inputs) ──
     d_rel = _days_since(rel_at)
     mc = momentum_components(recent4, prior4, d_rel)
@@ -406,7 +474,7 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
   <div class="dt-head">
     <div>
       <div class="dcat"><span style="width:7px;height:7px;background:var(--phos);border-radius:50%;display:inline-block;box-shadow:0 0 10px var(--phos)"></span> {_esc(cat)}</div>
-      <h1>{_esc(r['name'])} <span class="downer">/ {_esc(r['owner'])}</span> {archived}</h1>
+      <h1>{_esc(r['name'])} <span class="downer">/ {_esc(r['owner'])}</span> {archived} {move_badge}</h1>
       <p class="dblurb">{_esc(blurb)}</p>
     </div>
     <div class="dt-out">
@@ -449,6 +517,18 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
     <h2>Commit volume &middot; last 6 months</h2>
     <p class="dt-note">Six rolling 30-day windows of commit counts, pulled straight from the GitHub commits API &mdash; the same series that drives the velocity and trend signals above.</p>
     {commit_chart(r.get('monthly_commits') or [])}
+  </section>
+
+  <section class="dt-panel">
+    <h2>Race position over time</h2>
+    <p class="dt-note">Where {_esc(r['name'])} sits on the board, tracked daily &mdash; {move_word} since the prior run. {rank_note} The trace is inverted so a climb reads as an upward line.</p>
+    {rank_panel}
+    <div class="statgrid" style="margin-top:24px">
+      {stat('#'+str(rank) if rank else '—', 'Current rank', ' accent')}
+      {stat('#'+str(peak) if peak else '—', 'Best rank')}
+      {stat(move_badge, 'Since prior run')}
+      {stat(r.get('tracked_days', 1), 'Days tracked')}
+    </div>
   </section>
 
   <section class="dt-panel">
