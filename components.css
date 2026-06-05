@@ -412,6 +412,12 @@ body::before {
   margin: var(--sp-8) 0;
 }
 
+/* Cards are the mobile-only view; the <=640px media query flips them to grid.
+   Hidden by default so they never dump below the desktop table (QA 2026-06-05). */
+.board-cards {
+  display: none;
+}
+
 /* Desktop table view */
 @media (min-width: 641px) {
   .board-table {
