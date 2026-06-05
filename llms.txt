@@ -10,7 +10,7 @@ Momentum = commit velocity (55%) + release recency (25%) + 6-month commit trend 
 
 ## Source & cadence
 - Source: GitHub REST API (stars, releases, commit history).
-- Cadence: recomputed daily by a GitHub Action; last build 2026-06-04.
+- Cadence: recomputed daily by a GitHub Action; last build 2026-06-05.
 - Coverage: 24 tracked repositories across 5 categories.
 - Operator: Kymata Labs (https://kymatalabs.com/).
 
@@ -19,27 +19,27 @@ Momentum = commit velocity (55%) + release recency (25%) + 6-month commit trend 
 - `/p/<slug>` — per-repo deep-dive: stat grid (momentum, rank, stars, commits/30d), the weighted score breakdown (velocity 55% + release recency 25% + commit trend 20%), a 6-month commit-volume chart, latest-release detail, category peers (linked), full repository metadata, and outbound links. Slug is the lowercased `owner-name`.
 
 ## Index (current ranking)
-- [weaviate/weaviate](https://stacktracker.kymatalabs.com/p/weaviate-weaviate/) — Vector DB, momentum 100/100, 16,272★
-- [unslothai/unsloth](https://stacktracker.kymatalabs.com/p/unslothai-unsloth/) — LLMOps, momentum 95/100, 65,734★
-- [qdrant/qdrant](https://stacktracker.kymatalabs.com/p/qdrant-qdrant/) — Vector DB, momentum 94/100, 31,792★
-- [ggml-org/llama.cpp](https://stacktracker.kymatalabs.com/p/ggml-org-llama-cpp/) — Inference, momentum 93/100, 114,579★
-- [sgl-project/sglang](https://stacktracker.kymatalabs.com/p/sgl-project-sglang/) — Inference, momentum 93/100, 28,868★
-- [vllm-project/vllm](https://stacktracker.kymatalabs.com/p/vllm-project-vllm/) — Inference, momentum 92/100, 81,923★
-- [NVIDIA/TensorRT-LLM](https://stacktracker.kymatalabs.com/p/nvidia-tensorrt-llm/) — Inference, momentum 92/100, 13,801★
-- [BerriAI/litellm](https://stacktracker.kymatalabs.com/p/berriai-litellm/) — Gateway, momentum 83/100, 49,270★
-- [Arize-ai/phoenix](https://stacktracker.kymatalabs.com/p/arize-ai-phoenix/) — LLMOps, momentum 76/100, 9,979★
-- [langfuse/langfuse](https://stacktracker.kymatalabs.com/p/langfuse-langfuse/) — LLMOps, momentum 75/100, 28,500★
-- [comfyanonymous/ComfyUI](https://stacktracker.kymatalabs.com/p/comfyanonymous-comfyui/) — LLMOps, momentum 71/100, 115,676★
-- [langchain-ai/langchain](https://stacktracker.kymatalabs.com/p/langchain-ai-langchain/) — Agents, momentum 69/100, 138,488★
-- [milvus-io/milvus](https://stacktracker.kymatalabs.com/p/milvus-io-milvus/) — Vector DB, momentum 62/100, 44,625★
-- [pydantic/pydantic-ai](https://stacktracker.kymatalabs.com/p/pydantic-pydantic-ai/) — Agents, momentum 55/100, 17,514★
-- [langchain-ai/langgraph](https://stacktracker.kymatalabs.com/p/langchain-ai-langgraph/) — Agents, momentum 52/100, 33,859★
-- [browser-use/browser-use](https://stacktracker.kymatalabs.com/p/browser-use-browser-use/) — Agents, momentum 49/100, 97,147★
-- [chroma-core/chroma](https://stacktracker.kymatalabs.com/p/chroma-core-chroma/) — Vector DB, momentum 49/100, 28,208★
-- [run-llama/llama_index](https://stacktracker.kymatalabs.com/p/run-llama-llama-index/) — Agents, momentum 48/100, 49,911★
-- [crewAIInc/crewAI](https://stacktracker.kymatalabs.com/p/crewaiinc-crewai/) — Agents, momentum 44/100, 52,820★
-- [ollama/ollama](https://stacktracker.kymatalabs.com/p/ollama-ollama/) — Inference, momentum 41/100, 173,149★
-- [flowiseai/Flowise](https://stacktracker.kymatalabs.com/p/flowiseai-flowise/) — Agents, momentum 29/100, 53,337★
-- [Portkey-AI/gateway](https://stacktracker.kymatalabs.com/p/portkey-ai-gateway/) — Gateway, momentum 28/100, 11,968★
-- [pgvector/pgvector](https://stacktracker.kymatalabs.com/p/pgvector-pgvector/) — Vector DB, momentum 8/100, 21,597★
-- [microsoft/autogen](https://stacktracker.kymatalabs.com/p/microsoft-autogen/) — Agents, momentum 2/100, 58,689★
+- [weaviate/weaviate](https://stacktracker.kymatalabs.com/p/weaviate-weaviate/) — Vector DB, momentum 100/100, 16,274★
+- [qdrant/qdrant](https://stacktracker.kymatalabs.com/p/qdrant-qdrant/) — Vector DB, momentum 94/100, 31,805★
+- [unslothai/unsloth](https://stacktracker.kymatalabs.com/p/unslothai-unsloth/) — LLMOps, momentum 94/100, 65,793★
+- [ggml-org/llama.cpp](https://stacktracker.kymatalabs.com/p/ggml-org-llama-cpp/) — Inference, momentum 93/100, 114,648★
+- [sgl-project/sglang](https://stacktracker.kymatalabs.com/p/sgl-project-sglang/) — Inference, momentum 93/100, 28,875★
+- [vllm-project/vllm](https://stacktracker.kymatalabs.com/p/vllm-project-vllm/) — Inference, momentum 92/100, 81,949★
+- [NVIDIA/TensorRT-LLM](https://stacktracker.kymatalabs.com/p/nvidia-tensorrt-llm/) — Inference, momentum 92/100, 13,805★
+- [BerriAI/litellm](https://stacktracker.kymatalabs.com/p/berriai-litellm/) — Gateway, momentum 82/100, 49,321★
+- [langfuse/langfuse](https://stacktracker.kymatalabs.com/p/langfuse-langfuse/) — LLMOps, momentum 75/100, 28,511★
+- [Arize-ai/phoenix](https://stacktracker.kymatalabs.com/p/arize-ai-phoenix/) — LLMOps, momentum 73/100, 9,987★
+- [comfyanonymous/ComfyUI](https://stacktracker.kymatalabs.com/p/comfyanonymous-comfyui/) — LLMOps, momentum 68/100, 115,725★
+- [langchain-ai/langchain](https://stacktracker.kymatalabs.com/p/langchain-ai-langchain/) — Agents, momentum 66/100, 138,516★
+- [milvus-io/milvus](https://stacktracker.kymatalabs.com/p/milvus-io-milvus/) — Vector DB, momentum 62/100, 44,629★
+- [pydantic/pydantic-ai](https://stacktracker.kymatalabs.com/p/pydantic-pydantic-ai/) — Agents, momentum 55/100, 17,525★
+- [langchain-ai/langgraph](https://stacktracker.kymatalabs.com/p/langchain-ai-langgraph/) — Agents, momentum 51/100, 33,896★
+- [browser-use/browser-use](https://stacktracker.kymatalabs.com/p/browser-use-browser-use/) — Agents, momentum 49/100, 97,200★
+- [chroma-core/chroma](https://stacktracker.kymatalabs.com/p/chroma-core-chroma/) — Vector DB, momentum 49/100, 28,221★
+- [run-llama/llama_index](https://stacktracker.kymatalabs.com/p/run-llama-llama-index/) — Agents, momentum 48/100, 49,921★
+- [crewAIInc/crewAI](https://stacktracker.kymatalabs.com/p/crewaiinc-crewai/) — Agents, momentum 45/100, 52,846★
+- [ollama/ollama](https://stacktracker.kymatalabs.com/p/ollama-ollama/) — Inference, momentum 41/100, 173,194★
+- [Portkey-AI/gateway](https://stacktracker.kymatalabs.com/p/portkey-ai-gateway/) — Gateway, momentum 28/100, 11,970★
+- [flowiseai/Flowise](https://stacktracker.kymatalabs.com/p/flowiseai-flowise/) — Agents, momentum 28/100, 53,343★
+- [pgvector/pgvector](https://stacktracker.kymatalabs.com/p/pgvector-pgvector/) — Vector DB, momentum 8/100, 21,603★
+- [microsoft/autogen](https://stacktracker.kymatalabs.com/p/microsoft-autogen/) — Agents, momentum 2/100, 58,695★

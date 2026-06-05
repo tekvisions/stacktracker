@@ -204,6 +204,113 @@ def rank_chart(rhist: list, w=760, h=150) -> str:
     )
 
 
+def _badge_svg(r: dict) -> str:
+    """shields.io-style embeddable rank badge. Left label "StackTracker", right
+    "#<rank>" in the app's phosphor green; appends "▲N" when the repo climbed
+    (rank_delta > 0). Self-contained, theme-neutral, accessible (role/title).
+    Character-width estimation keeps the right pill snug without a web font."""
+    rank = r.get("rank")
+    rank_txt = f"#{rank}" if isinstance(rank, int) else "#—"
+    delta = r.get("rank_delta")
+    if isinstance(delta, int) and delta > 0:
+        rank_txt = f"{rank_txt} ▲{delta}"
+    label = "StackTracker"
+    name = r.get("name", "") or r.get("repo", "")
+    # ~6px per char @ 11px; +pad. Stable, no font metrics needed.
+    lw = len(label) * 6 + 18
+    rw = len(rank_txt) * 6 + 18
+    total = lw + rw
+    title = f"StackTracker — {_esc(name)} ranked {rank_txt}"
+    # unique gradient id per badge — guards against id collision if multiple badges
+    # are ever inlined together on a third-party page (img-embeds are already isolated).
+    # falls back to the repo's rank so the id is still unique when owner/name are blank.
+    gid = f"st{slugify(r.get('owner', '') or '', name) or ('r' + str(rank if isinstance(rank, int) else 'x'))}"
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{total}" height="20" '
+        f'role="img" aria-label="{title}">'
+        f'<title>{title}</title>'
+        f'<linearGradient id="{gid}" x2="0" y2="100%">'
+        f'<stop offset="0" stop-color="#fff" stop-opacity=".12"/>'
+        f'<stop offset="1" stop-opacity=".12"/></linearGradient>'
+        f'<clipPath id="{gid}r"><rect width="{total}" height="20" rx="3" fill="#fff"/></clipPath>'
+        f'<g clip-path="url(#{gid}r)">'
+        f'<rect width="{lw}" height="20" fill="#0c1310"/>'
+        f'<rect x="{lw}" width="{rw}" height="20" fill="#107a52"/>'
+        f'<rect width="{total}" height="20" fill="url(#{gid})"/></g>'
+        f'<g fill="#fff" text-anchor="middle" '
+        f'font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11">'
+        f'<text x="{lw/2:.0f}" y="14">{label}</text>'
+        f'<text x="{lw + rw/2:.0f}" y="14" font-weight="bold">{_esc(rank_txt)}</text>'
+        f'</g></svg>'
+    )
+
+
+def generate_badges(data: dict, here: str = HERE) -> int:
+    """Write a static /badge/<slug>.svg per repo (mirrors detail-page generation).
+    Static-deployable: no serverless needed; the daily build refreshes each badge.
+    Stale badges (repos that left the index) are pruned."""
+    repos = data.get("repos", [])
+    b_dir = os.path.join(here, "badge")
+    os.makedirs(b_dir, exist_ok=True)
+    # default-guard owner/name so a malformed record can never crash the daily cron
+    # (production blast radius); empty slugs are skipped, never written as ".svg".
+    fresh = {s for s in (slugify(r.get("owner", ""), r.get("name", "")) for r in repos) if s}
+    for fn in os.listdir(b_dir):
+        if fn.endswith(".svg") and fn[:-4] not in fresh:
+            try:
+                os.remove(os.path.join(b_dir, fn))
+            except OSError:
+                pass
+    written = 0
+    for r in repos:
+        slug = slugify(r.get("owner", ""), r.get("name", ""))
+        if not slug:
+            continue
+        with open(os.path.join(b_dir, f"{slug}.svg"), "w", encoding="utf-8") as f:
+            f.write(_badge_svg(r))
+        written += 1
+    return written
+
+
+def generate_feed(data: dict, here: str = HERE) -> None:
+    """Write feed.json — a small, documented, stable-schema public API subset of
+    the board (read-only data already public on the page; no secrets)."""
+    # explicit None-check (not `or 999`) so a present-but-None rank can't raise
+    # TypeError on the Py3 sort comparison and crash the daily cron build, while a
+    # legitimate rank 0 still sorts correctly.
+    repos = sorted(data.get("repos", []),
+                   key=lambda x: x.get("rank") if isinstance(x.get("rank"), int) else 999)
+    # only emit repos with a non-empty slug — mirrors generate_badges() so the
+    # feed never advertises a broken /p// or /badge/.svg URL for a malformed record.
+    feed_repos = [r for r in repos if slugify(r.get("owner", ""), r.get("name", ""))]
+    feed = {
+        "$schema_version": "1",
+        "generator": "StackTracker (Kymata Labs)",
+        "generated_at": data.get("generated_at"),
+        "site": BASE,
+        "docs": f"{BASE}/#how",
+        "license": "Data derived from the public GitHub REST API; attribution to StackTracker (kymatalabs.com) appreciated.",
+        "count": len(feed_repos),
+        "repos": [
+            {
+                "rank": r.get("rank"),
+                "name": r.get("name"),
+                "owner": r.get("owner"),
+                "category": r.get("category"),
+                "momentum": r.get("momentum"),
+                "stars": r.get("stars"),
+                "rank_delta": r.get("rank_delta"),
+                "url": f"{BASE}/p/{slugify(r.get('owner', ''), r.get('name', ''))}/",
+                "badge": f"{BASE}/badge/{slugify(r.get('owner', ''), r.get('name', ''))}.svg",
+            }
+            for r in feed_repos
+        ],
+        "movers": data.get("movers", []),
+    }
+    with open(os.path.join(here, "feed.json"), "w", encoding="utf-8") as f:
+        json.dump(feed, f, indent=2)
+
+
 # ── shared chrome (matches index.html exactly) ──
 HEAD_COMMON = """<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -305,6 +412,10 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
     all_repos = all_repos or []
     slug = slugify(r["owner"], r["name"])
     url = f"{BASE}/p/{slug}/"
+    # embeddable rank badge — the viral loop (repos display their rank, link back here)
+    badge_url = f"{BASE}/badge/{slug}.svg"
+    embed_md = f"[![StackTracker rank]({badge_url})]({url})"
+    embed_html = f'<a href="{url}"><img src="{badge_url}" alt="StackTracker rank"></a>'
     title = f"{r['name']} by {r['owner']} — momentum {r.get('momentum',0)}/100 · StackTracker"
     blurb = r.get("blurb") or f"{r['owner']}/{r['name']} — tracked AI-infra project."
     desc = f"{r['owner']}/{r['name']}: {blurb} {fmt_int(r.get('stars',0))} stars, momentum {r.get('momentum',0)}/100, {r.get('recent4w_commits',0)} commits in the last 30 days. Live GitHub velocity, recomputed daily."
@@ -546,6 +657,18 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
 
 {peers_section}
 
+  <section class="dt-panel" id="embed">
+    <h2>Embed this badge</h2>
+    <p class="dt-note">Show your live StackTracker rank in your README &mdash; it updates daily and links back here.</p>
+    <p style="margin:16px 0"><img src="{badge_url}" alt="StackTracker rank badge for {_esc(r['name'])}" style="vertical-align:middle"></p>
+    <div class="embed-snip">
+      <span class="k">Markdown</span>
+      <pre class="embed-code"><code>{_esc(embed_md)}</code></pre>
+      <span class="k" style="margin-top:14px;display:block">HTML</span>
+      <pre class="embed-code"><code>{_esc(embed_html)}</code></pre>
+    </div>
+  </section>
+
   <section class="dt-panel">
     <h2>Repository</h2>
     <div class="dt-meta">
@@ -595,6 +718,8 @@ def generate_details(data: dict, here: str = HERE) -> list[str]:
 
     _write_sitemap(here, slugs)
     _write_llms(here, data, slugs)
+    generate_badges(data, here)
+    generate_feed(data, here)
     return slugs
 
 

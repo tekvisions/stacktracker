@@ -379,3 +379,7 @@ footer .how p{color:var(--ink-soft);font-size:13.5px;margin:0}
 .d-move.flat{color:var(--muted);border-color:var(--line)}
 .d-move.new{color:var(--phos);border-color:color-mix(in srgb,var(--phos) 40%,transparent);letter-spacing:.08em}
 .statgrid .s .d-move{font-size:20px;padding:4px 12px}
+/* embeddable rank badge snippet (detail-page Embed panel) */
+.embed-snip .k{color:var(--muted);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;display:block;margin-bottom:6px}
+.embed-code{overflow-x:auto;padding:12px 14px;border-radius:8px;background:color-mix(in srgb,var(--ink) 7%,transparent);border:1px solid var(--line);font-family:var(--mono,ui-monospace,monospace);font-size:13px;line-height:1.5;margin:0}
+.embed-code code{color:var(--ink-soft);white-space:pre}
