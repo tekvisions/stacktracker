@@ -1,0 +1,129 @@
+/* StackTracker Tool-Specific Styles — `tool.css`
+   StackTracker-only overrides: board columns, oscilloscope canvas, phosphor green accents.
+   This file is unique per tool (~80 lines max). */
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Board grid template (StackTracker-specific columns) */
+/* ────────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 641px) {
+  .board-table {
+    grid-template-columns: 60px 1fr 100px 80px 80px 80px 60px;
+  }
+
+  /* Column headers mapping:
+     1. Rank (60px)
+     2. Name/Owner (1fr - flexible)
+     3. Momentum (100px)
+     4. Commits (80px)
+     5. Stars (80px)
+     6. Trend (80px)
+     7. Sparkline (60px)
+  */
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Oscilloscope hero canvas (StackTracker signature) */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.hero-canvas {
+  background: linear-gradient(135deg,
+    rgba(61, 255, 166, 0.02) 0%,
+    rgba(61, 255, 166, 0.05) 50%,
+    rgba(61, 255, 166, 0.02) 100%);
+}
+
+/* Oscilloscope trace animation */
+.hero-canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, var(--accent), transparent),
+    radial-gradient(1px 1px at 40% 70%, var(--accent), transparent),
+    radial-gradient(1px 1px at 90% 40%, var(--accent), transparent),
+    radial-gradient(1px 1px at 10% 80%, var(--accent), transparent);
+  background-size: 100px 100px, 120px 120px, 80px 80px, 140px 140px;
+  opacity: 0.3;
+  animation: scope-sweep 8s ease-in-out infinite;
+}
+
+/* Animated phosphor trace lines */
+.hero-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg,
+    transparent 48%,
+    rgba(61, 255, 166, 0.1) 49%,
+    rgba(61, 255, 166, 0.2) 50%,
+    rgba(61, 255, 166, 0.1) 51%,
+    transparent 52%);
+  background-size: 200px 200px;
+  animation: scope-scan 12s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes scope-sweep {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+@keyframes scope-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* StackTracker accent overrides */
+/* ────────────────────────────────────────────────────────────────────── */
+
+/* Ensure phosphor green is active */
+:root[data-tool="stack"] {
+  --accent: var(--accent-stack);
+  --accent-soft: var(--accent-stack-soft);
+  --accent-glow: var(--accent-stack-glow);
+}
+
+/* Special phosphor glow for momentum scores */
+.board-momentum {
+  text-shadow: 0 0 8px rgba(61, 255, 166, 0.3);
+}
+
+.meta-stat-value {
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Oscilloscope-style dotted borders on focus states */
+.search-input:focus,
+.chip:focus {
+  outline: 2px dotted var(--accent);
+  outline-offset: 2px;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Reduced motion: hide animations, show static version */
+/* ────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-canvas::before,
+  .hero-canvas::after {
+    animation: none;
+    opacity: 0.1;
+  }
+
+  .board-momentum,
+  .meta-stat-value {
+    text-shadow: none;
+  }
+}

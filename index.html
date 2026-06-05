@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-tool="stack">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +14,24 @@
 <meta name="twitter:title" content="StackTracker — live AI-infra momentum index">
 <meta name="twitter:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub velocity. Built + run by an agent.">
 <meta name="twitter:image" content="https://stacktracker.kymatalabs.com/og.png">
-<meta name="theme-color" content="#070a09">
+<meta name="theme-color" content="#0a0b0e">
+
+<!-- Font loading with preconnect for performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <link rel="canonical" href="https://stacktracker.kymatalabs.com/">
 <link rel="icon" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
-<!-- theme init: set before paint to avoid flash; first visit respects prefers-color-scheme else dark -->
-<script>(function(){try{var s=localStorage.getItem("theme");var t=s||(window.matchMedia&&window.matchMedia("(prefers-color-scheme:light)").matches?"light":"dark");document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
+
+<!-- Theme bootstrap: localStorage > prefers-color-scheme > dark (family default) -->
+<script>
+(function(){try{var t=localStorage.getItem("ky-theme");
+  if(!t){t=(matchMedia&&matchMedia("(prefers-color-scheme:light)").matches)?"light":"dark";}
+  document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();
+</script>
+
 <script type="application/ld+json" id="ld-site">{
   "@context":"https://schema.org",
   "@graph":[
@@ -32,142 +41,231 @@
 }</script>
 </head>
 <body>
-<canvas id="scope" aria-hidden="true"></canvas>
-<div class="vig"></div>
 
-<nav id="nav"><div class="wrap nav-in">
-  <a class="brand" href="/">
-    <span class="mark"><svg width="26" height="14" viewBox="0 0 26 14" fill="none"><path d="M1 7 H5 L7 2 L10 12 L13 4 L15 7 H25" stroke="#3dffa6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    StackTracker <span class="by">// Kymata Labs</span>
-  </a>
-  <div class="nav-links">
-    <a href="#index">The index</a>
-    <a href="#how" class="hidem">How it's made</a>
-    <a href="https://kymatalabs.com/" class="hidem">Kymata Labs ↗</a>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark theme" title="Toggle theme">
-      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
-      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
-    </button>
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-content">
+    <a class="nav-brand" href="/">
+      <div class="nav-logo">S</div>
+      StackTracker
+    </a>
+    <div class="nav-controls">
+      <button class="nav-btn" id="cmdPalette" type="button" aria-label="Open command palette">⌘K</button>
+      <button class="nav-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark theme">
+        <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+        <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
   </div>
-</div></nav>
+</nav>
 
-<header class="hero"><div class="wrap">
-  <div class="eyebrow"><span class="dot"></span><span id="liveline">Live · recomputed daily by an agent</span></div>
-  <h1>The live <em>momentum signal</em> for AI infrastructure.</h1>
-  <p class="lede">Who's actually shipping — and who's flatlining? StackTracker reads the open-source AI-infra stack like an instrument: commit cadence, release recency, and 6-month trend, sampled daily from real GitHub velocity. No vibes, no static maps.</p>
-  <div class="meta-row" id="metarow"></div>
-</div></header>
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <!-- Oscilloscope canvas background -->
+  <div class="hero-canvas" id="scope" aria-hidden="true"></div>
 
-<section class="trending" data-reveal><div class="wrap">
-  <h2><span style="width:7px;height:7px;background:var(--phos);border-radius:50%;display:inline-block;box-shadow:0 0 10px var(--phos)"></span> Trending this cycle</h2>
-  <div class="trend-grid" id="trending"></div>
-</div></section>
+  <div class="wrap">
+    <h1 class="hero-title">The live <em>momentum signal</em> for AI infrastructure.</h1>
+    <p class="hero-subtitle">Who's actually shipping — and who's flatlining? StackTracker reads the open-source AI-infra stack like an instrument: commit cadence, release recency, and 6-month trend, sampled daily from real GitHub velocity. No vibes, no static maps.</p>
 
-<section id="index"><div class="wrap">
-  <div class="movers" id="movers" hidden aria-label="Biggest movers on the board"></div>
-  <div class="controls">
-    <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
-    <div class="search-wrap">
-      <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="search" class="search" type="search" placeholder="Probe the index…" aria-label="Search projects by name, owner, category, or language" autocomplete="off" spellcheck="false">
+    <!-- Meta stats row -->
+    <div class="hero-meta" id="metarow">
+      <div class="meta-stat">
+        <div class="meta-stat-value" id="repo-count">—</div>
+        <div class="meta-stat-label">Projects tracked</div>
+      </div>
+      <div class="meta-stat">
+        <div class="meta-stat-value" id="last-updated">—</div>
+        <div class="meta-stat-label">Last updated</div>
+      </div>
+      <div class="meta-stat">
+        <div class="meta-stat-value" id="top-momentum">—</div>
+        <div class="meta-stat-label">Top momentum</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Movers Strip -->
+<section class="movers" id="movers-section" hidden>
+  <div class="wrap movers-content">
+    <div class="movers-label">Biggest movers</div>
+    <div class="movers-list" id="movers"></div>
+  </div>
+</section>
+
+<!-- Controls Bar -->
+<section class="controls">
+  <div class="wrap controls-content">
+    <div class="controls-left">
+      <div class="chip-group" id="filters" role="group" aria-label="Filter by category">
+        <div class="chip active" data-category="">All</div>
+      </div>
+    </div>
+    <div class="search-box">
+      <input id="search" class="search-input" type="search" placeholder="Search projects..." aria-label="Search projects by name, owner, or category" autocomplete="off" spellcheck="false">
       <button id="searchClear" class="search-clear" type="button" aria-label="Clear search" hidden>✕</button>
     </div>
   </div>
-  <div class="colhead" role="row">
-    <span role="columnheader">#</span>
-    <span role="columnheader"><button class="sortable" type="button" data-sort="name" aria-sort="none">Project <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span class="c-mom" role="columnheader"><button class="sortable" type="button" data-sort="momentum" aria-sort="descending">Momentum <span class="ind" aria-hidden="true">▼</span></button></span>
-    <span class="c-mom" role="columnheader"><button class="sortable" type="button" data-sort="commits" aria-sort="none">Commits/mo <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span class="c-trend" role="columnheader"><button class="sortable" type="button" data-sort="trend" aria-sort="none">4-wk trend <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span class="r3" role="columnheader"><button class="sortable" type="button" data-sort="stars" aria-sort="none">Stars <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span aria-hidden="true"></span>
-  </div>
-  <div class="rows" id="rows" role="rowgroup" aria-live="polite" aria-busy="true"><div class="loading">Acquiring signal…</div></div>
-  <div class="noresults" id="noresults" hidden>
-    <span class="nr-line">— no signal matches <b id="nr-q"></b> —</span>
-    <button class="nr-reset" id="nr-reset" type="button">Reset filters</button>
-  </div>
-  <div class="sortnote resultnote" id="sortnote" aria-live="polite">Ranked by momentum ↓</div>
-</div></section>
+</section>
 
-<footer id="how" data-reveal><div class="wrap">
-  <span class="mono" style="color:var(--phos)">How it's made</span>
-  <h2>A self-updating intelligence instrument, <em>built and run by an AI agent.</em></h2>
-  <p>StackTracker isn't hand-maintained. An autonomous agent pulls live signals from the GitHub API for every project in the index, computes a momentum score, and redeploys this page — every day. The code, the scoring, and the cron that runs it were all built by the same agent stack that runs <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
-  <div class="how">
-    <div><div class="mono">01 · Sample</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
-    <div><div class="mono">02 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + 6-month trend (20%).</p></div>
-    <div><div class="mono">03 · Sweep</div><p>A GitHub Action recomputes <code>data.json</code> and redeploys — no human in the loop.</p></div>
-  </div>
-  <div class="foot-row">
-    <span id="footgen">Data regenerated daily</span>
-    <span>© 2026 Kymata Labs · StackTracker</span>
-    <a href="/feed.json">/feed.json — public API</a>
-    <a href="https://kymatalabs.com/">kymatalabs ↗</a>
-  </div>
-</div></footer>
+<!-- Main Board -->
+<section class="board">
+  <div class="wrap">
+    <!-- Desktop table view -->
+    <table class="board-table" role="table">
+      <thead class="board-header">
+        <tr role="row">
+          <th class="board-th" scope="col">#</th>
+          <th class="board-th sortable" scope="col" data-sort="name">Project</th>
+          <th class="board-th sortable" scope="col" data-sort="momentum">Momentum</th>
+          <th class="board-th sortable" scope="col" data-sort="recent4w_commits">Commits</th>
+          <th class="board-th sortable" scope="col" data-sort="stars">Stars</th>
+          <th class="board-th sortable" scope="col" data-sort="commit_delta">Trend</th>
+          <th class="board-th" scope="col" aria-label="Chart">📈</th>
+        </tr>
+      </thead>
+      <tbody id="board-tbody" role="rowgroup">
+        <tr>
+          <td colspan="7" style="text-align: center; padding: 2rem; color: var(--ink-muted);">
+            Loading momentum data...
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
+    <!-- Mobile card view -->
+    <div class="board-cards" id="board-cards">
+      <div style="text-align: center; padding: 2rem; color: var(--ink-muted);">
+        Loading momentum data...
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer / About -->
+<footer class="detail-container">
+  <div class="wrap">
+    <div class="dt-panel">
+      <h2 class="dt-panel-title">How it's made</h2>
+      <p style="color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--sp-4);">
+        StackTracker isn't hand-maintained. An autonomous agent pulls live signals from the GitHub API for every project in the index, computes a momentum score, and redeploys this page — every day. The code, the scoring, and the cron that runs it were all built by the same agent stack that runs <a href="https://kymatalabs.com/" style="color: var(--accent)">Kymata Labs</a>.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--sp-6); margin: var(--sp-6) 0;">
+        <div>
+          <div style="font-family: var(--mono); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--sp-2);">01 · Sample</div>
+          <p style="color: var(--ink-muted);">Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p>
+        </div>
+        <div>
+          <div style="font-family: var(--mono); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--sp-2);">02 · Score</div>
+          <p style="color: var(--ink-muted);">Momentum = commit velocity (55%) + release recency (25%) + 6-month trend (20%).</p>
+        </div>
+        <div>
+          <div style="font-family: var(--mono); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--sp-2);">03 · Sweep</div>
+          <p style="color: var(--ink-muted);">A GitHub Action recomputes data.json and redeploys — no human in the loop.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--sp-8); padding-top: var(--sp-6); border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4);">
+        <span style="font-family: var(--mono); font-size: var(--fs-sm); color: var(--ink-muted);" id="footgen">Data regenerated daily</span>
+        <div style="display: flex; gap: var(--sp-4); align-items: center;">
+          <span style="font-family: var(--mono); font-size: var(--fs-sm); color: var(--ink-muted);">© 2026 Kymata Labs</span>
+          <a href="/feed.json" style="font-family: var(--mono); font-size: var(--fs-sm); color: var(--accent);">API</a>
+          <a href="https://kymatalabs.com/" style="font-family: var(--mono); font-size: var(--fs-sm); color: var(--accent);">Kymata Labs ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
 <script>
-/* light/dark toggle — persist to localStorage, re-theme the canvas live */
+/* Light/dark theme toggle */
 (function(){
   var btn=document.getElementById("themeToggle"); if(!btn) return;
   btn.addEventListener("click",function(){
     var cur=document.documentElement.dataset.theme==="light"?"light":"dark";
     var next=cur==="light"?"dark":"light";
     document.documentElement.dataset.theme=next;
-    try{localStorage.setItem("theme",next);}catch(e){}
-    var mc=document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute("content",next==="light"?"#eef3f0":"#070a09");
+    try{localStorage.setItem("ky-theme",next);}catch(e){}
+    var mc=document.querySelector('meta[name="theme-color"]');
+    if(mc) mc.setAttribute("content",next==="light"?"#ffffff":"#0a0b0e");
     window.dispatchEvent(new CustomEvent("themechange",{detail:next}));
   });
 })();
-/* oscilloscope hero — phosphor trace on a sweeping beam, with persistence trails. Theme-aware. */
+
+/* Oscilloscope hero canvas */
 (function(){
   if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-  var cv=document.getElementById("scope"); if(!cv) return;
-  var ctx=cv.getContext("2d"), W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2), t=0, raf;
-  // read active theme colors from CSS vars so dark + light both look right; re-read on toggle
-  var BG="#070a09", TRACE="61,255,166", DOT="#9affd0";
-  function hexToRGB(h){h=h.trim();if(h[0]!=="#")return null;if(h.length===4)h="#"+h[1]+h[1]+h[2]+h[2]+h[3]+h[3];var n=parseInt(h.slice(1),16);return (n>>16&255)+","+(n>>8&255)+","+(n&255);}
-  function readTheme(){
-    var cs=getComputedStyle(document.documentElement);
-    BG=(cs.getPropertyValue("--scope-bg")||"#070a09").trim()||"#070a09";
-    var tr=(cs.getPropertyValue("--scope-trace")||"#3dffa6").trim();
-    TRACE=hexToRGB(tr)||"61,255,166";
-    DOT=(cs.getPropertyValue("--scope-dot")||"#9affd0").trim()||"#9affd0";
+  var canvas=document.createElement("canvas");
+  var scope=document.getElementById("scope"); if(!scope) return;
+  scope.appendChild(canvas);
+
+  var ctx=canvas.getContext("2d"), W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2), t=0, raf;
+
+  function size(){
+    W=scope.clientWidth; H=scope.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width=W+"px"; canvas.style.height=H+"px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
   }
-  function fadeRGB(){ // fade-to-bg color w/ alpha, from BG hex
-    var rgb=hexToRGB(BG)||"7,10,9"; return "rgba("+rgb+",0.16)";
-  }
-  function size(){ W=cv.clientWidth; H=cv.clientHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.fillStyle=BG; ctx.fillRect(0,0,W,H); }
+
   function wave(x){
     var k=x/W;
     return Math.sin(k*6.0 + t*1.1)*0.46
          + Math.sin(k*15.0 - t*1.7)*0.18
          + Math.sin(k*31.0 + t*2.3)*0.07;
   }
+
   function frame(){
     ctx.globalCompositeOperation="source-over";
-    ctx.fillStyle=fadeRGB();
+    ctx.fillStyle="rgba(10,11,14,0.1)";
     ctx.fillRect(0,0,W,H);
+
     var midY=H*0.52, amp=H*0.30;
     ctx.globalCompositeOperation="lighter";
-    for(var pass=0; pass<2; pass++){
-      ctx.beginPath();
-      for(var x=0;x<=W;x+=2){ var y=midY - wave(x)*amp; if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
-      ctx.lineWidth = pass===0 ? 7 : 1.6;
-      ctx.strokeStyle = pass===0 ? "rgba("+TRACE+",0.07)" : "rgba("+TRACE+",0.85)";
-      ctx.shadowColor="rgba("+TRACE+",0.7)"; ctx.shadowBlur = pass===0?0:12;
-      ctx.stroke();
+
+    // Glow pass
+    ctx.beginPath();
+    for(var x=0;x<=W;x+=2){
+      var y=midY - wave(x)*amp;
+      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
     }
+    ctx.lineWidth = 7;
+    ctx.strokeStyle = "rgba(61,255,166,0.07)";
+    ctx.stroke();
+
+    // Sharp line pass
+    ctx.beginPath();
+    for(var x=0;x<=W;x+=2){
+      var y=midY - wave(x)*amp;
+      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.lineWidth = 1.6;
+    ctx.strokeStyle = "rgba(61,255,166,0.85)";
+    ctx.shadowColor="rgba(61,255,166,0.7)";
+    ctx.shadowBlur = 12;
+    ctx.stroke();
+
+    // Moving dot
     var bx=(t*120)%W, by=midY - wave(bx)*amp;
-    ctx.beginPath(); ctx.arc(bx,by,2.6,0,6.2832); ctx.fillStyle=DOT; ctx.shadowBlur=16; ctx.fill();
+    ctx.beginPath(); ctx.arc(bx,by,2.6,0,6.2832);
+    ctx.fillStyle="#9affd0"; ctx.shadowBlur=16; ctx.fill();
     ctx.shadowBlur=0;
+
     t+=0.016; raf=requestAnimationFrame(frame);
   }
-  readTheme(); size(); window.addEventListener("resize", size);
-  window.addEventListener("themechange", function(){ readTheme(); ctx.fillStyle=BG; ctx.fillRect(0,0,W,H); });
-  document.addEventListener("visibilitychange", function(){ if(document.hidden){cancelAnimationFrame(raf);} else {raf=requestAnimationFrame(frame);} });
-  ctx.fillStyle=BG; ctx.fillRect(0,0,W,H); raf=requestAnimationFrame(frame);
+
+  size();
+  window.addEventListener("resize", size);
+  document.addEventListener("visibilitychange", function(){
+    if(document.hidden){cancelAnimationFrame(raf);}
+    else {raf=requestAnimationFrame(frame);}
+  });
+
+  ctx.fillStyle="#0a0b0e"; ctx.fillRect(0,0,W,H);
+  raf=requestAnimationFrame(frame);
 })();
 </script>
 <script src="app.js"></script>

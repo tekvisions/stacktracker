@@ -1,0 +1,213 @@
+/* StackTracker Design System — `tokens.css`
+   The foundational layer: custom properties, themes, typography, spacing.
+   This file is identical across all four tools (StackTracker, Agent Velocity, Model Radar, MCP Index).
+   Copy-pasteable reference implementation. */
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Font loading (preconnect + font-display:swap in <head>) */
+/* ────────────────────────────────────────────────────────────────────── */
+
+/* Default CSS variables (dark theme, family default) */
+:root {
+  /* Typography */
+  --disp: "Chakra Petch", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+  /* Fluid type scale */
+  --fs-xs: clamp(10px, 2vw, 11px);
+  --fs-sm: clamp(11.5px, 2vw, 12.5px);
+  --fs-body: clamp(13px, 2vw, 14px);
+  --fs-md: clamp(15px, 2vw, 16px);
+  --fs-lg: clamp(17px, 3vw, 18px);
+  --fs-xl: clamp(19px, 3vw, 22px);
+  --fs-2xl: clamp(24px, 4vw, 28px);
+  --fs-3xl: clamp(32px, 5vw, 40px);
+  --fs-4xl: clamp(44px, 6vw, 58px);
+
+  /* Line heights */
+  --lh-tight: 1.1;
+  --lh-body: 1.45;
+  --lh-relaxed: 1.6;
+
+  /* Spacing (4px base) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+
+  /* Border radius */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+
+  /* Motion (ease curves + durations) */
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --dur-fast: 0.15s;
+  --dur-base: 0.25s;
+  --dur-slow: 0.4s;
+
+  /* Layout containers */
+  --wrap: 1200px;
+  --wrap-wide: 1400px;
+  --gut: 20px;
+
+  /* Z-index */
+  --z-nav: 50;
+  --z-modal: 100;
+  --z-tooltip: 200;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Dark theme (family default) */
+/* ────────────────────────────────────────────────────────────────────── */
+
+:root,
+:root[data-theme="dark"] {
+  /* Surface colors */
+  --bg: #0a0b0e;
+  --panel: #13151a;
+  --panel-hover: #1a1d24;
+  --input: #1a1d24;
+
+  /* Border colors */
+  --line: #242731;
+  --line-strong: #353842;
+  --grid-soft: rgba(255, 255, 255, 0.03);
+
+  /* Text colors */
+  --ink: #e8eaed;
+  --ink-muted: #9ca3af;
+  --ink-subtle: #6b7280;
+  --on-accent: #0a0b0e;
+
+  /* State colors */
+  --positive: #10b981;
+  --negative: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+
+  /* Per-tool accent (overridden per tool via data-tool attribute) */
+  --accent: var(--accent-stack);
+  --accent-soft: var(--accent-stack-soft);
+  --accent-glow: var(--accent-stack-glow);
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Light theme */
+/* ────────────────────────────────────────────────────────────────────── */
+
+:root[data-theme="light"] {
+  /* Surface colors */
+  --bg: #ffffff;
+  --panel: #fafbfc;
+  --panel-hover: #f3f4f6;
+  --input: #f9fafb;
+
+  /* Border colors */
+  --line: #e5e7eb;
+  --line-strong: #d1d5db;
+  --grid-soft: rgba(0, 0, 0, 0.04);
+
+  /* Text colors */
+  --ink: #111827;
+  --ink-muted: #4b5563;
+  --ink-subtle: #6b7280;
+  --on-accent: #ffffff;
+
+  /* State colors */
+  --positive: #059669;
+  --negative: #dc2626;
+  --warning: #d97706;
+  --info: #2563eb;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Per-tool accent palettes (keyed off data-tool attribute) */
+/* ────────────────────────────────────────────────────────────────────── */
+
+/* StackTracker — PHOSPHOR GREEN (oscilloscope signature) */
+:root {
+  --accent-stack: #3dffa6;
+  --accent-stack-soft: rgba(61, 255, 166, 0.15);
+  --accent-stack-glow: rgba(61, 255, 166, 0.3);
+}
+
+[data-tool="stack"] {
+  --accent: var(--accent-stack);
+  --accent-soft: var(--accent-stack-soft);
+  --accent-glow: var(--accent-stack-glow);
+}
+
+/* Agent Velocity — IGNITION AMBER (velocity streaks) */
+:root {
+  --accent-velocity: #ff9500;
+  --accent-velocity-soft: rgba(255, 149, 0, 0.15);
+  --accent-velocity-glow: rgba(255, 149, 0, 0.3);
+}
+
+[data-tool="velocity"] {
+  --accent: var(--accent-velocity);
+  --accent-soft: var(--accent-velocity-soft);
+  --accent-glow: var(--accent-velocity-glow);
+}
+
+/* Model Radar — SIGNAL VIOLET (radar sweep) */
+:root {
+  --accent-radar: #7b46ff;
+  --accent-radar-soft: rgba(123, 70, 255, 0.15);
+  --accent-radar-glow: rgba(123, 70, 255, 0.3);
+}
+
+[data-tool="radar"] {
+  --accent: var(--accent-radar);
+  --accent-soft: var(--accent-radar-soft);
+  --accent-glow: var(--accent-radar-glow);
+}
+
+/* MCP Index — NODE BLUE (node-mesh) */
+:root {
+  --accent-mcp: #2e7cff;
+  --accent-mcp-soft: rgba(46, 124, 255, 0.15);
+  --accent-mcp-glow: rgba(46, 124, 255, 0.3);
+}
+
+[data-tool="mcp"] {
+  --accent: var(--accent-mcp);
+  --accent-soft: var(--accent-mcp-soft);
+  --accent-glow: var(--accent-mcp-glow);
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* Responsive breakpoints */
+/* ────────────────────────────────────────────────────────────────────── */
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  :root {
+    --gut: 16px;
+    --fs-body: 14px;
+    --fs-lg: 16px;
+    --fs-xl: 18px;
+    --fs-2xl: 22px;
+    --fs-3xl: 28px;
+    --fs-4xl: 36px;
+  }
+}
+
+/* Wide screen adjustments */
+@media (min-width: 1201px) {
+  :root {
+    --gut: 24px;
+  }
+}
