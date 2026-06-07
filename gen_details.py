@@ -299,6 +299,7 @@ def generate_feed(data: dict, here: str = HERE) -> None:
                 "category": r.get("category"),
                 "momentum": r.get("momentum"),
                 "stars": r.get("stars"),
+                "contributors": r.get("contributors"),
                 "rank_delta": r.get("rank_delta"),
                 "url": f"{BASE}/p/{slugify(r.get('owner', ''), r.get('name', ''))}/",
                 "badge": f"{BASE}/badge/{slugify(r.get('owner', ''), r.get('name', ''))}.svg",
