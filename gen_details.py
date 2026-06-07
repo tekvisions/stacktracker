@@ -311,6 +311,62 @@ def generate_feed(data: dict, here: str = HERE) -> None:
         json.dump(feed, f, indent=2)
 
 
+def generate_rss(data: dict, here: str = HERE) -> None:
+    """Write rss.xml — an RSS 2.0 feed of the current momentum board (top entries by
+    rank) so researchers / builders / journalists can subscribe. Per-entry guids are the
+    stable detail-page URLs; pubDate is the board's daily refresh. Additive, read-only
+    public data (same subset the page already shows)."""
+    from email.utils import format_datetime
+    repos = sorted(data.get("repos", []),
+                   key=lambda x: x.get("rank") if isinstance(x.get("rank"), int) else 999)
+    feed_repos = [r for r in repos if slugify(r.get("owner", ""), r.get("name", ""))][:30]
+    gen_iso = data.get("generated_at")
+    try:
+        dt = datetime.fromisoformat(gen_iso) if gen_iso else datetime.now(timezone.utc)
+    except (TypeError, ValueError):
+        dt = datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    rfc = format_datetime(dt)
+    title = "StackTracker — live AI-infra momentum"
+    desc = ("The live momentum index for open-source AI infrastructure — ranked by real "
+            "GitHub velocity, recomputed daily by autonomous agents.")
+    items = []
+    for r in feed_repos:
+        slug = slugify(r.get("owner", ""), r.get("name", ""))
+        url = f"{BASE}/p/{slug}/"
+        rank, mom, cat = r.get("rank"), r.get("momentum"), r.get("category")
+        rd = r.get("rank_delta")
+        move = f" ▲{rd}" if isinstance(rd, int) and rd > 0 else (
+               f" ▼{abs(rd)}" if isinstance(rd, int) and rd < 0 else "")
+        ttl = f"#{rank} {r.get('name')} — momentum {mom}"
+        body = f"#{rank} · momentum {mom}/100 · {cat}{move} · {r.get('stars')} stars"
+        items.append(
+            "    <item>\n"
+            f"      <title>{_esc(ttl)}</title>\n"
+            f"      <link>{_esc(url)}</link>\n"
+            f'      <guid isPermaLink="true">{_esc(url)}</guid>\n'
+            f"      <category>{_esc(cat)}</category>\n"
+            f"      <description>{_esc(body)}</description>\n"
+            f"      <pubDate>{rfc}</pubDate>\n"
+            "    </item>")
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+        "  <channel>\n"
+        f"    <title>{_esc(title)}</title>\n"
+        f"    <link>{BASE}</link>\n"
+        f'    <atom:link href="{BASE}/rss.xml" rel="self" type="application/rss+xml"/>\n'
+        f"    <description>{_esc(desc)}</description>\n"
+        "    <language>en</language>\n"
+        f"    <lastBuildDate>{rfc}</lastBuildDate>\n"
+        f"    <generator>{_esc(ORG)}</generator>\n"
+        + "\n".join(items) + "\n"
+        "  </channel>\n</rss>\n")
+    with open(os.path.join(here, "rss.xml"), "w", encoding="utf-8") as f:
+        f.write(xml)
+
+
 # ── shared chrome (matches index.html exactly) ──
 HEAD_COMMON = """<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -720,6 +776,7 @@ def generate_details(data: dict, here: str = HERE) -> list[str]:
     _write_llms(here, data, slugs)
     generate_badges(data, here)
     generate_feed(data, here)
+    generate_rss(data, here)
     return slugs
 
 
