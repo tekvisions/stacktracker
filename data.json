@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T03:39:30.572369+00:00",
+  "generated_at": "2026-06-07T11:17:29.105466+00:00",
   "generated_date": "2026-06-07",
   "repo_count": 24,
   "categories": [
@@ -25,6 +25,15 @@
       "commit_delta": 376
     },
     {
+      "repo": "run-llama/llama_index",
+      "name": "llama_index",
+      "owner": "run-llama",
+      "rank": 16,
+      "rank_delta": 2,
+      "momentum": 50,
+      "commit_delta": 24
+    },
+    {
       "repo": "microsoft/autogen",
       "name": "autogen",
       "owner": "microsoft",
@@ -41,9 +50,10 @@
       "owner": "browser-use",
       "category": "Agents",
       "blurb": "Let agents drive a real browser \u2014 the fastest-rising agent tool.",
-      "stars": 97508,
-      "forks": 10904,
-      "open_issues": 271,
+      "stars": 97567,
+      "forks": 10906,
+      "open_issues": 269,
+      "contributors": 334,
       "language": "Python",
       "archived": false,
       "homepage": "https://browser-use.com",
@@ -54,8 +64,8 @@
       "monthly_commits": [
         126,
         295,
-        286,
-        361,
+        290,
+        357,
         90,
         466
       ],
@@ -135,7 +145,8 @@
       "blurb": "Open-source vector database with built-in hybrid search.",
       "stars": 16285,
       "forks": 1306,
-      "open_issues": 505,
+      "open_issues": 508,
+      "contributors": 170,
       "language": "Go",
       "archived": false,
       "homepage": "https://weaviate.io/developers/weaviate/",
@@ -144,16 +155,16 @@
       "last_release": "v1.38.0",
       "last_release_at": "2026-06-05T16:34:27Z",
       "monthly_commits": [
-        422,
-        620,
-        598,
-        618,
-        479,
-        911
+        427,
+        609,
+        612,
+        610,
+        474,
+        910
       ],
-      "recent4w_commits": 911,
-      "prior4w_commits": 479,
-      "commit_delta": 432,
+      "recent4w_commits": 910,
+      "prior4w_commits": 474,
+      "commit_delta": 436,
       "momentum": 99,
       "stars_history": [
         {
@@ -225,14 +236,15 @@
       "owner": "qdrant",
       "category": "Vector DB",
       "blurb": "Rust-built vector database optimized for filtered search.",
-      "stars": 31866,
-      "forks": 2328,
-      "open_issues": 571,
+      "stars": 31879,
+      "forks": 2329,
+      "open_issues": 575,
+      "contributors": 173,
       "language": "Rust",
       "archived": false,
       "homepage": "https://qdrant.tech",
       "html_url": "https://github.com/qdrant/qdrant",
-      "pushed_at": "2026-06-06T21:37:11Z",
+      "pushed_at": "2026-06-07T10:16:19Z",
       "last_release": "v1.18.2",
       "last_release_at": "2026-06-04T06:50:36Z",
       "monthly_commits": [
@@ -312,217 +324,34 @@
       "tracked_days": 6
     },
     {
-      "repo": "ggml-org/llama.cpp",
-      "name": "llama.cpp",
-      "owner": "ggml-org",
-      "category": "Inference",
-      "blurb": "LLM inference in C/C++ \u2014 the engine behind local AI everywhere.",
-      "stars": 115027,
-      "forks": 19266,
-      "open_issues": 1743,
-      "language": "C++",
-      "archived": false,
-      "homepage": "https://llama.app",
-      "html_url": "https://github.com/ggml-org/llama.cpp",
-      "pushed_at": "2026-06-06T21:20:24Z",
-      "last_release": "b9544",
-      "last_release_at": "2026-06-06T21:20:25Z",
-      "monthly_commits": [
-        339,
-        298,
-        283,
-        455,
-        365,
-        477
-      ],
-      "recent4w_commits": 477,
-      "prior4w_commits": 365,
-      "commit_delta": 112,
-      "momentum": 93,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 114116
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 114267
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 114426
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 114578
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 114648
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 115027
-        }
-      ],
-      "rank": 4,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 4,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 4,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 4,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 4,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 4,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 4,
-          "momentum": 93
-        }
-      ],
-      "rank_prev": 4,
-      "rank_delta": 0,
-      "peak_rank": 4,
-      "tracked_days": 6
-    },
-    {
-      "repo": "sgl-project/sglang",
-      "name": "sglang",
-      "owner": "sgl-project",
-      "category": "Inference",
-      "blurb": "Fast serving runtime with RadixAttention for structured generation.",
-      "stars": 28878,
-      "forks": 6363,
-      "open_issues": 3752,
-      "language": "Python",
-      "archived": false,
-      "homepage": "https://sglang.io",
-      "html_url": "https://github.com/sgl-project/sglang",
-      "pushed_at": "2026-06-07T03:27:54Z",
-      "last_release": "v0.5.12.post1",
-      "last_release_at": "2026-05-26T23:58:17Z",
-      "monthly_commits": [
-        1082,
-        828,
-        907,
-        968,
-        988,
-        1289
-      ],
-      "recent4w_commits": 1289,
-      "prior4w_commits": 988,
-      "commit_delta": 301,
-      "momentum": 93,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 28876
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 28894
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 28908
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 28868
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 28875
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 28878
-        }
-      ],
-      "rank": 5,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 5,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 5,
-          "momentum": 93
-        }
-      ],
-      "rank_prev": 5,
-      "rank_delta": 0,
-      "peak_rank": 5,
-      "tracked_days": 6
-    },
-    {
       "repo": "unslothai/unsloth",
       "name": "unsloth",
       "owner": "unslothai",
       "category": "LLMOps",
       "blurb": "2x faster, 70% less memory LLM fine-tuning.",
-      "stars": 65933,
+      "stars": 65959,
       "forks": 5905,
-      "open_issues": 1393,
+      "open_issues": 1408,
+      "contributors": 196,
       "language": "Python",
       "archived": false,
       "homepage": "https://unsloth.ai/docs",
       "html_url": "https://github.com/unslothai/unsloth",
-      "pushed_at": "2026-06-06T13:27:59Z",
+      "pushed_at": "2026-06-07T10:37:25Z",
       "last_release": "v0.1.44-beta",
       "last_release_at": "2026-06-03T14:35:44Z",
       "monthly_commits": [
-        217,
+        216,
         166,
-        906,
-        629,
-        180,
-        352
+        911,
+        627,
+        176,
+        356
       ],
-      "recent4w_commits": 352,
-      "prior4w_commits": 180,
-      "commit_delta": 172,
-      "momentum": 93,
+      "recent4w_commits": 356,
+      "prior4w_commits": 176,
+      "commit_delta": 180,
+      "momentum": 94,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -549,7 +378,7 @@
           "stars": 65933
         }
       ],
-      "rank": 6,
+      "rank": 4,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -583,8 +412,194 @@
         }
       ],
       "rank_prev": 3,
-      "rank_delta": -3,
+      "rank_delta": -1,
       "peak_rank": 2,
+      "tracked_days": 6
+    },
+    {
+      "repo": "ggml-org/llama.cpp",
+      "name": "llama.cpp",
+      "owner": "ggml-org",
+      "category": "Inference",
+      "blurb": "LLM inference in C/C++ \u2014 the engine behind local AI everywhere.",
+      "stars": 115081,
+      "forks": 19267,
+      "open_issues": 1749,
+      "contributors": 1735,
+      "language": "C++",
+      "archived": false,
+      "homepage": "https://llama.app",
+      "html_url": "https://github.com/ggml-org/llama.cpp",
+      "pushed_at": "2026-06-07T09:38:50Z",
+      "last_release": "b9547",
+      "last_release_at": "2026-06-07T09:38:51Z",
+      "monthly_commits": [
+        340,
+        293,
+        289,
+        454,
+        366,
+        472
+      ],
+      "recent4w_commits": 472,
+      "prior4w_commits": 366,
+      "commit_delta": 106,
+      "momentum": 93,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 114116
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 114267
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 114426
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 114578
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 114648
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 115027
+        }
+      ],
+      "rank": 5,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 4,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 4,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 4,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 4,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 4,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 4,
+          "momentum": 93
+        }
+      ],
+      "rank_prev": 4,
+      "rank_delta": -1,
+      "peak_rank": 4,
+      "tracked_days": 6
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "name": "sglang",
+      "owner": "sgl-project",
+      "category": "Inference",
+      "blurb": "Fast serving runtime with RadixAttention for structured generation.",
+      "stars": 28885,
+      "forks": 6368,
+      "open_issues": 3760,
+      "contributors": 1492,
+      "language": "Python",
+      "archived": false,
+      "homepage": "https://sglang.io",
+      "html_url": "https://github.com/sgl-project/sglang",
+      "pushed_at": "2026-06-07T11:14:44Z",
+      "last_release": "v0.5.12.post1",
+      "last_release_at": "2026-05-26T23:58:17Z",
+      "monthly_commits": [
+        1083,
+        822,
+        907,
+        974,
+        992,
+        1285
+      ],
+      "recent4w_commits": 1285,
+      "prior4w_commits": 992,
+      "commit_delta": 293,
+      "momentum": 93,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 28876
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 28894
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 28908
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 28868
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 28875
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 28878
+        }
+      ],
+      "rank": 6,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 5,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 5,
+          "momentum": 93
+        }
+      ],
+      "rank_prev": 5,
+      "rank_delta": -1,
+      "peak_rank": 5,
       "tracked_days": 6
     },
     {
@@ -593,28 +608,29 @@
       "owner": "vllm-project",
       "category": "Inference",
       "blurb": "High-throughput, memory-efficient LLM serving (PagedAttention).",
-      "stars": 82088,
-      "forks": 17728,
-      "open_issues": 5211,
+      "stars": 82117,
+      "forks": 17739,
+      "open_issues": 5221,
+      "contributors": 2771,
       "language": "Python",
       "archived": false,
       "homepage": "https://vllm.ai",
       "html_url": "https://github.com/vllm-project/vllm",
-      "pushed_at": "2026-06-07T03:02:22Z",
+      "pushed_at": "2026-06-07T09:50:04Z",
       "last_release": "v0.22.1",
       "last_release_at": "2026-06-05T10:10:00Z",
       "monthly_commits": [
-        690,
-        944,
-        903,
-        987,
-        812,
-        938
+        707,
+        921,
+        907,
+        980,
+        818,
+        940
       ],
-      "recent4w_commits": 938,
-      "prior4w_commits": 812,
-      "commit_delta": 126,
-      "momentum": 92,
+      "recent4w_commits": 940,
+      "prior4w_commits": 818,
+      "commit_delta": 122,
+      "momentum": 91,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -685,28 +701,29 @@
       "owner": "NVIDIA",
       "category": "Inference",
       "blurb": "NVIDIA's toolkit for the fastest LLM inference on its GPUs.",
-      "stars": 13815,
-      "forks": 2443,
-      "open_issues": 1360,
+      "stars": 13819,
+      "forks": 2444,
+      "open_issues": 1363,
+      "contributors": 394,
       "language": "Python",
       "archived": false,
       "homepage": "https://nvidia.github.io/TensorRT-LLM",
       "html_url": "https://github.com/NVIDIA/TensorRT-LLM",
-      "pushed_at": "2026-06-07T03:16:38Z",
+      "pushed_at": "2026-06-07T11:10:10Z",
       "last_release": "v1.2.1",
       "last_release_at": "2026-04-20T11:51:33Z",
       "monthly_commits": [
-        474,
-        476,
-        459,
-        459,
-        517,
-        655
+        469,
+        471,
+        471,
+        452,
+        525,
+        643
       ],
-      "recent4w_commits": 655,
-      "prior4w_commits": 517,
-      "commit_delta": 138,
-      "momentum": 91,
+      "recent4w_commits": 643,
+      "prior4w_commits": 525,
+      "commit_delta": 118,
+      "momentum": 90,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -777,27 +794,28 @@
       "owner": "BerriAI",
       "category": "Gateway",
       "blurb": "One API for 100+ LLM providers \u2014 the universal gateway.",
-      "stars": 49509,
-      "forks": 8657,
-      "open_issues": 3533,
+      "stars": 49538,
+      "forks": 8662,
+      "open_issues": 3537,
+      "contributors": 1527,
       "language": "Python",
       "archived": false,
       "homepage": "https://docs.litellm.ai/docs/",
       "html_url": "https://github.com/BerriAI/litellm",
-      "pushed_at": "2026-06-07T03:34:33Z",
+      "pushed_at": "2026-06-07T07:51:38Z",
       "last_release": "v1.88.0",
       "last_release_at": "2026-06-06T23:43:20Z",
       "monthly_commits": [
-        1324,
-        2005,
-        2937,
-        1994,
-        2274,
-        534
+        1346,
+        1982,
+        2946,
+        1981,
+        2273,
+        535
       ],
-      "recent4w_commits": 534,
-      "prior4w_commits": 2274,
-      "commit_delta": -1740,
+      "recent4w_commits": 535,
+      "prior4w_commits": 2273,
+      "commit_delta": -1738,
       "momentum": 82,
       "stars_history": [
         {
@@ -869,9 +887,10 @@
       "owner": "langfuse",
       "category": "LLMOps",
       "blurb": "Open-source LLM observability, tracing, and evals.",
-      "stars": 28597,
-      "forks": 2961,
-      "open_issues": 664,
+      "stars": 28611,
+      "forks": 2964,
+      "open_issues": 668,
+      "contributors": 166,
       "language": "TypeScript",
       "archived": false,
       "homepage": "https://langfuse.com/docs",
@@ -880,17 +899,17 @@
       "last_release": "v3.178.0",
       "last_release_at": "2026-06-02T13:29:23Z",
       "monthly_commits": [
-        183,
+        179,
         170,
         238,
         243,
-        254,
-        280
+        259,
+        274
       ],
-      "recent4w_commits": 280,
-      "prior4w_commits": 254,
-      "commit_delta": 26,
-      "momentum": 75,
+      "recent4w_commits": 274,
+      "prior4w_commits": 259,
+      "commit_delta": 15,
+      "momentum": 73,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -964,6 +983,7 @@
       "stars": 10008,
       "forks": 911,
       "open_issues": 571,
+      "contributors": 185,
       "language": "Python",
       "archived": false,
       "homepage": "https://arize.com/docs/phoenix",
@@ -972,17 +992,17 @@
       "last_release": "arize-phoenix-v17.2.0",
       "last_release_at": "2026-06-03T21:35:32Z",
       "monthly_commits": [
-        150,
-        167,
-        639,
+        153,
+        164,
+        640,
         327,
-        276,
-        276
+        278,
+        273
       ],
-      "recent4w_commits": 276,
-      "prior4w_commits": 276,
-      "commit_delta": 0,
-      "momentum": 73,
+      "recent4w_commits": 273,
+      "prior4w_commits": 278,
+      "commit_delta": -5,
+      "momentum": 72,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -1053,14 +1073,15 @@
       "owner": "langchain-ai",
       "category": "Agents",
       "blurb": "The framework that defined LLM app composition \u2014 chains, tools, agents.",
-      "stars": 138681,
-      "forks": 22984,
-      "open_issues": 552,
+      "stars": 138711,
+      "forks": 22986,
+      "open_issues": 553,
+      "contributors": 3687,
       "language": "Python",
       "archived": false,
       "homepage": "https://docs.langchain.com/langchain/",
       "html_url": "https://github.com/langchain-ai/langchain",
-      "pushed_at": "2026-06-06T08:53:46Z",
+      "pushed_at": "2026-06-07T09:04:18Z",
       "last_release": "langchain-core==1.4.1",
       "last_release_at": "2026-06-05T14:51:58Z",
       "monthly_commits": [
@@ -1145,9 +1166,10 @@
       "owner": "comfyanonymous",
       "category": "LLMOps",
       "blurb": "Node-graph backend for diffusion pipelines \u2014 the power-user's canvas.",
-      "stars": 115986,
-      "forks": 13578,
-      "open_issues": 4087,
+      "stars": 116031,
+      "forks": 13579,
+      "open_issues": 4089,
+      "contributors": 320,
       "language": "Python",
       "archived": false,
       "homepage": "https://www.comfy.org/",
@@ -1156,17 +1178,17 @@
       "last_release": "v0.24.0",
       "last_release_at": "2026-06-03T22:43:23Z",
       "monthly_commits": [
-        148,
-        190,
-        189,
+        146,
+        188,
+        188,
         137,
-        167,
-        212
+        171,
+        208
       ],
-      "recent4w_commits": 212,
-      "prior4w_commits": 167,
-      "commit_delta": 45,
-      "momentum": 67,
+      "recent4w_commits": 208,
+      "prior4w_commits": 171,
+      "commit_delta": 37,
+      "momentum": 66,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -1238,8 +1260,9 @@
       "category": "Vector DB",
       "blurb": "Cloud-native vector database for billion-scale similarity search.",
       "stars": 44662,
-      "forks": 4044,
-      "open_issues": 878,
+      "forks": 4048,
+      "open_issues": 882,
+      "contributors": 356,
       "language": "Go",
       "archived": false,
       "homepage": "https://milvus.io",
@@ -1248,17 +1271,17 @@
       "last_release": "v2.6.18",
       "last_release_at": "2026-06-05T04:03:06Z",
       "monthly_commits": [
-        207,
-        209,
-        124,
-        228,
-        204,
-        191
+        210,
+        200,
+        125,
+        232,
+        205,
+        184
       ],
-      "recent4w_commits": 191,
-      "prior4w_commits": 204,
-      "commit_delta": -13,
-      "momentum": 61,
+      "recent4w_commits": 184,
+      "prior4w_commits": 205,
+      "commit_delta": -21,
+      "momentum": 59,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -1329,9 +1352,10 @@
       "owner": "pydantic",
       "category": "Agents",
       "blurb": "Type-safe agent framework from the Pydantic team.",
-      "stars": 17570,
-      "forks": 2184,
-      "open_issues": 618,
+      "stars": 17576,
+      "forks": 2186,
+      "open_issues": 621,
+      "contributors": 461,
       "language": "Python",
       "archived": false,
       "homepage": "https://ai.pydantic.dev",
@@ -1343,14 +1367,14 @@
         115,
         104,
         90,
-        91,
-        130,
+        94,
+        127,
         123
       ],
       "recent4w_commits": 123,
-      "prior4w_commits": 130,
-      "commit_delta": -7,
-      "momentum": 51,
+      "prior4w_commits": 127,
+      "commit_delta": -4,
+      "momentum": 52,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -1416,14 +1440,108 @@
       "tracked_days": 6
     },
     {
+      "repo": "run-llama/llama_index",
+      "name": "llama_index",
+      "owner": "run-llama",
+      "category": "Agents",
+      "blurb": "Data framework for connecting LLMs to your private data.",
+      "stars": 49962,
+      "forks": 7525,
+      "open_issues": 435,
+      "contributors": 1947,
+      "language": "Python",
+      "archived": false,
+      "homepage": "https://developers.llamaindex.ai",
+      "html_url": "https://github.com/run-llama/llama_index",
+      "pushed_at": "2026-06-04T16:59:44Z",
+      "last_release": "v0.14.22",
+      "last_release_at": "2026-05-14T20:22:24Z",
+      "monthly_commits": [
+        54,
+        97,
+        128,
+        133,
+        33,
+        57
+      ],
+      "recent4w_commits": 57,
+      "prior4w_commits": 33,
+      "commit_delta": 24,
+      "momentum": 50,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 49824
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 49854
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 49878
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 49911
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 49921
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 49960
+        }
+      ],
+      "rank": 16,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 16,
+          "momentum": 46
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 17,
+          "momentum": 47
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 16,
+          "momentum": 52
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 18,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 18,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 18,
+          "momentum": 48
+        }
+      ],
+      "rank_prev": 18,
+      "rank_delta": 2,
+      "peak_rank": 16,
+      "tracked_days": 6
+    },
+    {
       "repo": "langchain-ai/langgraph",
       "name": "langgraph",
       "owner": "langchain-ai",
       "category": "Agents",
       "blurb": "Graph-based stateful agent orchestration from the LangChain team.",
-      "stars": 34045,
-      "forks": 5728,
+      "stars": 34070,
+      "forks": 5732,
       "open_issues": 559,
+      "contributors": 280,
       "language": "Python",
       "archived": false,
       "homepage": "https://docs.langchain.com/oss/python/langgraph/",
@@ -1469,7 +1587,7 @@
           "stars": 34045
         }
       ],
-      "rank": 16,
+      "rank": 17,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -1503,7 +1621,7 @@
         }
       ],
       "rank_prev": 15,
-      "rank_delta": -1,
+      "rank_delta": -2,
       "peak_rank": 15,
       "tracked_days": 6
     },
@@ -1513,9 +1631,10 @@
       "owner": "chroma-core",
       "category": "Vector DB",
       "blurb": "The embedding database that made RAG prototyping trivial.",
-      "stars": 28248,
-      "forks": 2294,
-      "open_issues": 641,
+      "stars": 28255,
+      "forks": 2298,
+      "open_issues": 644,
+      "contributors": 186,
       "language": "Rust",
       "archived": false,
       "homepage": "https://www.trychroma.com/",
@@ -1527,14 +1646,14 @@
         94,
         177,
         128,
-        124,
-        92,
-        97
+        126,
+        91,
+        96
       ],
-      "recent4w_commits": 97,
-      "prior4w_commits": 92,
+      "recent4w_commits": 96,
+      "prior4w_commits": 91,
       "commit_delta": 5,
-      "momentum": 49,
+      "momentum": 48,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -1561,7 +1680,7 @@
           "stars": 28248
         }
       ],
-      "rank": 17,
+      "rank": 18,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -1595,100 +1714,8 @@
         }
       ],
       "rank_prev": 17,
-      "rank_delta": 0,
+      "rank_delta": -1,
       "peak_rank": 17,
-      "tracked_days": 6
-    },
-    {
-      "repo": "run-llama/llama_index",
-      "name": "llama_index",
-      "owner": "run-llama",
-      "category": "Agents",
-      "blurb": "Data framework for connecting LLMs to your private data.",
-      "stars": 49960,
-      "forks": 7522,
-      "open_issues": 434,
-      "language": "Python",
-      "archived": false,
-      "homepage": "https://developers.llamaindex.ai",
-      "html_url": "https://github.com/run-llama/llama_index",
-      "pushed_at": "2026-06-04T16:59:44Z",
-      "last_release": "v0.14.22",
-      "last_release_at": "2026-05-14T20:22:24Z",
-      "monthly_commits": [
-        54,
-        97,
-        122,
-        134,
-        38,
-        57
-      ],
-      "recent4w_commits": 57,
-      "prior4w_commits": 38,
-      "commit_delta": 19,
-      "momentum": 48,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 49824
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 49854
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 49878
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 49911
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 49921
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 49960
-        }
-      ],
-      "rank": 18,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 16,
-          "momentum": 46
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 17,
-          "momentum": 47
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 16,
-          "momentum": 52
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 18,
-          "momentum": 48
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 18,
-          "momentum": 48
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 18,
-          "momentum": 48
-        }
-      ],
-      "rank_prev": 18,
-      "rank_delta": 0,
-      "peak_rank": 16,
       "tracked_days": 6
     },
     {
@@ -1697,9 +1724,10 @@
       "owner": "crewAIInc",
       "category": "Agents",
       "blurb": "Role-playing multi-agent crews that collaborate on tasks.",
-      "stars": 52948,
-      "forks": 7398,
-      "open_issues": 403,
+      "stars": 52965,
+      "forks": 7402,
+      "open_issues": 404,
+      "contributors": 300,
       "language": "Python",
       "archived": false,
       "homepage": "https://crewai.com",
@@ -1708,16 +1736,16 @@
       "last_release": "1.14.6",
       "last_release_at": "2026-05-28T17:04:02Z",
       "monthly_commits": [
-        34,
-        74,
+        36,
+        72,
         71,
-        179,
-        168,
+        180,
+        167,
         103
       ],
       "recent4w_commits": 103,
-      "prior4w_commits": 168,
-      "commit_delta": -65,
+      "prior4w_commits": 167,
+      "commit_delta": -64,
       "momentum": 45,
       "stars_history": [
         {
@@ -1789,9 +1817,10 @@
       "owner": "ollama",
       "category": "Inference",
       "blurb": "Run open models locally with one command.",
-      "stars": 173397,
-      "forks": 16476,
-      "open_issues": 3361,
+      "stars": 173432,
+      "forks": 16483,
+      "open_issues": 3366,
+      "contributors": 603,
       "language": "Go",
       "archived": false,
       "homepage": "https://ollama.com",
@@ -1881,9 +1910,10 @@
       "owner": "Portkey-AI",
       "category": "Gateway",
       "blurb": "Fast, open-source AI gateway with routing and guardrails.",
-      "stars": 11986,
+      "stars": 11988,
       "forks": 1111,
       "open_issues": 189,
+      "contributors": 123,
       "language": "TypeScript",
       "archived": false,
       "homepage": "https://portkey.ai/features/ai-gateway",
@@ -1973,9 +2003,10 @@
       "owner": "flowiseai",
       "category": "Agents",
       "blurb": "Drag-and-drop builder for LLM apps and agents.",
-      "stars": 53385,
-      "forks": 24493,
+      "stars": 53392,
+      "forks": 24495,
       "open_issues": 894,
+      "contributors": 332,
       "language": "TypeScript",
       "archived": false,
       "homepage": "https://flowiseai.com",
@@ -1984,17 +2015,17 @@
       "last_release": "flowise@3.1.2",
       "last_release_at": "2026-04-14T13:58:32Z",
       "monthly_commits": [
-        6,
+        7,
         35,
         84,
-        111,
-        82,
-        16
+        110,
+        84,
+        14
       ],
-      "recent4w_commits": 16,
-      "prior4w_commits": 82,
-      "commit_delta": -66,
-      "momentum": 27,
+      "recent4w_commits": 14,
+      "prior4w_commits": 84,
+      "commit_delta": -70,
+      "momentum": 26,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -2065,9 +2096,10 @@
       "owner": "microsoft",
       "category": "Agents",
       "blurb": "Multi-agent conversation framework from Microsoft Research.",
-      "stars": 58736,
-      "forks": 8863,
-      "open_issues": 879,
+      "stars": 58742,
+      "forks": 8866,
+      "open_issues": 880,
+      "contributors": 533,
       "language": "Python",
       "archived": false,
       "homepage": "https://microsoft.github.io/autogen/",
@@ -2157,9 +2189,10 @@
       "owner": "pgvector",
       "category": "Vector DB",
       "blurb": "Vector similarity search inside Postgres.",
-      "stars": 21637,
+      "stars": 21641,
       "forks": 1195,
-      "open_issues": 12,
+      "open_issues": 13,
+      "contributors": 23,
       "language": "C",
       "archived": false,
       "homepage": null,
