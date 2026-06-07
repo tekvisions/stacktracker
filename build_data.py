@@ -112,6 +112,30 @@ def contributor_count(full: str) -> int:
     return len(body) if isinstance(body, list) else 0
 
 
+def open_pr_count(full: str) -> int:
+    """Open PR count via the pulls endpoint's Link header (per_page=1 → last-page == count).
+    GitHub's open_issues_count conflates issues+PRs; this isolates the PR backlog — a
+    review-throughput signal. Returns 0 on any error (fail-soft)."""
+    url = API + f"/repos/{full}/pulls?state=open&per_page=1"
+    req = urllib.request.Request(url, headers=HEADERS)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            link = r.headers.get("Link", "") or ""
+            body = json.loads(r.read() or "[]")
+    except urllib.error.HTTPError:
+        return 0
+    except Exception:
+        return 0
+    if 'rel="last"' in link:
+        import re
+        for part in link.split(","):
+            if 'rel="last"' in part:
+                m = re.search(r"[?&]page=(\d+)", part)
+                if m:
+                    return min(int(m.group(1)), 5000)
+    return len(body) if isinstance(body, list) else 0
+
+
 def days_since(iso: str | None) -> float | None:
     if not iso:
         return None
@@ -120,6 +144,24 @@ def days_since(iso: str | None) -> float | None:
         return (datetime.now(timezone.utc) - dt).total_seconds() / 86400.0
     except Exception:
         return None
+
+
+def release_cadence_days(full: str) -> float | None:
+    """Median days between recent stable releases — a maintenance-cadence signal. Fetches
+    the last 10 releases (one extra call), drops drafts/prereleases, returns the median gap
+    between consecutive published dates. None if <2 dated stable releases. Fail-soft."""
+    _, data = gh(f"/repos/{full}/releases?per_page=10")
+    if not isinstance(data, list):
+        return None
+    ages = sorted(d for d in (days_since(r.get("published_at")) for r in data
+                              if isinstance(r, dict) and not r.get("draft") and not r.get("prerelease"))
+                  if d is not None)
+    if len(ages) < 2:
+        return None
+    gaps = sorted(ages[i + 1] - ages[i] for i in range(len(ages) - 1))
+    mid = len(gaps) // 2
+    med = gaps[mid] if len(gaps) % 2 else (gaps[mid - 1] + gaps[mid]) / 2
+    return round(med, 1)
 
 
 def momentum(recent4: int, prior4: int, days_release: float | None) -> int:
@@ -205,6 +247,8 @@ def main() -> int:
             "forks": int(core.get("forks_count", 0)),
             "open_issues": int(core.get("open_issues_count", 0)),
             "contributors": contributor_count(full),  # maintenance-health signal
+            "open_prs": open_pr_count(full),           # PR backlog (open_issues_count conflates issues+PRs)
+            "release_cadence_days": release_cadence_days(full),  # median days between stable releases
             "language": core.get("language"),
             "archived": bool(core.get("archived")),
             "homepage": (core.get("homepage") or "").strip() or None,
