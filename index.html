@@ -31,8 +31,19 @@
     {"@type":"Organization","@id":"https://kymatalabs.com/#org","name":"Kymata Labs","url":"https://kymatalabs.com/"}
   ]
 }</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is StackTracker?", "acceptedAnswer": {"@type": "Answer", "text": "StackTracker is a live momentum index for AI-infrastructure tools — inference servers, orchestration frameworks, vector databases and ops tooling — ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs."}}, {"@type": "Question", "name": "How is momentum scored?", "acceptedAnswer": {"@type": "Answer", "text": "A 0–100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet — momentum, not legacy."}}, {"@type": "Question", "name": "How often is it updated?", "acceptedAnswer": {"@type": "Answer", "text": "Every day. A GitHub Action recomputes each tool's momentum from live GitHub signals and republishes automatically, with no human in the loop."}}, {"@type": "Question", "name": "Part of The Living Indexes", "acceptedAnswer": {"@type": "Answer", "text": "A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at indexes.kymatalabs.com."}}]}
+</script>
 </head>
 <body>
+<div class="geo-kstrip"><div class="wrap">
+  <a href="https://www.kymatalabs.com" target="_blank" rel="noopener"><span class="d"></span>Kymata Labs</a>
+  <span class="s">/</span>
+  <a href="https://indexes.kymatalabs.com" target="_blank" rel="noopener">The Living Indexes</a>
+  <span class="g"></span>
+  <a href="https://www.kymatalabs.com/live" target="_blank" rel="noopener">Built by tekvisions ↗</a>
+</div></div>
+
 <canvas id="scope" aria-hidden="true"></canvas>
 <div class="vig"></div>
 
@@ -90,6 +101,17 @@
   </div>
   <div class="sortnote resultnote" id="sortnote" aria-live="polite">Ranked by momentum ↓</div>
 </div></section>
+
+<section class="geo-about">
+  <h2>About StackTracker</h2>
+  <p class="intro">StackTracker is the live momentum index for AI infrastructure &mdash; the serving engines, orchestration frameworks, vector stores and ops tooling that run AI in production. Every tool is ranked daily from live GitHub signals, so the index reflects which infrastructure the ecosystem is actually building on right now. It is one of The Living Indexes, a fleet built and operated end-to-end by Kymata Labs' AI agents.</p>
+  <div class="geo-faq">
+      <div class="q"><h3>What is StackTracker?</h3><p>StackTracker is a live momentum index for AI-infrastructure tools &mdash; inference servers, orchestration frameworks, vector databases and ops tooling &mdash; ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs.</p></div>
+      <div class="q"><h3>How is momentum scored?</h3><p>A 0&ndash;100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet &mdash; momentum, not legacy.</p></div>
+      <div class="q"><h3>How often is it updated?</h3><p>Every day. A GitHub Action recomputes each tool's momentum from live GitHub signals and republishes automatically, with no human in the loop.</p></div>
+      <div class="q"><h3>Part of The Living Indexes</h3><p>A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at <a href="https://indexes.kymatalabs.com">indexes.kymatalabs.com</a>.</p></div>
+  </div>
+</section>
 
 <footer id="how" data-reveal><div class="wrap">
   <span class="mono" style="color:var(--phos)">How it's made</span>

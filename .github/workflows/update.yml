@@ -50,3 +50,6 @@ jobs:
       - name: Deploy to Vercel
         if: ${{ env.VERCEL_TOKEN != '' }}
         run: python deploy.py
+      - name: Ping IndexNow
+        if: ${{ env.VERCEL_TOKEN != '' }}
+        run: python indexnow_ping.py
