@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-26T11:57:44.359060+00:00",
-  "generated_date": "2026-06-26",
+  "generated_at": "2026-06-27T11:06:50.426328+00:00",
+  "generated_date": "2026-06-27",
   "repo_count": 24,
   "categories": [
     "Agents",
@@ -16,13 +16,49 @@
   ],
   "movers": [
     {
-      "repo": "flowiseai/Flowise",
-      "name": "Flowise",
-      "owner": "flowiseai",
-      "rank": 21,
+      "repo": "milvus-io/milvus",
+      "name": "milvus",
+      "owner": "milvus-io",
+      "rank": 11,
       "rank_delta": 1,
-      "momentum": 30,
-      "commit_delta": -32
+      "momentum": 70,
+      "commit_delta": 55
+    },
+    {
+      "repo": "ollama/ollama",
+      "name": "ollama",
+      "owner": "ollama",
+      "rank": 14,
+      "rank_delta": 1,
+      "momentum": 58,
+      "commit_delta": 48
+    },
+    {
+      "repo": "crewAIInc/crewAI",
+      "name": "crewAI",
+      "owner": "crewAIInc",
+      "rank": 13,
+      "rank_delta": 1,
+      "momentum": 58,
+      "commit_delta": 29
+    },
+    {
+      "repo": "ggml-org/llama.cpp",
+      "name": "llama.cpp",
+      "owner": "ggml-org",
+      "rank": 5,
+      "rank_delta": 1,
+      "momentum": 91,
+      "commit_delta": 22
+    },
+    {
+      "repo": "pydantic/pydantic-ai",
+      "name": "pydantic-ai",
+      "owner": "pydantic",
+      "rank": 16,
+      "rank_delta": 1,
+      "momentum": 46,
+      "commit_delta": -50
     }
   ],
   "repos": [
@@ -32,11 +68,11 @@
       "owner": "browser-use",
       "category": "Agents",
       "blurb": "Let agents drive a real browser \u2014 the fastest-rising agent tool.",
-      "stars": 100787,
-      "forks": 11208,
-      "open_issues": 286,
+      "stars": 100908,
+      "forks": 11220,
+      "open_issues": 287,
       "contributors": 334,
-      "open_prs": 215,
+      "open_prs": 216,
       "release_cadence_days": 2.9,
       "language": "Python",
       "archived": false,
@@ -46,10 +82,10 @@
       "last_release": "0.13.2",
       "last_release_at": "2026-06-12T22:45:04Z",
       "monthly_commits": [
-        116,
-        414,
-        316,
-        185,
+        131,
+        404,
+        314,
+        182,
         101,
         446
       ],
@@ -157,6 +193,10 @@
         {
           "date": "2026-06-26",
           "stars": 100787
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 100908
         }
       ],
       "rank": 1,
@@ -285,12 +325,17 @@
           "date": "2026-06-26",
           "rank": 1,
           "momentum": 100
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 1,
+          "momentum": 100
         }
       ],
       "rank_prev": 1,
       "rank_delta": 0,
       "peak_rank": 1,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "langfuse/langfuse",
@@ -298,30 +343,30 @@
       "owner": "langfuse",
       "category": "LLMOps",
       "blurb": "Open-source LLM observability, tracing, and evals.",
-      "stars": 29826,
-      "forks": 3103,
-      "open_issues": 677,
+      "stars": 29861,
+      "forks": 3109,
+      "open_issues": 672,
       "contributors": 177,
-      "open_prs": 373,
-      "release_cadence_days": 0.7,
+      "open_prs": 374,
+      "release_cadence_days": 0.3,
       "language": "TypeScript",
       "archived": false,
       "homepage": "https://langfuse.com",
       "html_url": "https://github.com/langfuse/langfuse",
-      "pushed_at": "2026-06-26T11:54:53Z",
-      "last_release": "v3.199.0",
-      "last_release_at": "2026-06-26T08:21:22Z",
+      "pushed_at": "2026-06-27T09:45:06Z",
+      "last_release": "v3.201.1",
+      "last_release_at": "2026-06-26T17:03:01Z",
       "monthly_commits": [
-        148,
-        236,
-        255,
-        250,
-        223,
-        482
+        157,
+        240,
+        240,
+        258,
+        233,
+        481
       ],
-      "recent4w_commits": 482,
-      "prior4w_commits": 223,
-      "commit_delta": 259,
+      "recent4w_commits": 481,
+      "prior4w_commits": 233,
+      "commit_delta": 248,
       "momentum": 100,
       "stars_history": [
         {
@@ -423,6 +468,10 @@
         {
           "date": "2026-06-26",
           "stars": 29826
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 29861
         }
       ],
       "rank": 2,
@@ -551,12 +600,17 @@
           "date": "2026-06-26",
           "rank": 2,
           "momentum": 100
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 2,
+          "momentum": 100
         }
       ],
       "rank_prev": 2,
       "rank_delta": 0,
       "peak_rank": 2,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "unslothai/unsloth",
@@ -564,31 +618,31 @@
       "owner": "unslothai",
       "category": "LLMOps",
       "blurb": "2x faster, 70% less memory LLM fine-tuning.",
-      "stars": 67391,
-      "forks": 6053,
-      "open_issues": 1011,
-      "contributors": 229,
-      "open_prs": 225,
+      "stars": 67451,
+      "forks": 6062,
+      "open_issues": 1013,
+      "contributors": 230,
+      "open_prs": 229,
       "release_cadence_days": 6.2,
       "language": "Python",
       "archived": false,
       "homepage": "https://unsloth.ai/docs",
       "html_url": "https://github.com/unslothai/unsloth",
-      "pushed_at": "2026-06-26T11:52:19Z",
+      "pushed_at": "2026-06-27T10:55:04Z",
       "last_release": "v0.1.471-beta",
       "last_release_at": "2026-06-18T17:36:51Z",
       "monthly_commits": [
-        126,
-        753,
-        802,
-        214,
-        321,
-        537
+        124,
+        779,
+        774,
+        217,
+        328,
+        535
       ],
-      "recent4w_commits": 537,
-      "prior4w_commits": 321,
-      "commit_delta": 216,
-      "momentum": 97,
+      "recent4w_commits": 535,
+      "prior4w_commits": 328,
+      "commit_delta": 207,
+      "momentum": 96,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -689,6 +743,10 @@
         {
           "date": "2026-06-26",
           "stars": 67391
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 67451
         }
       ],
       "rank": 3,
@@ -817,12 +875,17 @@
           "date": "2026-06-26",
           "rank": 3,
           "momentum": 97
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 3,
+          "momentum": 96
         }
       ],
       "rank_prev": 3,
       "rank_delta": 0,
       "peak_rank": 2,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "vllm-project/vllm",
@@ -830,30 +893,30 @@
       "owner": "vllm-project",
       "category": "Inference",
       "blurb": "High-throughput, memory-efficient LLM serving (PagedAttention).",
-      "stars": 84402,
-      "forks": 18542,
-      "open_issues": 5492,
-      "contributors": 2910,
-      "open_prs": 3491,
+      "stars": 84518,
+      "forks": 18575,
+      "open_issues": 5495,
+      "contributors": 2913,
+      "open_prs": 3506,
       "release_cadence_days": 7.0,
       "language": "Python",
       "archived": false,
       "homepage": "https://vllm.ai",
       "html_url": "https://github.com/vllm-project/vllm",
-      "pushed_at": "2026-06-26T11:00:38Z",
+      "pushed_at": "2026-06-27T10:22:57Z",
       "last_release": "v0.23.0",
       "last_release_at": "2026-06-15T05:27:20Z",
       "monthly_commits": [
-        763,
-        925,
-        1081,
-        792,
-        869,
-        1111
+        794,
+        932,
+        1048,
+        804,
+        884,
+        1114
       ],
-      "recent4w_commits": 1111,
-      "prior4w_commits": 869,
-      "commit_delta": 242,
+      "recent4w_commits": 1114,
+      "prior4w_commits": 884,
+      "commit_delta": 230,
       "momentum": 93,
       "stars_history": [
         {
@@ -955,6 +1018,10 @@
         {
           "date": "2026-06-26",
           "stars": 84402
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 84518
         }
       ],
       "rank": 4,
@@ -1083,278 +1150,17 @@
           "date": "2026-06-26",
           "rank": 4,
           "momentum": 93
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 4,
+          "momentum": 93
         }
       ],
       "rank_prev": 4,
       "rank_delta": 0,
       "peak_rank": 4,
-      "tracked_days": 25
-    },
-    {
-      "repo": "sgl-project/sglang",
-      "name": "sglang",
-      "owner": "sgl-project",
-      "category": "Inference",
-      "blurb": "Fast serving runtime with RadixAttention for structured generation.",
-      "stars": 29681,
-      "forks": 6751,
-      "open_issues": 3724,
-      "contributors": 1577,
-      "open_prs": 3050,
-      "release_cadence_days": 15.8,
-      "language": "Python",
-      "archived": false,
-      "homepage": "https://sglang.io",
-      "html_url": "https://github.com/sgl-project/sglang",
-      "pushed_at": "2026-06-26T11:50:34Z",
-      "last_release": "v0.5.13",
-      "last_release_at": "2026-06-13T00:17:49Z",
-      "monthly_commits": [
-        962,
-        785,
-        983,
-        1005,
-        1152,
-        1362
-      ],
-      "recent4w_commits": 1362,
-      "prior4w_commits": 1152,
-      "commit_delta": 210,
-      "momentum": 92,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 28876
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 28894
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 28908
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 28868
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 28875
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 28878
-        },
-        {
-          "date": "2026-06-08",
-          "stars": 28890
-        },
-        {
-          "date": "2026-06-09",
-          "stars": 28905
-        },
-        {
-          "date": "2026-06-10",
-          "stars": 28902
-        },
-        {
-          "date": "2026-06-11",
-          "stars": 28903
-        },
-        {
-          "date": "2026-06-12",
-          "stars": 28939
-        },
-        {
-          "date": "2026-06-13",
-          "stars": 28955
-        },
-        {
-          "date": "2026-06-14",
-          "stars": 28980
-        },
-        {
-          "date": "2026-06-15",
-          "stars": 29043
-        },
-        {
-          "date": "2026-06-16",
-          "stars": 29079
-        },
-        {
-          "date": "2026-06-17",
-          "stars": 29126
-        },
-        {
-          "date": "2026-06-18",
-          "stars": 29160
-        },
-        {
-          "date": "2026-06-19",
-          "stars": 29183
-        },
-        {
-          "date": "2026-06-20",
-          "stars": 29381
-        },
-        {
-          "date": "2026-06-21",
-          "stars": 29481
-        },
-        {
-          "date": "2026-06-22",
-          "stars": 29527
-        },
-        {
-          "date": "2026-06-23",
-          "stars": 29555
-        },
-        {
-          "date": "2026-06-24",
-          "stars": 29594
-        },
-        {
-          "date": "2026-06-25",
-          "stars": 29634
-        },
-        {
-          "date": "2026-06-26",
-          "stars": 29681
-        }
-      ],
-      "rank": 5,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 5,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-08",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-09",
-          "rank": 5,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-10",
-          "rank": 5,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-11",
-          "rank": 4,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-12",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-13",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-14",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-15",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-16",
-          "rank": 5,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-17",
-          "rank": 4,
-          "momentum": 93
-        },
-        {
-          "date": "2026-06-18",
-          "rank": 6,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-19",
-          "rank": 7,
-          "momentum": 91
-        },
-        {
-          "date": "2026-06-20",
-          "rank": 7,
-          "momentum": 91
-        },
-        {
-          "date": "2026-06-21",
-          "rank": 6,
-          "momentum": 91
-        },
-        {
-          "date": "2026-06-22",
-          "rank": 6,
-          "momentum": 91
-        },
-        {
-          "date": "2026-06-23",
-          "rank": 6,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-24",
-          "rank": 5,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-25",
-          "rank": 5,
-          "momentum": 92
-        },
-        {
-          "date": "2026-06-26",
-          "rank": 5,
-          "momentum": 92
-        }
-      ],
-      "rank_prev": 5,
-      "rank_delta": 0,
-      "peak_rank": 4,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "ggml-org/llama.cpp",
@@ -1362,30 +1168,30 @@
       "owner": "ggml-org",
       "category": "Inference",
       "blurb": "LLM inference in C/C++ \u2014 the engine behind local AI everywhere.",
-      "stars": 118225,
-      "forks": 19943,
-      "open_issues": 1834,
-      "contributors": 1775,
-      "open_prs": 1115,
-      "release_cadence_days": 0.2,
+      "stars": 118331,
+      "forks": 19973,
+      "open_issues": 1822,
+      "contributors": 1776,
+      "open_prs": 1108,
+      "release_cadence_days": 0.0,
       "language": "C++",
       "archived": false,
       "homepage": "https://llama.app",
       "html_url": "https://github.com/ggml-org/llama.cpp",
-      "pushed_at": "2026-06-26T11:49:24Z",
-      "last_release": "b9810",
-      "last_release_at": "2026-06-26T11:44:47Z",
+      "pushed_at": "2026-06-27T11:00:23Z",
+      "last_release": "b9826",
+      "last_release_at": "2026-06-27T11:00:23Z",
       "monthly_commits": [
-        285,
-        316,
-        403,
-        381,
-        414,
-        454
+        290,
+        317,
+        402,
+        383,
+        422,
+        444
       ],
-      "recent4w_commits": 454,
-      "prior4w_commits": 414,
-      "commit_delta": 40,
+      "recent4w_commits": 444,
+      "prior4w_commits": 422,
+      "commit_delta": 22,
       "momentum": 91,
       "stars_history": [
         {
@@ -1487,9 +1293,13 @@
         {
           "date": "2026-06-26",
           "stars": 118225
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 118331
         }
       ],
-      "rank": 6,
+      "rank": 5,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -1615,12 +1425,292 @@
           "date": "2026-06-26",
           "rank": 6,
           "momentum": 91
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 5,
+          "momentum": 91
         }
       ],
       "rank_prev": 6,
-      "rank_delta": 0,
+      "rank_delta": 1,
       "peak_rank": 4,
-      "tracked_days": 25
+      "tracked_days": 26
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "name": "sglang",
+      "owner": "sgl-project",
+      "category": "Inference",
+      "blurb": "Fast serving runtime with RadixAttention for structured generation.",
+      "stars": 29698,
+      "forks": 6767,
+      "open_issues": 3743,
+      "contributors": 1579,
+      "open_prs": 3078,
+      "release_cadence_days": 15.5,
+      "language": "Python",
+      "archived": false,
+      "homepage": "https://sglang.io",
+      "html_url": "https://github.com/sgl-project/sglang",
+      "pushed_at": "2026-06-27T10:23:31Z",
+      "last_release": "v0.5.14",
+      "last_release_at": "2026-06-26T22:57:30Z",
+      "monthly_commits": [
+        962,
+        806,
+        960,
+        1007,
+        1178,
+        1340
+      ],
+      "recent4w_commits": 1340,
+      "prior4w_commits": 1178,
+      "commit_delta": 162,
+      "momentum": 91,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 28876
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 28894
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 28908
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 28868
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 28875
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 28878
+        },
+        {
+          "date": "2026-06-08",
+          "stars": 28890
+        },
+        {
+          "date": "2026-06-09",
+          "stars": 28905
+        },
+        {
+          "date": "2026-06-10",
+          "stars": 28902
+        },
+        {
+          "date": "2026-06-11",
+          "stars": 28903
+        },
+        {
+          "date": "2026-06-12",
+          "stars": 28939
+        },
+        {
+          "date": "2026-06-13",
+          "stars": 28955
+        },
+        {
+          "date": "2026-06-14",
+          "stars": 28980
+        },
+        {
+          "date": "2026-06-15",
+          "stars": 29043
+        },
+        {
+          "date": "2026-06-16",
+          "stars": 29079
+        },
+        {
+          "date": "2026-06-17",
+          "stars": 29126
+        },
+        {
+          "date": "2026-06-18",
+          "stars": 29160
+        },
+        {
+          "date": "2026-06-19",
+          "stars": 29183
+        },
+        {
+          "date": "2026-06-20",
+          "stars": 29381
+        },
+        {
+          "date": "2026-06-21",
+          "stars": 29481
+        },
+        {
+          "date": "2026-06-22",
+          "stars": 29527
+        },
+        {
+          "date": "2026-06-23",
+          "stars": 29555
+        },
+        {
+          "date": "2026-06-24",
+          "stars": 29594
+        },
+        {
+          "date": "2026-06-25",
+          "stars": 29634
+        },
+        {
+          "date": "2026-06-26",
+          "stars": 29681
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 29698
+        }
+      ],
+      "rank": 6,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 5,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-08",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-09",
+          "rank": 5,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-10",
+          "rank": 5,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-11",
+          "rank": 4,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-12",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-13",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-14",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-15",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-16",
+          "rank": 5,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-17",
+          "rank": 4,
+          "momentum": 93
+        },
+        {
+          "date": "2026-06-18",
+          "rank": 6,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-19",
+          "rank": 7,
+          "momentum": 91
+        },
+        {
+          "date": "2026-06-20",
+          "rank": 7,
+          "momentum": 91
+        },
+        {
+          "date": "2026-06-21",
+          "rank": 6,
+          "momentum": 91
+        },
+        {
+          "date": "2026-06-22",
+          "rank": 6,
+          "momentum": 91
+        },
+        {
+          "date": "2026-06-23",
+          "rank": 6,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-24",
+          "rank": 5,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-25",
+          "rank": 5,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-26",
+          "rank": 5,
+          "momentum": 92
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 6,
+          "momentum": 91
+        }
+      ],
+      "rank_prev": 5,
+      "rank_delta": -1,
+      "peak_rank": 4,
+      "tracked_days": 26
     },
     {
       "repo": "weaviate/weaviate",
@@ -1628,30 +1718,30 @@
       "owner": "weaviate",
       "category": "Vector DB",
       "blurb": "Open-source vector database with built-in hybrid search.",
-      "stars": 16439,
-      "forks": 1326,
-      "open_issues": 545,
+      "stars": 16448,
+      "forks": 1327,
+      "open_issues": 547,
       "contributors": 172,
-      "open_prs": 162,
+      "open_prs": 164,
       "release_cadence_days": 1.1,
       "language": "Go",
       "archived": false,
       "homepage": "https://weaviate.io/developers/weaviate/",
       "html_url": "https://github.com/weaviate/weaviate",
-      "pushed_at": "2026-06-26T11:41:17Z",
+      "pushed_at": "2026-06-27T10:53:08Z",
       "last_release": "v1.38.2",
       "last_release_at": "2026-06-25T06:02:05Z",
       "monthly_commits": [
-        556,
-        686,
-        674,
-        418,
+        580,
+        687,
+        644,
+        439,
         854,
-        626
+        612
       ],
-      "recent4w_commits": 626,
+      "recent4w_commits": 612,
       "prior4w_commits": 854,
-      "commit_delta": -228,
+      "commit_delta": -242,
       "momentum": 87,
       "stars_history": [
         {
@@ -1753,6 +1843,10 @@
         {
           "date": "2026-06-26",
           "stars": 16439
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 16448
         }
       ],
       "rank": 7,
@@ -1881,12 +1975,17 @@
           "date": "2026-06-26",
           "rank": 7,
           "momentum": 87
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 7,
+          "momentum": 87
         }
       ],
       "rank_prev": 7,
       "rank_delta": 0,
       "peak_rank": 1,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "NVIDIA/TensorRT-LLM",
@@ -1894,30 +1993,30 @@
       "owner": "NVIDIA",
       "category": "Inference",
       "blurb": "NVIDIA's toolkit for the fastest LLM inference on its GPUs.",
-      "stars": 13970,
-      "forks": 2495,
-      "open_issues": 1425,
+      "stars": 13976,
+      "forks": 2496,
+      "open_issues": 1429,
       "contributors": 411,
-      "open_prs": 826,
+      "open_prs": 828,
       "release_cadence_days": null,
       "language": "Python",
       "archived": false,
       "homepage": "https://nvidia.github.io/TensorRT-LLM",
       "html_url": "https://github.com/NVIDIA/TensorRT-LLM",
-      "pushed_at": "2026-06-26T11:20:47Z",
+      "pushed_at": "2026-06-27T06:32:20Z",
       "last_release": "v1.2.1",
       "last_release_at": "2026-04-20T11:51:33Z",
       "monthly_commits": [
-        461,
-        441,
-        475,
-        476,
-        630,
-        580
+        473,
+        443,
+        460,
+        500,
+        633,
+        564
       ],
-      "recent4w_commits": 580,
-      "prior4w_commits": 630,
-      "commit_delta": -50,
+      "recent4w_commits": 564,
+      "prior4w_commits": 633,
+      "commit_delta": -69,
       "momentum": 85,
       "stars_history": [
         {
@@ -2019,6 +2118,10 @@
         {
           "date": "2026-06-26",
           "stars": 13970
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 13976
         }
       ],
       "rank": 8,
@@ -2147,12 +2250,17 @@
           "date": "2026-06-26",
           "rank": 8,
           "momentum": 85
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 8,
+          "momentum": 85
         }
       ],
       "rank_prev": 8,
       "rank_delta": 0,
       "peak_rank": 6,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "BerriAI/litellm",
@@ -2160,30 +2268,30 @@
       "owner": "BerriAI",
       "category": "Gateway",
       "blurb": "One API for 100+ LLM providers \u2014 the universal gateway.",
-      "stars": 51632,
-      "forks": 9195,
-      "open_issues": 3487,
-      "contributors": 1529,
-      "open_prs": 2150,
+      "stars": 51733,
+      "forks": 9224,
+      "open_issues": 3472,
+      "contributors": 1530,
+      "open_prs": 2145,
       "release_cadence_days": 0.2,
       "language": "Python",
       "archived": false,
       "homepage": "https://docs.litellm.ai/docs/",
       "html_url": "https://github.com/BerriAI/litellm",
-      "pushed_at": "2026-06-26T11:48:24Z",
-      "last_release": "v1.89.4",
-      "last_release_at": "2026-06-25T02:56:04Z",
+      "pushed_at": "2026-06-27T10:08:40Z",
+      "last_release": "v1.90.0",
+      "last_release_at": "2026-06-27T05:06:10Z",
       "monthly_commits": [
-        1742,
-        2598,
-        2647,
-        1705,
-        1303,
-        471
+        1796,
+        2649,
+        2590,
+        1678,
+        1285,
+        540
       ],
-      "recent4w_commits": 471,
-      "prior4w_commits": 1303,
-      "commit_delta": -832,
+      "recent4w_commits": 540,
+      "prior4w_commits": 1285,
+      "commit_delta": -745,
       "momentum": 84,
       "stars_history": [
         {
@@ -2285,6 +2393,10 @@
         {
           "date": "2026-06-26",
           "stars": 51632
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 51733
         }
       ],
       "rank": 9,
@@ -2413,12 +2525,17 @@
           "date": "2026-06-26",
           "rank": 9,
           "momentum": 84
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 9,
+          "momentum": 84
         }
       ],
       "rank_prev": 9,
       "rank_delta": 0,
       "peak_rank": 8,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "langchain-ai/langchain",
@@ -2426,31 +2543,31 @@
       "owner": "langchain-ai",
       "category": "Agents",
       "blurb": "The framework that defined LLM app composition \u2014 chains, tools, agents.",
-      "stars": 140264,
-      "forks": 23274,
+      "stars": 140319,
+      "forks": 23289,
       "open_issues": 411,
       "contributors": 3691,
-      "open_prs": 76,
+      "open_prs": 75,
       "release_cadence_days": 0.2,
       "language": "Python",
       "archived": false,
       "homepage": "https://docs.langchain.com/langchain/",
       "html_url": "https://github.com/langchain-ai/langchain",
-      "pushed_at": "2026-06-26T08:17:26Z",
+      "pushed_at": "2026-06-26T21:28:59Z",
       "last_release": "langchain-core==1.4.8",
       "last_release_at": "2026-06-18T19:39:42Z",
       "monthly_commits": [
-        177,
-        210,
-        217,
-        197,
-        248,
-        286
+        175,
+        214,
+        220,
+        195,
+        250,
+        281
       ],
-      "recent4w_commits": 286,
-      "prior4w_commits": 248,
-      "commit_delta": 38,
-      "momentum": 76,
+      "recent4w_commits": 281,
+      "prior4w_commits": 250,
+      "commit_delta": 31,
+      "momentum": 75,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -2551,6 +2668,10 @@
         {
           "date": "2026-06-26",
           "stars": 140264
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 140319
         }
       ],
       "rank": 10,
@@ -2679,12 +2800,292 @@
           "date": "2026-06-26",
           "rank": 10,
           "momentum": 76
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 10,
+          "momentum": 75
         }
       ],
       "rank_prev": 10,
       "rank_delta": 0,
       "peak_rank": 10,
-      "tracked_days": 25
+      "tracked_days": 26
+    },
+    {
+      "repo": "milvus-io/milvus",
+      "name": "milvus",
+      "owner": "milvus-io",
+      "category": "Vector DB",
+      "blurb": "Cloud-native vector database for billion-scale similarity search.",
+      "stars": 44975,
+      "forks": 4093,
+      "open_issues": 921,
+      "contributors": 359,
+      "open_prs": 207,
+      "release_cadence_days": 10.0,
+      "language": "Go",
+      "archived": false,
+      "homepage": "https://milvus.io",
+      "html_url": "https://github.com/milvus-io/milvus",
+      "pushed_at": "2026-06-27T02:04:41Z",
+      "last_release": "v2.6.19",
+      "last_release_at": "2026-06-26T11:47:18Z",
+      "monthly_commits": [
+        215,
+        132,
+        194,
+        257,
+        173,
+        228
+      ],
+      "recent4w_commits": 228,
+      "prior4w_commits": 173,
+      "commit_delta": 55,
+      "momentum": 70,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 44574
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 44593
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 44611
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 44625
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 44629
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 44662
+        },
+        {
+          "date": "2026-06-08",
+          "stars": 44678
+        },
+        {
+          "date": "2026-06-09",
+          "stars": 44697
+        },
+        {
+          "date": "2026-06-10",
+          "stars": 44716
+        },
+        {
+          "date": "2026-06-11",
+          "stars": 44722
+        },
+        {
+          "date": "2026-06-12",
+          "stars": 44742
+        },
+        {
+          "date": "2026-06-13",
+          "stars": 44759
+        },
+        {
+          "date": "2026-06-14",
+          "stars": 44772
+        },
+        {
+          "date": "2026-06-15",
+          "stars": 44790
+        },
+        {
+          "date": "2026-06-16",
+          "stars": 44804
+        },
+        {
+          "date": "2026-06-17",
+          "stars": 44815
+        },
+        {
+          "date": "2026-06-18",
+          "stars": 44833
+        },
+        {
+          "date": "2026-06-19",
+          "stars": 44845
+        },
+        {
+          "date": "2026-06-20",
+          "stars": 44851
+        },
+        {
+          "date": "2026-06-21",
+          "stars": 44862
+        },
+        {
+          "date": "2026-06-22",
+          "stars": 44890
+        },
+        {
+          "date": "2026-06-23",
+          "stars": 44911
+        },
+        {
+          "date": "2026-06-24",
+          "stars": 44930
+        },
+        {
+          "date": "2026-06-25",
+          "stars": 44948
+        },
+        {
+          "date": "2026-06-26",
+          "stars": 44970
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 44975
+        }
+      ],
+      "rank": 11,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 13,
+          "momentum": 57
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 13,
+          "momentum": 58
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 13,
+          "momentum": 62
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 13,
+          "momentum": 62
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-08",
+          "rank": 14,
+          "momentum": 60
+        },
+        {
+          "date": "2026-06-09",
+          "rank": 13,
+          "momentum": 62
+        },
+        {
+          "date": "2026-06-10",
+          "rank": 13,
+          "momentum": 62
+        },
+        {
+          "date": "2026-06-11",
+          "rank": 13,
+          "momentum": 64
+        },
+        {
+          "date": "2026-06-12",
+          "rank": 13,
+          "momentum": 63
+        },
+        {
+          "date": "2026-06-13",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-14",
+          "rank": 14,
+          "momentum": 58
+        },
+        {
+          "date": "2026-06-15",
+          "rank": 14,
+          "momentum": 60
+        },
+        {
+          "date": "2026-06-16",
+          "rank": 13,
+          "momentum": 62
+        },
+        {
+          "date": "2026-06-17",
+          "rank": 13,
+          "momentum": 63
+        },
+        {
+          "date": "2026-06-18",
+          "rank": 13,
+          "momentum": 62
+        },
+        {
+          "date": "2026-06-19",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-20",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-21",
+          "rank": 12,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-22",
+          "rank": 12,
+          "momentum": 63
+        },
+        {
+          "date": "2026-06-23",
+          "rank": 12,
+          "momentum": 66
+        },
+        {
+          "date": "2026-06-24",
+          "rank": 12,
+          "momentum": 67
+        },
+        {
+          "date": "2026-06-25",
+          "rank": 12,
+          "momentum": 66
+        },
+        {
+          "date": "2026-06-26",
+          "rank": 12,
+          "momentum": 70
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 11,
+          "momentum": 70
+        }
+      ],
+      "rank_prev": 12,
+      "rank_delta": 1,
+      "peak_rank": 11,
+      "tracked_days": 26
     },
     {
       "repo": "Arize-ai/phoenix",
@@ -2692,31 +3093,31 @@
       "owner": "Arize-ai",
       "category": "LLMOps",
       "blurb": "ML/LLM observability and evaluation in a notebook or server.",
-      "stars": 10286,
-      "forks": 945,
+      "stars": 10295,
+      "forks": 944,
       "open_issues": 626,
       "contributors": 192,
-      "open_prs": 98,
+      "open_prs": 97,
       "release_cadence_days": 1.4,
       "language": "Python",
       "archived": false,
       "homepage": "https://arize.com/docs/phoenix",
       "html_url": "https://github.com/Arize-ai/phoenix",
-      "pushed_at": "2026-06-26T08:53:39Z",
+      "pushed_at": "2026-06-27T02:56:27Z",
       "last_release": "arize-phoenix-client-v2.10.0",
       "last_release_at": "2026-06-26T03:21:35Z",
       "monthly_commits": [
-        143,
-        556,
-        366,
-        263,
-        278,
-        263
+        155,
+        573,
+        341,
+        262,
+        298,
+        243
       ],
-      "recent4w_commits": 263,
-      "prior4w_commits": 278,
-      "commit_delta": -15,
-      "momentum": 71,
+      "recent4w_commits": 243,
+      "prior4w_commits": 298,
+      "commit_delta": -55,
+      "momentum": 67,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -2817,9 +3218,13 @@
         {
           "date": "2026-06-26",
           "stars": 10286
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 10295
         }
       ],
-      "rank": 11,
+      "rank": 12,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -2945,544 +3350,17 @@
           "date": "2026-06-26",
           "rank": 11,
           "momentum": 71
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 12,
+          "momentum": 67
         }
       ],
       "rank_prev": 11,
-      "rank_delta": 0,
+      "rank_delta": -1,
       "peak_rank": 9,
-      "tracked_days": 25
-    },
-    {
-      "repo": "milvus-io/milvus",
-      "name": "milvus",
-      "owner": "milvus-io",
-      "category": "Vector DB",
-      "blurb": "Cloud-native vector database for billion-scale similarity search.",
-      "stars": 44970,
-      "forks": 4093,
-      "open_issues": 908,
-      "contributors": 359,
-      "open_prs": 199,
-      "release_cadence_days": 10.0,
-      "language": "Go",
-      "archived": false,
-      "homepage": "https://milvus.io",
-      "html_url": "https://github.com/milvus-io/milvus",
-      "pushed_at": "2026-06-26T11:52:27Z",
-      "last_release": "v2.6.19",
-      "last_release_at": "2026-06-26T11:47:18Z",
-      "monthly_commits": [
-        211,
-        138,
-        199,
-        249,
-        177,
-        230
-      ],
-      "recent4w_commits": 230,
-      "prior4w_commits": 177,
-      "commit_delta": 53,
-      "momentum": 70,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 44574
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 44593
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 44611
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 44625
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 44629
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 44662
-        },
-        {
-          "date": "2026-06-08",
-          "stars": 44678
-        },
-        {
-          "date": "2026-06-09",
-          "stars": 44697
-        },
-        {
-          "date": "2026-06-10",
-          "stars": 44716
-        },
-        {
-          "date": "2026-06-11",
-          "stars": 44722
-        },
-        {
-          "date": "2026-06-12",
-          "stars": 44742
-        },
-        {
-          "date": "2026-06-13",
-          "stars": 44759
-        },
-        {
-          "date": "2026-06-14",
-          "stars": 44772
-        },
-        {
-          "date": "2026-06-15",
-          "stars": 44790
-        },
-        {
-          "date": "2026-06-16",
-          "stars": 44804
-        },
-        {
-          "date": "2026-06-17",
-          "stars": 44815
-        },
-        {
-          "date": "2026-06-18",
-          "stars": 44833
-        },
-        {
-          "date": "2026-06-19",
-          "stars": 44845
-        },
-        {
-          "date": "2026-06-20",
-          "stars": 44851
-        },
-        {
-          "date": "2026-06-21",
-          "stars": 44862
-        },
-        {
-          "date": "2026-06-22",
-          "stars": 44890
-        },
-        {
-          "date": "2026-06-23",
-          "stars": 44911
-        },
-        {
-          "date": "2026-06-24",
-          "stars": 44930
-        },
-        {
-          "date": "2026-06-25",
-          "stars": 44948
-        },
-        {
-          "date": "2026-06-26",
-          "stars": 44970
-        }
-      ],
-      "rank": 12,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 13,
-          "momentum": 57
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 13,
-          "momentum": 58
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 13,
-          "momentum": 62
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 13,
-          "momentum": 62
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-08",
-          "rank": 14,
-          "momentum": 60
-        },
-        {
-          "date": "2026-06-09",
-          "rank": 13,
-          "momentum": 62
-        },
-        {
-          "date": "2026-06-10",
-          "rank": 13,
-          "momentum": 62
-        },
-        {
-          "date": "2026-06-11",
-          "rank": 13,
-          "momentum": 64
-        },
-        {
-          "date": "2026-06-12",
-          "rank": 13,
-          "momentum": 63
-        },
-        {
-          "date": "2026-06-13",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-14",
-          "rank": 14,
-          "momentum": 58
-        },
-        {
-          "date": "2026-06-15",
-          "rank": 14,
-          "momentum": 60
-        },
-        {
-          "date": "2026-06-16",
-          "rank": 13,
-          "momentum": 62
-        },
-        {
-          "date": "2026-06-17",
-          "rank": 13,
-          "momentum": 63
-        },
-        {
-          "date": "2026-06-18",
-          "rank": 13,
-          "momentum": 62
-        },
-        {
-          "date": "2026-06-19",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-20",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-21",
-          "rank": 12,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-22",
-          "rank": 12,
-          "momentum": 63
-        },
-        {
-          "date": "2026-06-23",
-          "rank": 12,
-          "momentum": 66
-        },
-        {
-          "date": "2026-06-24",
-          "rank": 12,
-          "momentum": 67
-        },
-        {
-          "date": "2026-06-25",
-          "rank": 12,
-          "momentum": 66
-        },
-        {
-          "date": "2026-06-26",
-          "rank": 12,
-          "momentum": 70
-        }
-      ],
-      "rank_prev": 12,
-      "rank_delta": 0,
-      "peak_rank": 12,
-      "tracked_days": 25
-    },
-    {
-      "repo": "comfyanonymous/ComfyUI",
-      "name": "ComfyUI",
-      "owner": "comfyanonymous",
-      "category": "LLMOps",
-      "blurb": "Node-graph backend for diffusion pipelines \u2014 the power-user's canvas.",
-      "stars": 118391,
-      "forks": 13853,
-      "open_issues": 4157,
-      "contributors": 323,
-      "open_prs": 348,
-      "release_cadence_days": 6.9,
-      "language": "Python",
-      "archived": false,
-      "homepage": "https://www.comfy.org/",
-      "html_url": "https://github.com/Comfy-Org/ComfyUI",
-      "pushed_at": "2026-06-26T10:03:46Z",
-      "last_release": "v0.26.0",
-      "last_release_at": "2026-06-23T18:47:38Z",
-      "monthly_commits": [
-        177,
-        179,
-        191,
-        101,
-        225,
-        191
-      ],
-      "recent4w_commits": 191,
-      "prior4w_commits": 225,
-      "commit_delta": -34,
-      "momentum": 60,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 115254
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 115389
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 115526
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 115674
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 115725
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 115986
-        },
-        {
-          "date": "2026-06-08",
-          "stars": 116180
-        },
-        {
-          "date": "2026-06-09",
-          "stars": 116314
-        },
-        {
-          "date": "2026-06-10",
-          "stars": 116451
-        },
-        {
-          "date": "2026-06-11",
-          "stars": 116580
-        },
-        {
-          "date": "2026-06-12",
-          "stars": 116709
-        },
-        {
-          "date": "2026-06-13",
-          "stars": 116811
-        },
-        {
-          "date": "2026-06-14",
-          "stars": 116929
-        },
-        {
-          "date": "2026-06-15",
-          "stars": 117090
-        },
-        {
-          "date": "2026-06-16",
-          "stars": 117227
-        },
-        {
-          "date": "2026-06-17",
-          "stars": 117352
-        },
-        {
-          "date": "2026-06-18",
-          "stars": 117460
-        },
-        {
-          "date": "2026-06-19",
-          "stars": 117557
-        },
-        {
-          "date": "2026-06-20",
-          "stars": 117649
-        },
-        {
-          "date": "2026-06-21",
-          "stars": 117755
-        },
-        {
-          "date": "2026-06-22",
-          "stars": 117918
-        },
-        {
-          "date": "2026-06-23",
-          "stars": 118047
-        },
-        {
-          "date": "2026-06-24",
-          "stars": 118170
-        },
-        {
-          "date": "2026-06-25",
-          "stars": 118295
-        },
-        {
-          "date": "2026-06-26",
-          "stars": 118391
-        }
-      ],
-      "rank": 13,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 9,
-          "momentum": 74
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 11,
-          "momentum": 73
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 11,
-          "momentum": 72
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 11,
-          "momentum": 71
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 11,
-          "momentum": 68
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 13,
-          "momentum": 67
-        },
-        {
-          "date": "2026-06-08",
-          "rank": 12,
-          "momentum": 64
-        },
-        {
-          "date": "2026-06-09",
-          "rank": 11,
-          "momentum": 64
-        },
-        {
-          "date": "2026-06-10",
-          "rank": 12,
-          "momentum": 66
-        },
-        {
-          "date": "2026-06-11",
-          "rank": 12,
-          "momentum": 66
-        },
-        {
-          "date": "2026-06-12",
-          "rank": 12,
-          "momentum": 65
-        },
-        {
-          "date": "2026-06-13",
-          "rank": 12,
-          "momentum": 65
-        },
-        {
-          "date": "2026-06-14",
-          "rank": 12,
-          "momentum": 64
-        },
-        {
-          "date": "2026-06-15",
-          "rank": 12,
-          "momentum": 64
-        },
-        {
-          "date": "2026-06-16",
-          "rank": 12,
-          "momentum": 66
-        },
-        {
-          "date": "2026-06-17",
-          "rank": 12,
-          "momentum": 65
-        },
-        {
-          "date": "2026-06-18",
-          "rank": 12,
-          "momentum": 65
-        },
-        {
-          "date": "2026-06-19",
-          "rank": 12,
-          "momentum": 64
-        },
-        {
-          "date": "2026-06-20",
-          "rank": 12,
-          "momentum": 63
-        },
-        {
-          "date": "2026-06-21",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-22",
-          "rank": 13,
-          "momentum": 60
-        },
-        {
-          "date": "2026-06-23",
-          "rank": 13,
-          "momentum": 60
-        },
-        {
-          "date": "2026-06-24",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-25",
-          "rank": 13,
-          "momentum": 60
-        },
-        {
-          "date": "2026-06-26",
-          "rank": 13,
-          "momentum": 60
-        }
-      ],
-      "rank_prev": 13,
-      "rank_delta": 0,
-      "peak_rank": 9,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "crewAIInc/crewAI",
@@ -3490,31 +3368,31 @@
       "owner": "crewAIInc",
       "category": "Agents",
       "blurb": "Role-playing multi-agent crews that collaborate on tasks.",
-      "stars": 54409,
-      "forks": 7613,
-      "open_issues": 558,
-      "contributors": 300,
-      "open_prs": 481,
-      "release_cadence_days": 14.3,
+      "stars": 54443,
+      "forks": 7625,
+      "open_issues": 564,
+      "contributors": 301,
+      "open_prs": 487,
+      "release_cadence_days": 7.8,
       "language": "Python",
       "archived": false,
       "homepage": "https://crewai.com",
       "html_url": "https://github.com/crewAIInc/crewAI",
-      "pushed_at": "2026-06-26T09:58:38Z",
-      "last_release": "1.15.0",
-      "last_release_at": "2026-06-25T23:17:52Z",
+      "pushed_at": "2026-06-27T10:13:39Z",
+      "last_release": "1.15.1",
+      "last_release_at": "2026-06-27T06:50:46Z",
       "monthly_commits": [
-        48,
-        73,
-        145,
-        181,
-        117,
-        143
+        50,
+        82,
+        133,
+        187,
+        118,
+        147
       ],
-      "recent4w_commits": 143,
-      "prior4w_commits": 117,
-      "commit_delta": 26,
-      "momentum": 57,
+      "recent4w_commits": 147,
+      "prior4w_commits": 118,
+      "commit_delta": 29,
+      "momentum": 58,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -3615,9 +3493,13 @@
         {
           "date": "2026-06-26",
           "stars": 54409
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 54443
         }
       ],
-      "rank": 14,
+      "rank": 13,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -3743,12 +3625,17 @@
           "date": "2026-06-26",
           "rank": 14,
           "momentum": 57
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 13,
+          "momentum": 58
         }
       ],
       "rank_prev": 14,
-      "rank_delta": 0,
-      "peak_rank": 14,
-      "tracked_days": 25
+      "rank_delta": 1,
+      "peak_rank": 13,
+      "tracked_days": 26
     },
     {
       "repo": "ollama/ollama",
@@ -3756,31 +3643,31 @@
       "owner": "ollama",
       "category": "Inference",
       "blurb": "Run open models locally with one command.",
-      "stars": 174928,
-      "forks": 16733,
-      "open_issues": 3498,
+      "stars": 174970,
+      "forks": 16740,
+      "open_issues": 3503,
       "contributors": 607,
-      "open_prs": 1053,
-      "release_cadence_days": 1.5,
+      "open_prs": 1058,
+      "release_cadence_days": 1.9,
       "language": "Go",
       "archived": false,
       "homepage": "https://ollama.com",
       "html_url": "https://github.com/ollama/ollama",
-      "pushed_at": "2026-06-26T06:29:49Z",
-      "last_release": "v0.30.10",
-      "last_release_at": "2026-06-17T16:22:02Z",
+      "pushed_at": "2026-06-27T00:26:52Z",
+      "last_release": "v0.30.11",
+      "last_release_at": "2026-06-25T01:52:05Z",
       "monthly_commits": [
-        95,
-        110,
-        126,
-        105,
-        53,
-        94
+        96,
+        113,
+        125,
+        108,
+        47,
+        95
       ],
-      "recent4w_commits": 94,
-      "prior4w_commits": 53,
-      "commit_delta": 41,
-      "momentum": 56,
+      "recent4w_commits": 95,
+      "prior4w_commits": 47,
+      "commit_delta": 48,
+      "momentum": 58,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -3881,9 +3768,13 @@
         {
           "date": "2026-06-26",
           "stars": 174928
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 174970
         }
       ],
-      "rank": 15,
+      "rank": 14,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -4009,278 +3900,292 @@
           "date": "2026-06-26",
           "rank": 15,
           "momentum": 56
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 14,
+          "momentum": 58
         }
       ],
       "rank_prev": 15,
-      "rank_delta": 0,
-      "peak_rank": 15,
-      "tracked_days": 25
+      "rank_delta": 1,
+      "peak_rank": 14,
+      "tracked_days": 26
     },
     {
-      "repo": "chroma-core/chroma",
-      "name": "chroma",
-      "owner": "chroma-core",
-      "category": "Vector DB",
-      "blurb": "The embedding database that made RAG prototyping trivial.",
-      "stars": 28591,
-      "forks": 2344,
-      "open_issues": 719,
-      "contributors": 187,
-      "open_prs": 405,
-      "release_cadence_days": 2.5,
-      "language": "Rust",
+      "repo": "comfyanonymous/ComfyUI",
+      "name": "ComfyUI",
+      "owner": "comfyanonymous",
+      "category": "LLMOps",
+      "blurb": "Node-graph backend for diffusion pipelines \u2014 the power-user's canvas.",
+      "stars": 118485,
+      "forks": 13867,
+      "open_issues": 4161,
+      "contributors": 323,
+      "open_prs": 349,
+      "release_cadence_days": 6.9,
+      "language": "Python",
       "archived": false,
-      "homepage": "https://www.trychroma.com/",
-      "html_url": "https://github.com/chroma-core/chroma",
-      "pushed_at": "2026-06-26T01:24:52Z",
-      "last_release": "1.5.9",
-      "last_release_at": "2026-05-05T05:55:40Z",
+      "homepage": "https://www.comfy.org/",
+      "html_url": "https://github.com/Comfy-Org/ComfyUI",
+      "pushed_at": "2026-06-27T10:37:40Z",
+      "last_release": "v0.26.0",
+      "last_release_at": "2026-06-23T18:47:38Z",
       "monthly_commits": [
-        88,
-        181,
-        141,
-        92,
-        74,
-        94
+        178,
+        186,
+        185,
+        107,
+        226,
+        183
       ],
-      "recent4w_commits": 94,
-      "prior4w_commits": 74,
-      "commit_delta": 20,
-      "momentum": 48,
+      "recent4w_commits": 183,
+      "prior4w_commits": 226,
+      "commit_delta": -43,
+      "momentum": 58,
       "stars_history": [
         {
           "date": "2026-06-01",
-          "stars": 28171
+          "stars": 115254
         },
         {
           "date": "2026-06-02",
-          "stars": 28185
+          "stars": 115389
         },
         {
           "date": "2026-06-03",
-          "stars": 28198
+          "stars": 115526
         },
         {
           "date": "2026-06-04",
-          "stars": 28208
+          "stars": 115674
         },
         {
           "date": "2026-06-05",
-          "stars": 28221
+          "stars": 115725
         },
         {
           "date": "2026-06-07",
-          "stars": 28248
+          "stars": 115986
         },
         {
           "date": "2026-06-08",
-          "stars": 28277
+          "stars": 116180
         },
         {
           "date": "2026-06-09",
-          "stars": 28321
+          "stars": 116314
         },
         {
           "date": "2026-06-10",
-          "stars": 28349
+          "stars": 116451
         },
         {
           "date": "2026-06-11",
-          "stars": 28381
+          "stars": 116580
         },
         {
           "date": "2026-06-12",
-          "stars": 28399
+          "stars": 116709
         },
         {
           "date": "2026-06-13",
-          "stars": 28411
+          "stars": 116811
         },
         {
           "date": "2026-06-14",
-          "stars": 28421
+          "stars": 116929
         },
         {
           "date": "2026-06-15",
-          "stars": 28440
+          "stars": 117090
         },
         {
           "date": "2026-06-16",
-          "stars": 28451
+          "stars": 117227
         },
         {
           "date": "2026-06-17",
-          "stars": 28461
+          "stars": 117352
         },
         {
           "date": "2026-06-18",
-          "stars": 28474
+          "stars": 117460
         },
         {
           "date": "2026-06-19",
-          "stars": 28486
+          "stars": 117557
         },
         {
           "date": "2026-06-20",
-          "stars": 28503
+          "stars": 117649
         },
         {
           "date": "2026-06-21",
-          "stars": 28511
+          "stars": 117755
         },
         {
           "date": "2026-06-22",
-          "stars": 28530
+          "stars": 117918
         },
         {
           "date": "2026-06-23",
-          "stars": 28545
+          "stars": 118047
         },
         {
           "date": "2026-06-24",
-          "stars": 28563
+          "stars": 118170
         },
         {
           "date": "2026-06-25",
-          "stars": 28575
+          "stars": 118295
         },
         {
           "date": "2026-06-26",
-          "stars": 28591
+          "stars": 118391
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 118485
         }
       ],
-      "rank": 16,
+      "rank": 15,
       "rank_history": [
         {
           "date": "2026-06-01",
-          "rank": 18,
-          "momentum": 45
+          "rank": 9,
+          "momentum": 74
         },
         {
           "date": "2026-06-02",
-          "rank": 18,
-          "momentum": 45
+          "rank": 11,
+          "momentum": 73
         },
         {
           "date": "2026-06-03",
-          "rank": 18,
-          "momentum": 48
+          "rank": 11,
+          "momentum": 72
         },
         {
           "date": "2026-06-04",
-          "rank": 17,
-          "momentum": 49
+          "rank": 11,
+          "momentum": 71
         },
         {
           "date": "2026-06-05",
-          "rank": 17,
-          "momentum": 49
+          "rank": 11,
+          "momentum": 68
         },
         {
           "date": "2026-06-07",
-          "rank": 17,
-          "momentum": 49
+          "rank": 13,
+          "momentum": 67
         },
         {
           "date": "2026-06-08",
-          "rank": 18,
-          "momentum": 48
+          "rank": 12,
+          "momentum": 64
         },
         {
           "date": "2026-06-09",
-          "rank": 18,
-          "momentum": 49
+          "rank": 11,
+          "momentum": 64
         },
         {
           "date": "2026-06-10",
-          "rank": 17,
-          "momentum": 50
+          "rank": 12,
+          "momentum": 66
         },
         {
           "date": "2026-06-11",
-          "rank": 18,
-          "momentum": 50
+          "rank": 12,
+          "momentum": 66
         },
         {
           "date": "2026-06-12",
-          "rank": 18,
-          "momentum": 49
+          "rank": 12,
+          "momentum": 65
         },
         {
           "date": "2026-06-13",
-          "rank": 18,
-          "momentum": 49
+          "rank": 12,
+          "momentum": 65
         },
         {
           "date": "2026-06-14",
-          "rank": 17,
-          "momentum": 48
+          "rank": 12,
+          "momentum": 64
         },
         {
           "date": "2026-06-15",
-          "rank": 17,
-          "momentum": 50
+          "rank": 12,
+          "momentum": 64
         },
         {
           "date": "2026-06-16",
-          "rank": 17,
-          "momentum": 51
+          "rank": 12,
+          "momentum": 66
         },
         {
           "date": "2026-06-17",
-          "rank": 17,
-          "momentum": 51
+          "rank": 12,
+          "momentum": 65
         },
         {
           "date": "2026-06-18",
-          "rank": 16,
-          "momentum": 51
+          "rank": 12,
+          "momentum": 65
         },
         {
           "date": "2026-06-19",
-          "rank": 16,
-          "momentum": 52
+          "rank": 12,
+          "momentum": 64
         },
         {
           "date": "2026-06-20",
-          "rank": 16,
-          "momentum": 52
+          "rank": 12,
+          "momentum": 63
         },
         {
           "date": "2026-06-21",
-          "rank": 16,
-          "momentum": 48
+          "rank": 13,
+          "momentum": 61
         },
         {
           "date": "2026-06-22",
-          "rank": 15,
-          "momentum": 48
+          "rank": 13,
+          "momentum": 60
         },
         {
           "date": "2026-06-23",
-          "rank": 16,
-          "momentum": 48
+          "rank": 13,
+          "momentum": 60
         },
         {
           "date": "2026-06-24",
-          "rank": 16,
-          "momentum": 50
+          "rank": 13,
+          "momentum": 61
         },
         {
           "date": "2026-06-25",
-          "rank": 16,
-          "momentum": 51
+          "rank": 13,
+          "momentum": 60
         },
         {
           "date": "2026-06-26",
-          "rank": 16,
-          "momentum": 48
+          "rank": 13,
+          "momentum": 60
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 15,
+          "momentum": 58
         }
       ],
-      "rank_prev": 16,
-      "rank_delta": 0,
-      "peak_rank": 15,
-      "tracked_days": 25
+      "rank_prev": 13,
+      "rank_delta": -2,
+      "peak_rank": 9,
+      "tracked_days": 26
     },
     {
       "repo": "pydantic/pydantic-ai",
@@ -4288,30 +4193,30 @@
       "owner": "pydantic",
       "category": "Agents",
       "blurb": "Type-safe agent framework from the Pydantic team.",
-      "stars": 18011,
-      "forks": 2257,
-      "open_issues": 623,
+      "stars": 18023,
+      "forks": 2259,
+      "open_issues": 634,
       "contributors": 484,
-      "open_prs": 207,
+      "open_prs": 213,
       "release_cadence_days": 4.1,
       "language": "Python",
       "archived": false,
       "homepage": "https://pydantic.dev/pydantic-ai",
       "html_url": "https://github.com/pydantic/pydantic-ai",
-      "pushed_at": "2026-06-26T06:29:09Z",
+      "pushed_at": "2026-06-27T07:49:48Z",
       "last_release": "v2.0.0",
       "last_release_at": "2026-06-23T15:38:17Z",
       "monthly_commits": [
-        64,
-        121,
+        68,
+        114,
         77,
         131,
-        150,
-        101
+        152,
+        102
       ],
-      "recent4w_commits": 101,
-      "prior4w_commits": 150,
-      "commit_delta": -49,
+      "recent4w_commits": 102,
+      "prior4w_commits": 152,
+      "commit_delta": -50,
       "momentum": 46,
       "stars_history": [
         {
@@ -4413,9 +4318,13 @@
         {
           "date": "2026-06-26",
           "stars": 18011
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 18023
         }
       ],
-      "rank": 17,
+      "rank": 16,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -4541,12 +4450,567 @@
           "date": "2026-06-26",
           "rank": 17,
           "momentum": 46
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 16,
+          "momentum": 46
         }
       ],
       "rank_prev": 17,
-      "rank_delta": 0,
+      "rank_delta": 1,
       "peak_rank": 14,
-      "tracked_days": 25
+      "tracked_days": 26
+    },
+    {
+      "repo": "chroma-core/chroma",
+      "name": "chroma",
+      "owner": "chroma-core",
+      "category": "Vector DB",
+      "blurb": "The embedding database that made RAG prototyping trivial.",
+      "stars": 28598,
+      "forks": 2343,
+      "open_issues": 716,
+      "contributors": 187,
+      "open_prs": 402,
+      "release_cadence_days": 2.5,
+      "language": "Rust",
+      "archived": false,
+      "homepage": "https://www.trychroma.com/",
+      "html_url": "https://github.com/chroma-core/chroma",
+      "pushed_at": "2026-06-27T01:50:31Z",
+      "last_release": "1.5.9",
+      "last_release_at": "2026-05-05T05:55:40Z",
+      "monthly_commits": [
+        94,
+        181,
+        135,
+        96,
+        79,
+        90
+      ],
+      "recent4w_commits": 90,
+      "prior4w_commits": 79,
+      "commit_delta": 11,
+      "momentum": 46,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 28171
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 28185
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 28198
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 28208
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 28221
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 28248
+        },
+        {
+          "date": "2026-06-08",
+          "stars": 28277
+        },
+        {
+          "date": "2026-06-09",
+          "stars": 28321
+        },
+        {
+          "date": "2026-06-10",
+          "stars": 28349
+        },
+        {
+          "date": "2026-06-11",
+          "stars": 28381
+        },
+        {
+          "date": "2026-06-12",
+          "stars": 28399
+        },
+        {
+          "date": "2026-06-13",
+          "stars": 28411
+        },
+        {
+          "date": "2026-06-14",
+          "stars": 28421
+        },
+        {
+          "date": "2026-06-15",
+          "stars": 28440
+        },
+        {
+          "date": "2026-06-16",
+          "stars": 28451
+        },
+        {
+          "date": "2026-06-17",
+          "stars": 28461
+        },
+        {
+          "date": "2026-06-18",
+          "stars": 28474
+        },
+        {
+          "date": "2026-06-19",
+          "stars": 28486
+        },
+        {
+          "date": "2026-06-20",
+          "stars": 28503
+        },
+        {
+          "date": "2026-06-21",
+          "stars": 28511
+        },
+        {
+          "date": "2026-06-22",
+          "stars": 28530
+        },
+        {
+          "date": "2026-06-23",
+          "stars": 28545
+        },
+        {
+          "date": "2026-06-24",
+          "stars": 28563
+        },
+        {
+          "date": "2026-06-25",
+          "stars": 28575
+        },
+        {
+          "date": "2026-06-26",
+          "stars": 28591
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 28598
+        }
+      ],
+      "rank": 17,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 18,
+          "momentum": 45
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 18,
+          "momentum": 45
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 18,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 17,
+          "momentum": 49
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 17,
+          "momentum": 49
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 17,
+          "momentum": 49
+        },
+        {
+          "date": "2026-06-08",
+          "rank": 18,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-09",
+          "rank": 18,
+          "momentum": 49
+        },
+        {
+          "date": "2026-06-10",
+          "rank": 17,
+          "momentum": 50
+        },
+        {
+          "date": "2026-06-11",
+          "rank": 18,
+          "momentum": 50
+        },
+        {
+          "date": "2026-06-12",
+          "rank": 18,
+          "momentum": 49
+        },
+        {
+          "date": "2026-06-13",
+          "rank": 18,
+          "momentum": 49
+        },
+        {
+          "date": "2026-06-14",
+          "rank": 17,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-15",
+          "rank": 17,
+          "momentum": 50
+        },
+        {
+          "date": "2026-06-16",
+          "rank": 17,
+          "momentum": 51
+        },
+        {
+          "date": "2026-06-17",
+          "rank": 17,
+          "momentum": 51
+        },
+        {
+          "date": "2026-06-18",
+          "rank": 16,
+          "momentum": 51
+        },
+        {
+          "date": "2026-06-19",
+          "rank": 16,
+          "momentum": 52
+        },
+        {
+          "date": "2026-06-20",
+          "rank": 16,
+          "momentum": 52
+        },
+        {
+          "date": "2026-06-21",
+          "rank": 16,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-22",
+          "rank": 15,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-23",
+          "rank": 16,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-24",
+          "rank": 16,
+          "momentum": 50
+        },
+        {
+          "date": "2026-06-25",
+          "rank": 16,
+          "momentum": 51
+        },
+        {
+          "date": "2026-06-26",
+          "rank": 16,
+          "momentum": 48
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 17,
+          "momentum": 46
+        }
+      ],
+      "rank_prev": 16,
+      "rank_delta": -1,
+      "peak_rank": 15,
+      "tracked_days": 26
+    },
+    {
+      "repo": "qdrant/qdrant",
+      "name": "qdrant",
+      "owner": "qdrant",
+      "category": "Vector DB",
+      "blurb": "Rust-built vector database optimized for filtered search.",
+      "stars": 32669,
+      "forks": 2423,
+      "open_issues": 597,
+      "contributors": 173,
+      "open_prs": 145,
+      "release_cadence_days": 15.3,
+      "language": "Rust",
+      "archived": false,
+      "homepage": "https://qdrant.tech",
+      "html_url": "https://github.com/qdrant/qdrant",
+      "pushed_at": "2026-06-27T10:50:30Z",
+      "last_release": "v1.18.2",
+      "last_release_at": "2026-06-04T06:50:36Z",
+      "monthly_commits": [
+        0,
+        265,
+        214,
+        0,
+        413,
+        104
+      ],
+      "recent4w_commits": 104,
+      "prior4w_commits": 413,
+      "commit_delta": -309,
+      "momentum": 42,
+      "stars_history": [
+        {
+          "date": "2026-06-01",
+          "stars": 31723
+        },
+        {
+          "date": "2026-06-02",
+          "stars": 31746
+        },
+        {
+          "date": "2026-06-03",
+          "stars": 31776
+        },
+        {
+          "date": "2026-06-04",
+          "stars": 31792
+        },
+        {
+          "date": "2026-06-05",
+          "stars": 31805
+        },
+        {
+          "date": "2026-06-07",
+          "stars": 31866
+        },
+        {
+          "date": "2026-06-08",
+          "stars": 31915
+        },
+        {
+          "date": "2026-06-09",
+          "stars": 31964
+        },
+        {
+          "date": "2026-06-10",
+          "stars": 32001
+        },
+        {
+          "date": "2026-06-11",
+          "stars": 32027
+        },
+        {
+          "date": "2026-06-12",
+          "stars": 32055
+        },
+        {
+          "date": "2026-06-13",
+          "stars": 32106
+        },
+        {
+          "date": "2026-06-14",
+          "stars": 32207
+        },
+        {
+          "date": "2026-06-15",
+          "stars": 32319
+        },
+        {
+          "date": "2026-06-16",
+          "stars": 32372
+        },
+        {
+          "date": "2026-06-17",
+          "stars": 32399
+        },
+        {
+          "date": "2026-06-18",
+          "stars": 32436
+        },
+        {
+          "date": "2026-06-19",
+          "stars": 32461
+        },
+        {
+          "date": "2026-06-20",
+          "stars": 32481
+        },
+        {
+          "date": "2026-06-21",
+          "stars": 32505
+        },
+        {
+          "date": "2026-06-22",
+          "stars": 32556
+        },
+        {
+          "date": "2026-06-23",
+          "stars": 32575
+        },
+        {
+          "date": "2026-06-24",
+          "stars": 32603
+        },
+        {
+          "date": "2026-06-25",
+          "stars": 32643
+        },
+        {
+          "date": "2026-06-26",
+          "stars": 32660
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 32669
+        }
+      ],
+      "rank": 18,
+      "rank_history": [
+        {
+          "date": "2026-06-01",
+          "rank": 2,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-02",
+          "rank": 3,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-03",
+          "rank": 3,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-04",
+          "rank": 3,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-05",
+          "rank": 2,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-07",
+          "rank": 3,
+          "momentum": 94
+        },
+        {
+          "date": "2026-06-08",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-09",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-10",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-11",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-12",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-13",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-14",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-15",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-16",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-17",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-18",
+          "rank": 14,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-19",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-20",
+          "rank": 13,
+          "momentum": 61
+        },
+        {
+          "date": "2026-06-21",
+          "rank": 19,
+          "momentum": 42
+        },
+        {
+          "date": "2026-06-22",
+          "rank": 19,
+          "momentum": 42
+        },
+        {
+          "date": "2026-06-23",
+          "rank": 19,
+          "momentum": 42
+        },
+        {
+          "date": "2026-06-24",
+          "rank": 19,
+          "momentum": 42
+        },
+        {
+          "date": "2026-06-25",
+          "rank": 19,
+          "momentum": 42
+        },
+        {
+          "date": "2026-06-26",
+          "rank": 19,
+          "momentum": 42
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 18,
+          "momentum": 42
+        }
+      ],
+      "rank_prev": 19,
+      "rank_delta": 1,
+      "peak_rank": 2,
+      "tracked_days": 26
     },
     {
       "repo": "langchain-ai/langgraph",
@@ -4554,11 +5018,11 @@
       "owner": "langchain-ai",
       "category": "Agents",
       "blurb": "Graph-based stateful agent orchestration from the LangChain team.",
-      "stars": 35813,
-      "forks": 5990,
-      "open_issues": 593,
+      "stars": 35869,
+      "forks": 6000,
+      "open_issues": 591,
       "contributors": 280,
-      "open_prs": 235,
+      "open_prs": 234,
       "release_cadence_days": 1.1,
       "language": "Python",
       "archived": false,
@@ -4569,16 +5033,16 @@
       "last_release_at": "2026-06-18T20:58:32Z",
       "monthly_commits": [
         33,
-        74,
-        122,
-        109,
-        116,
-        91
+        85,
+        111,
+        115,
+        127,
+        74
       ],
-      "recent4w_commits": 91,
-      "prior4w_commits": 116,
-      "commit_delta": -25,
-      "momentum": 45,
+      "recent4w_commits": 74,
+      "prior4w_commits": 127,
+      "commit_delta": -53,
+      "momentum": 41,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -4679,9 +5143,13 @@
         {
           "date": "2026-06-26",
           "stars": 35813
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 35869
         }
       ],
-      "rank": 18,
+      "rank": 19,
       "rank_history": [
         {
           "date": "2026-06-01",
@@ -4807,278 +5275,17 @@
           "date": "2026-06-26",
           "rank": 18,
           "momentum": 45
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 19,
+          "momentum": 41
         }
       ],
       "rank_prev": 18,
-      "rank_delta": 0,
+      "rank_delta": -1,
       "peak_rank": 15,
-      "tracked_days": 25
-    },
-    {
-      "repo": "qdrant/qdrant",
-      "name": "qdrant",
-      "owner": "qdrant",
-      "category": "Vector DB",
-      "blurb": "Rust-built vector database optimized for filtered search.",
-      "stars": 32660,
-      "forks": 2419,
-      "open_issues": 595,
-      "contributors": 173,
-      "open_prs": 144,
-      "release_cadence_days": 15.3,
-      "language": "Rust",
-      "archived": false,
-      "homepage": "https://qdrant.tech",
-      "html_url": "https://github.com/qdrant/qdrant",
-      "pushed_at": "2026-06-26T11:54:55Z",
-      "last_release": "v1.18.2",
-      "last_release_at": "2026-06-04T06:50:36Z",
-      "monthly_commits": [
-        0,
-        265,
-        214,
-        0,
-        413,
-        104
-      ],
-      "recent4w_commits": 104,
-      "prior4w_commits": 413,
-      "commit_delta": -309,
-      "momentum": 42,
-      "stars_history": [
-        {
-          "date": "2026-06-01",
-          "stars": 31723
-        },
-        {
-          "date": "2026-06-02",
-          "stars": 31746
-        },
-        {
-          "date": "2026-06-03",
-          "stars": 31776
-        },
-        {
-          "date": "2026-06-04",
-          "stars": 31792
-        },
-        {
-          "date": "2026-06-05",
-          "stars": 31805
-        },
-        {
-          "date": "2026-06-07",
-          "stars": 31866
-        },
-        {
-          "date": "2026-06-08",
-          "stars": 31915
-        },
-        {
-          "date": "2026-06-09",
-          "stars": 31964
-        },
-        {
-          "date": "2026-06-10",
-          "stars": 32001
-        },
-        {
-          "date": "2026-06-11",
-          "stars": 32027
-        },
-        {
-          "date": "2026-06-12",
-          "stars": 32055
-        },
-        {
-          "date": "2026-06-13",
-          "stars": 32106
-        },
-        {
-          "date": "2026-06-14",
-          "stars": 32207
-        },
-        {
-          "date": "2026-06-15",
-          "stars": 32319
-        },
-        {
-          "date": "2026-06-16",
-          "stars": 32372
-        },
-        {
-          "date": "2026-06-17",
-          "stars": 32399
-        },
-        {
-          "date": "2026-06-18",
-          "stars": 32436
-        },
-        {
-          "date": "2026-06-19",
-          "stars": 32461
-        },
-        {
-          "date": "2026-06-20",
-          "stars": 32481
-        },
-        {
-          "date": "2026-06-21",
-          "stars": 32505
-        },
-        {
-          "date": "2026-06-22",
-          "stars": 32556
-        },
-        {
-          "date": "2026-06-23",
-          "stars": 32575
-        },
-        {
-          "date": "2026-06-24",
-          "stars": 32603
-        },
-        {
-          "date": "2026-06-25",
-          "stars": 32643
-        },
-        {
-          "date": "2026-06-26",
-          "stars": 32660
-        }
-      ],
-      "rank": 19,
-      "rank_history": [
-        {
-          "date": "2026-06-01",
-          "rank": 2,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-02",
-          "rank": 3,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-03",
-          "rank": 3,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-04",
-          "rank": 3,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-05",
-          "rank": 2,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-07",
-          "rank": 3,
-          "momentum": 94
-        },
-        {
-          "date": "2026-06-08",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-09",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-10",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-11",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-12",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-13",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-14",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-15",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-16",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-17",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-18",
-          "rank": 14,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-19",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-20",
-          "rank": 13,
-          "momentum": 61
-        },
-        {
-          "date": "2026-06-21",
-          "rank": 19,
-          "momentum": 42
-        },
-        {
-          "date": "2026-06-22",
-          "rank": 19,
-          "momentum": 42
-        },
-        {
-          "date": "2026-06-23",
-          "rank": 19,
-          "momentum": 42
-        },
-        {
-          "date": "2026-06-24",
-          "rank": 19,
-          "momentum": 42
-        },
-        {
-          "date": "2026-06-25",
-          "rank": 19,
-          "momentum": 42
-        },
-        {
-          "date": "2026-06-26",
-          "rank": 19,
-          "momentum": 42
-        }
-      ],
-      "rank_prev": 19,
-      "rank_delta": 0,
-      "peak_rank": 2,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "run-llama/llama_index",
@@ -5086,31 +5293,31 @@
       "owner": "run-llama",
       "category": "Agents",
       "blurb": "Data framework for connecting LLMs to your private data.",
-      "stars": 50424,
-      "forks": 7637,
-      "open_issues": 497,
+      "stars": 50441,
+      "forks": 7642,
+      "open_issues": 508,
       "contributors": 1953,
-      "open_prs": 306,
+      "open_prs": 315,
       "release_cadence_days": 17.2,
       "language": "Python",
       "archived": false,
       "homepage": "https://developers.llamaindex.ai",
       "html_url": "https://github.com/run-llama/llama_index",
-      "pushed_at": "2026-06-24T19:36:43Z",
+      "pushed_at": "2026-06-26T14:23:35Z",
       "last_release": "v0.14.23",
       "last_release_at": "2026-06-24T19:36:43Z",
       "monthly_commits": [
-        62,
-        146,
+        75,
         133,
-        61,
-        53,
-        25
+        135,
+        62,
+        50,
+        26
       ],
-      "recent4w_commits": 25,
-      "prior4w_commits": 53,
-      "commit_delta": -28,
-      "momentum": 33,
+      "recent4w_commits": 26,
+      "prior4w_commits": 50,
+      "commit_delta": -24,
+      "momentum": 34,
       "stars_history": [
         {
           "date": "2026-06-01",
@@ -5211,6 +5418,10 @@
         {
           "date": "2026-06-26",
           "stars": 50424
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 50441
         }
       ],
       "rank": 20,
@@ -5339,12 +5550,17 @@
           "date": "2026-06-26",
           "rank": 20,
           "momentum": 33
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 20,
+          "momentum": 34
         }
       ],
       "rank_prev": 20,
       "rank_delta": 0,
       "peak_rank": 16,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "flowiseai/Flowise",
@@ -5352,11 +5568,11 @@
       "owner": "flowiseai",
       "category": "Agents",
       "blurb": "Drag-and-drop builder for LLM apps and agents.",
-      "stars": 54027,
-      "forks": 24596,
-      "open_issues": 958,
+      "stars": 54050,
+      "forks": 24598,
+      "open_issues": 961,
       "contributors": 332,
-      "open_prs": 282,
+      "open_prs": 284,
       "release_cadence_days": 22.8,
       "language": "TypeScript",
       "archived": false,
@@ -5367,15 +5583,15 @@
       "last_release_at": "2026-06-25T11:35:35Z",
       "monthly_commits": [
         19,
-        69,
-        93,
-        96,
-        46,
+        79,
+        83,
+        99,
+        43,
         14
       ],
       "recent4w_commits": 14,
-      "prior4w_commits": 46,
-      "commit_delta": -32,
+      "prior4w_commits": 43,
+      "commit_delta": -29,
       "momentum": 30,
       "stars_history": [
         {
@@ -5477,6 +5693,10 @@
         {
           "date": "2026-06-26",
           "stars": 54027
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 54050
         }
       ],
       "rank": 21,
@@ -5605,12 +5825,17 @@
           "date": "2026-06-26",
           "rank": 21,
           "momentum": 30
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 21,
+          "momentum": 30
         }
       ],
-      "rank_prev": 22,
-      "rank_delta": 1,
+      "rank_prev": 21,
+      "rank_delta": 0,
       "peak_rank": 21,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "pgvector/pgvector",
@@ -5618,8 +5843,8 @@
       "owner": "pgvector",
       "category": "Vector DB",
       "blurb": "Vector similarity search inside Postgres.",
-      "stars": 21947,
-      "forks": 1225,
+      "stars": 21962,
+      "forks": 1227,
       "open_issues": 14,
       "contributors": 24,
       "open_prs": 6,
@@ -5743,6 +5968,10 @@
         {
           "date": "2026-06-26",
           "stars": 21947
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 21962
         }
       ],
       "rank": 22,
@@ -5871,12 +6100,17 @@
           "date": "2026-06-26",
           "rank": 22,
           "momentum": 29
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 22,
+          "momentum": 29
         }
       ],
-      "rank_prev": 21,
-      "rank_delta": -1,
+      "rank_prev": 22,
+      "rank_delta": 0,
       "peak_rank": 21,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "Portkey-AI/gateway",
@@ -5884,7 +6118,7 @@
       "owner": "Portkey-AI",
       "category": "Gateway",
       "blurb": "Fast, open-source AI gateway with routing and guardrails.",
-      "stars": 12203,
+      "stars": 12215,
       "forks": 1154,
       "open_issues": 195,
       "contributors": 123,
@@ -6009,6 +6243,10 @@
         {
           "date": "2026-06-26",
           "stars": 12203
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 12215
         }
       ],
       "rank": 23,
@@ -6137,12 +6375,17 @@
           "date": "2026-06-26",
           "rank": 23,
           "momentum": 11
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 23,
+          "momentum": 11
         }
       ],
       "rank_prev": 23,
       "rank_delta": 0,
       "peak_rank": 21,
-      "tracked_days": 25
+      "tracked_days": 26
     },
     {
       "repo": "microsoft/autogen",
@@ -6150,11 +6393,11 @@
       "owner": "microsoft",
       "category": "Agents",
       "blurb": "Multi-agent conversation framework from Microsoft Research.",
-      "stars": 59271,
+      "stars": 59288,
       "forks": 8938,
-      "open_issues": 921,
+      "open_issues": 920,
       "contributors": 533,
-      "open_prs": 377,
+      "open_prs": 376,
       "release_cadence_days": 12.3,
       "language": "Python",
       "archived": false,
@@ -6275,6 +6518,10 @@
         {
           "date": "2026-06-26",
           "stars": 59271
+        },
+        {
+          "date": "2026-06-27",
+          "stars": 59288
         }
       ],
       "rank": 24,
@@ -6403,12 +6650,17 @@
           "date": "2026-06-26",
           "rank": 24,
           "momentum": 10
+        },
+        {
+          "date": "2026-06-27",
+          "rank": 24,
+          "momentum": 10
         }
       ],
       "rank_prev": 24,
       "rank_delta": 0,
       "peak_rank": 23,
-      "tracked_days": 25
+      "tracked_days": 26
     }
   ]
 }
