@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StackTracker — the live momentum index for AI infrastructure</title>
-<meta name="description" content="A live, momentum-ranked tracker of open-source AI infrastructure — agent frameworks, inference engines, vector DBs, gateways, LLMOps — recomputed daily from real GitHub velocity by an AI agent.">
+<meta name="description" content="A live, momentum-ranked tracker of open-source AI infrastructure — agent frameworks, inference engines, vector DBs, gateways, LLMOps — recomputed daily from real GitHub velocity.">
 <meta property="og:title" content="StackTracker — live AI-infra momentum index">
-<meta property="og:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub commit velocity, release cadence, and trend. Built + run by an agent.">
+<meta property="og:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub commit velocity, release cadence, and trend.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://stacktracker.kymatalabs.com/og.png">
 <meta property="og:url" content="https://stacktracker.kymatalabs.com/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="StackTracker — live AI-infra momentum index">
-<meta name="twitter:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub velocity. Built + run by an agent.">
+<meta name="twitter:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub velocity.">
 <meta name="twitter:image" content="https://stacktracker.kymatalabs.com/og.png">
 <meta name="theme-color" content="#070a09">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
 <script type="application/ld+json" id="ld-site">{
   "@context":"https://schema.org",
   "@graph":[
-    {"@type":"WebSite","@id":"https://stacktracker.kymatalabs.com/#website","url":"https://stacktracker.kymatalabs.com/","name":"StackTracker","description":"A live, momentum-ranked tracker of open-source AI infrastructure, recomputed daily from real GitHub velocity by an AI agent.","inLanguage":"en","publisher":{"@id":"https://kymatalabs.com/#org"}},
+    {"@type":"WebSite","@id":"https://stacktracker.kymatalabs.com/#website","url":"https://stacktracker.kymatalabs.com/","name":"StackTracker","description":"A live, momentum-ranked tracker of open-source AI infrastructure, recomputed daily from real GitHub velocity.","inLanguage":"en","publisher":{"@id":"https://kymatalabs.com/#org"}},
     {"@type":"Organization","@id":"https://kymatalabs.com/#org","name":"Kymata Labs","url":"https://kymatalabs.com/"}
   ]
 }</script>
@@ -64,7 +64,7 @@
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow"><span class="dot"></span><span id="liveline">Live · recomputed daily by an agent</span></div>
+  <div class="eyebrow"><span class="dot"></span><span id="liveline">Live · recomputed daily</span></div>
   <h1>The live <em>momentum signal</em> for AI infrastructure.</h1>
   <p class="lede">Who's actually shipping — and who's flatlining? StackTracker reads the open-source AI-infra stack like an instrument: commit cadence, release recency, and 6-month trend, sampled daily from real GitHub velocity. No vibes, no static maps.</p>
   <div class="meta-row" id="metarow"></div>
@@ -104,7 +104,7 @@
 
 <section class="geo-about">
   <h2>About StackTracker</h2>
-  <p class="intro">StackTracker is the live momentum index for AI infrastructure &mdash; the serving engines, orchestration frameworks, vector stores and ops tooling that run AI in production. Every tool is ranked daily from live GitHub signals, so the index reflects which infrastructure the ecosystem is actually building on right now. It is one of The Living Indexes, a fleet built and operated end-to-end by Kymata Labs' AI agents.</p>
+  <p class="intro">StackTracker is the live momentum index for AI infrastructure &mdash; the serving engines, orchestration frameworks, vector stores and ops tooling that run AI in production. Every tool is ranked daily from live GitHub signals, so the index reflects which infrastructure the ecosystem is actually building on right now. It is one of The Living Indexes, a fleet published by Kymata Labs.</p>
   <div class="geo-faq">
       <div class="q"><h3>What is StackTracker?</h3><p>StackTracker is a live momentum index for AI-infrastructure tools &mdash; inference servers, orchestration frameworks, vector databases and ops tooling &mdash; ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs.</p></div>
       <div class="q"><h3>How is momentum scored?</h3><p>A 0&ndash;100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet &mdash; momentum, not legacy.</p></div>
@@ -116,8 +116,8 @@
 <aside data-portfolio-ad="after-content" aria-label="Advertisement" hidden></aside>
 <footer id="how" data-reveal><div class="wrap">
   <span class="mono" style="color:var(--phos)">How it's made</span>
-  <h2>A self-updating intelligence instrument, <em>built and run by an AI agent.</em></h2>
-  <p>StackTracker isn't hand-maintained. An autonomous agent pulls live signals from the GitHub API for every project in the index, computes a momentum score, and redeploys this page — every day. The code, the scoring, and the cron that runs it were all built by the same agent stack that runs <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
+  <h2>A self-updating intelligence instrument, <em>ranked by public source signals.</em></h2>
+  <p>StackTracker recomputes project momentum from public GitHub API signals every day. The scoring method is described below. Published by <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
   <div class="how">
     <div><div class="mono">01 · Sample</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
     <div><div class="mono">02 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + 6-month trend (20%).</p></div>
