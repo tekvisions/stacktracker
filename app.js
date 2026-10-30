@@ -324,6 +324,6 @@
   fetch("data.json", {cache:"no-store"}).then(function(r){return r.json();}).then(render).catch(function(e){
     var host=D.getElementById("rows");
     host.setAttribute("aria-busy","false");
-    host.innerHTML='<div class="loading">Could not load the index. '+esc(e.message||e)+'</div>';
+    host.innerHTML='<div class="loading">Could not load the index. Refresh to retry.</div>';
   });
 })();
