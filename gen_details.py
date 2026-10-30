@@ -624,12 +624,12 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
 <meta property="og:title" content="{_esc(r['name'])} — momentum {r.get('momentum',0)}/100 · StackTracker">
 <meta property="og:description" content="{_esc(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image" content="{BASE}/og-20261030.png">
 <meta property="og:site_name" content="StackTracker">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{_esc(r['name'])} — momentum {r.get('momentum',0)}/100 · StackTracker">
 <meta name="twitter:description" content="{_esc(desc)}">
-<meta name="twitter:image" content="{BASE}/og.png">
+<meta name="twitter:image" content="{BASE}/og-20261030.png">
 {HEAD_COMMON}
 <script type="application/ld+json">{ld}</script>
 </head>

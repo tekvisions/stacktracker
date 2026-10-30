@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TOKEN = os.environ.get("VERCEL_TOKEN", "").strip()
 TEAM = os.environ.get("VERCEL_TEAM_ID", "team_L6hpqgg8pEHznOzrnU66JuoW").strip()
 PROJECT = os.environ.get("VERCEL_PROJECT", "stacktracker").strip()
-SKIP = {".git", ".vercel", "node_modules", "__pycache__"}
+SKIP = {".git", ".vercel", "node_modules", "__pycache__", ".og-venv", ".venv", ".build-assets"}
 SKIP_FILES = {".DS_Store"}
 # only ship what the site needs — never the build scripts or workflow
 INCLUDE_EXT = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".jpeg", ".webp", ".ico", ".txt", ".xml"}
