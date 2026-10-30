@@ -397,11 +397,11 @@ NAV = """<nav id="nav"><div class="wrap nav-in">
 FOOTER = """<footer><div class="wrap">
   <span class="mono" style="color:var(--phos)">How it's made</span>
   <h2>A self-updating intelligence instrument, <em>built and run by an AI agent.</em></h2>
-  <p>Every figure on this page traces to a live GitHub API response, sampled daily by an autonomous agent that recomputes the momentum score and redeploys &mdash; no human in the loop. Same agent stack that runs <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
+  <p>Every figure on this page traces to a live GitHub API response, sampled daily by an autonomous agent that recomputes the momentum score and redeploys. Same agent stack that runs <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
   <div class="how">
     <div><div class="mono">01 &middot; Sample</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
     <div><div class="mono">02 &middot; Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + 6-month trend (20%).</p></div>
-    <div><div class="mono">03 &middot; Sweep</div><p>A GitHub Action recomputes <code>data.json</code> and redeploys &mdash; no human in the loop.</p></div>
+    <div><div class="mono">03 &middot; Sweep</div><p>The public data and rankings refresh daily.</p></div>
   </div>
   <div class="foot-row">
     <span>Data regenerated daily</span>
@@ -807,7 +807,7 @@ def _write_llms(here: str, data: dict, slugs: list[str]) -> None:
         "",
         "## Source & cadence",
         "- Source: GitHub REST API (stars, releases, commit history).",
-        f"- Cadence: recomputed daily by a GitHub Action; last build {today}.",
+        f"- Cadence: recomputed daily from public source signals; last build {today}.",
         f"- Coverage: {len(repos)} tracked repositories across {len(data.get('categories', []))} categories.",
         "- Operator: Kymata Labs (https://kymatalabs.com/).",
         "",

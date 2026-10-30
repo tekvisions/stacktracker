@@ -23,7 +23,7 @@
     return Math.round(d/365)+"y ago";
   }
   function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
-  // slug: lowercase, url-safe, from "owner-name" — MUST match build_data.py's slugify()
+  // Stable catalog URL slug from the public repository name.
   function slugify(owner,name){ return (owner+"-"+name).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""); }
 
   // SVG sparkline from a numeric array, with per-point hover targets (tooltip via app-level handler).

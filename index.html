@@ -32,7 +32,7 @@
   ]
 }</script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is StackTracker?", "acceptedAnswer": {"@type": "Answer", "text": "StackTracker is a live momentum index for AI-infrastructure tools — inference servers, orchestration frameworks, vector databases and ops tooling — ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs."}}, {"@type": "Question", "name": "How is momentum scored?", "acceptedAnswer": {"@type": "Answer", "text": "A 0–100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet — momentum, not legacy."}}, {"@type": "Question", "name": "How often is it updated?", "acceptedAnswer": {"@type": "Answer", "text": "Every day. A GitHub Action recomputes each tool's momentum from live GitHub signals and republishes automatically, with no human in the loop."}}, {"@type": "Question", "name": "Part of The Living Indexes", "acceptedAnswer": {"@type": "Answer", "text": "A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at indexes.kymatalabs.com."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is StackTracker?", "acceptedAnswer": {"@type": "Answer", "text": "StackTracker is a live momentum index for AI-infrastructure tools — inference servers, orchestration frameworks, vector databases and ops tooling — ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs."}}, {"@type": "Question", "name": "How is momentum scored?", "acceptedAnswer": {"@type": "Answer", "text": "A 0–100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet — momentum, not legacy."}}, {"@type": "Question", "name": "How often is it updated?", "acceptedAnswer": {"@type": "Answer", "text": "Every day. The index recomputes each tool's momentum from live GitHub signals and republishes automatically."}}, {"@type": "Question", "name": "Part of The Living Indexes", "acceptedAnswer": {"@type": "Answer", "text": "A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at indexes.kymatalabs.com."}}]}
 </script>
 </head>
 <body>
@@ -108,7 +108,7 @@
   <div class="geo-faq">
       <div class="q"><h3>What is StackTracker?</h3><p>StackTracker is a live momentum index for AI-infrastructure tools &mdash; inference servers, orchestration frameworks, vector databases and ops tooling &mdash; ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs.</p></div>
       <div class="q"><h3>How is momentum scored?</h3><p>A 0&ndash;100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet &mdash; momentum, not legacy.</p></div>
-      <div class="q"><h3>How often is it updated?</h3><p>Every day. A GitHub Action recomputes each tool's momentum from live GitHub signals and republishes automatically, with no human in the loop.</p></div>
+      <div class="q"><h3>How often is it updated?</h3><p>Every day. The index recomputes each tool's momentum from live GitHub signals and republishes automatically.</p></div>
       <div class="q"><h3>Part of The Living Indexes</h3><p>A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at <a href="https://indexes.kymatalabs.com">indexes.kymatalabs.com</a>.</p></div>
   </div>
 </section>
@@ -121,7 +121,7 @@
   <div class="how">
     <div><div class="mono">01 · Sample</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
     <div><div class="mono">02 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + 6-month trend (20%).</p></div>
-    <div><div class="mono">03 · Sweep</div><p>A GitHub Action recomputes <code>data.json</code> and redeploys — no human in the loop.</p></div>
+    <div><div class="mono">03 · Sweep</div><p>The public data and rankings refresh daily.</p></div>
   </div>
   <div class="foot-row">
     <span id="footgen">Data regenerated daily</span>
