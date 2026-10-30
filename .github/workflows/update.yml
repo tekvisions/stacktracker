@@ -35,12 +35,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python build_data.py
 
+      - name: Render public share card
+        run: |
+          python -m venv .og-venv
+          .og-venv/bin/pip install --quiet Pillow==11.3.0
+          .og-venv/bin/python gen_og.py
+          .og-venv/bin/python -m unittest discover -s tests -p test_og_content.py
+          python -m unittest discover -s tests -p test_deploy_private_assets.py
+
       - name: Commit data if changed
         run: |
           git config user.name  "stacktracker-bot"
           git config user.email "actions@users.noreply.github.com"
-          if ! git diff --quiet -- data.json; then
-            git add data.json
+          if ! git diff --quiet -- data.json og.png og-20261030.png; then
+            git add data.json og.png og-20261030.png
             git commit -m "data: daily momentum refresh ($(date -u +%Y-%m-%d))"
             git push
           else
