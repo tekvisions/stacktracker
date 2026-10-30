@@ -331,7 +331,7 @@ def generate_rss(data: dict, here: str = HERE) -> None:
     rfc = format_datetime(dt)
     title = "StackTracker — live AI-infra momentum"
     desc = ("The live momentum index for open-source AI infrastructure — ranked by real "
-            "GitHub velocity, recomputed daily by autonomous agents.")
+            "GitHub velocity, updated daily from public source signals.")
     items = []
     for r in feed_repos:
         slug = slugify(r.get("owner", ""), r.get("name", ""))
@@ -797,7 +797,7 @@ def _write_llms(here: str, data: dict, slugs: list[str]) -> None:
     lines = [
         "# StackTracker",
         "",
-        "> A live, momentum-ranked index of open-source AI-infrastructure projects — agent frameworks, inference engines, vector databases, gateways, and LLMOps tooling. Built and operated by an autonomous AI agent at Kymata Labs.",
+        "> A live, momentum-ranked index of open-source AI-infrastructure projects — agent frameworks, inference engines, vector databases, gateways, and LLMOps tooling. Published by Kymata Labs.",
         "",
         "## What it is",
         "StackTracker reads the open-source AI-infra stack like an instrument and answers one question: who is actually shipping, and who is flatlining. Each project gets a 0–100 momentum score.",
