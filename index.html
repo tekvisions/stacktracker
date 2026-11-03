@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-atlas-edition="atlas-flux-1" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,38 +35,20 @@
 <link rel="alternate" type="application/json" href="/data.json" title="Current catalog snapshot">
 <script defer src="/guidance.js"></script>
 <script defer src="/fleet.js"></script>
-</head>
-<body><a class="skip-link" href="#main-content">Skip to main content</a>
-<div class="geo-kstrip"><div class="wrap">
-  <a href="https://www.kymatalabs.com" target="_blank" rel="noopener"><span class="d"></span>Kymata Labs</a>
-  <span class="s">/</span>
-  <a href="https://indexes.kymatalabs.com" target="_blank" rel="noopener">The Living Indexes</a>
+<link rel="stylesheet" href="/atlas.css"><script defer src="/atlas.js"></script></head>
+<body data-atlas-site="stack" style="--atlas-topic:#c7a5db;--atlas-topic-ink:#75566e"><a class="skip-link" href="#main-content">Skip to main content</a>
 
-</div></div>
 
-<canvas id="scope" aria-hidden="true"></canvas>
-<div class="vig"></div>
 
-<nav id="nav"><div class="wrap nav-in">
-  <a class="brand" href="/">
-    <span class="mark"><svg width="26" height="14" viewBox="0 0 26 14" fill="none"><path d="M1 7 H5 L7 2 L10 12 L13 4 L15 7 H25" stroke="#3dffa6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    StackTracker <span class="by">// Kymata Labs</span>
-  </a>
-  <div class="nav-links">
-    <a href="#index">The index</a>
-    <a href="#how" class="hidem">How it's made</a>
-    <a href="https://kymatalabs.com/" class="hidem">Kymata Labs ↗</a>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark theme" title="Toggle theme">
+<header class="atlas-header" id="nav"><div class="wrap atlas-head-row"><a class="atlas-brand" href="https://indexes.kymatalabs.com/"><span class="atlas-mark"><svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="M7 31V11h6v9l9-9h8L19 22l13 9h-9l-10-7v7H7Z" fill="currentColor"/><path d="M29 9h6v6h-6z" fill="currentColor" opacity=".55"/></svg></span><span>KYMATA<small>THE LIVING INDEXES</small></span></a><nav class="atlas-nav" aria-label="Main navigation"><a class="atlas-home-link" href="https://indexes.kymatalabs.com/">The indexes</a><a class="atlas-method-link" href="/#catalog-methodology">Our approach</a><details class="atlas-network"><summary><span class="atlas-menu-long">Explore the network</span><span class="atlas-menu-short">Indexes</span><span aria-hidden="true">⌄</span></summary><div class="atlas-network-panel"><div class="atlas-network-group"><span>Build &amp; connect</span><a href="https://agents.kymatalabs.com/">The Agent Index<span aria-hidden="true">↗</span></a><a href="https://agentvelocity.kymatalabs.com/">Agent Velocity<span aria-hidden="true">↗</span></a><a href="https://skill.kymatalabs.com/">The Skill Index<span aria-hidden="true">↗</span></a><a href="https://mcp.kymatalabs.com/">The MCP Index<span aria-hidden="true">↗</span></a><a href="https://gateway.kymatalabs.com/">The Gateway Index<span aria-hidden="true">↗</span></a></div><div class="atlas-network-group"><span>Models &amp; media</span><a href="https://modelradar.kymatalabs.com/">Model Radar<span aria-hidden="true">↗</span></a><a href="https://localllm.kymatalabs.com/">The Local LLM Index<span aria-hidden="true">↗</span></a><a href="https://finetune.kymatalabs.com/">The Fine-Tuning Index<span aria-hidden="true">↗</span></a><a href="https://diffusion.kymatalabs.com/">The Diffusion Index<span aria-hidden="true">↗</span></a><a href="https://voice.kymatalabs.com/">The Voice AI Index<span aria-hidden="true">↗</span></a></div><div class="atlas-network-group"><span>Knowledge &amp; data</span><a href="https://rag.kymatalabs.com/">The RAG Index<span aria-hidden="true">↗</span></a><a href="https://document.kymatalabs.com/">The Document Index<span aria-hidden="true">↗</span></a><a href="https://dataset.kymatalabs.com/">The Dataset Index<span aria-hidden="true">↗</span></a><a href="https://prompt.kymatalabs.com/">The Prompt Index<span aria-hidden="true">↗</span></a></div><div class="atlas-network-group"><span>Measure &amp; discover</span><a href="https://eval.kymatalabs.com/">The Eval Index<span aria-hidden="true">↗</span></a><a href="https://observability.kymatalabs.com/">The Observability Index<span aria-hidden="true">↗</span></a><a href="https://stacktracker.kymatalabs.com/" aria-current="page">StackTracker<span aria-hidden="true">↗</span></a></div></div></details><button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark theme" title="Toggle theme">
       <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
       <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
-    </button>
-  </div>
-</div></nav><main id="main-content">
+    </button></nav></div></header><main id="main-content">
 
-<header class="hero"><div class="wrap">
+<header class="hero atlas-hero"><div class="wrap"><div class="atlas-visual" aria-hidden="true"><div class="atlas-field atlas-field-a"></div><div class="atlas-field atlas-field-b"></div><svg class="atlas-contours" viewBox="0 0 480 350" fill="none"><g stroke="currentColor" stroke-width=".75"><ellipse cx="240" cy="175" rx="55" ry="28" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="71" ry="39" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="87" ry="50" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="103" ry="61" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="119" ry="72" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="135" ry="83" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="151" ry="94" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="167" ry="105" transform="rotate(-25 240 175)"/><ellipse cx="240" cy="175" rx="183" ry="116" transform="rotate(-25 240 175)"/></g></svg><div class="atlas-orbit-mark"><svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="M7 31V11h6v9l9-9h8L19 22l13 9h-9l-10-7v7H7Z" fill="currentColor"/><path d="M29 9h6v6h-6z" fill="currentColor" opacity=".55"/></svg></div><span class="atlas-orbit-label atlas-orbit-label-0"><i style="background:#44e5be"></i>Agents</span><span class="atlas-orbit-label atlas-orbit-label-1"><i style="background:#c4f66c"></i>Inference</span><span class="atlas-orbit-label atlas-orbit-label-2"><i style="background:#54bfff"></i>Vector DB</span><span class="atlas-orbit-label atlas-orbit-label-3"><i style="background:#ff8866"></i>LLMOps</span><span class="atlas-art-caption">A connected view of the ecosystem</span></div>
   <div class="eyebrow"><span class="dot"></span><span id="liveline">Live · recomputed on successful refresh</span></div>
-  <h1>The live <em>momentum signal</em> for AI infrastructure.</h1><div class="fleet-context" role="navigation" aria-label="Index resources"><a href="https://indexes.kymatalabs.com/">All indexes</a><a href="#catalog-guidance">Selection guide</a><a href="#catalog-methodology">Methodology</a></div>
-  <p class="lede">Who's actually shipping — and who's flatlining? StackTracker reads the open-source AI-infra stack like an instrument: commit cadence, release recency, and change versus the prior 30-day window, sampled daily from real GitHub velocity. No vibes, no static maps.</p>
+  <h1>See the stack.<br><em>Follow the signals.</em></h1><div class="fleet-context" role="navigation" aria-label="Index resources"><a href="https://indexes.kymatalabs.com/">All indexes</a><a href="#catalog-guidance">Selection guide</a><a href="#catalog-methodology">Methodology</a></div>
+  <p class="lede">Explore developer repositories and the public activity around them.</p><div class="atlas-hero-actions"><a class="atlas-primary" href="#atlas-catalog">Explore the catalog <span aria-hidden="true">↗</span></a><a class="atlas-secondary" href="#catalog-methodology">Sources & methodology →</a><button class="atlas-motion" type="button" aria-pressed="false">Pause motion</button></div>
   <div class="meta-row" id="metarow"><div class="m"><b>24</b><span>Projects tracked</span></div><div class="m"><b>1.5M</b><span>Combined stars</span></div><div class="m"><b>97</b><span>Top momentum</span></div><div class="m"><b>2026-11-02</b><span>Source snapshot (UTC)</span></div></div>
 </div></header>
 
@@ -77,7 +59,7 @@
 
 <section id="index"><div class="wrap">
   <div class="movers" id="movers" hidden aria-label="Biggest movers on the board"></div>
-  <div class="controls">
+  <div class="wrap atlas-catalog-heading" id="atlas-catalog"><div><span class="atlas-eyebrow">Find your next building block</span><h2>Infra catalog</h2></div><a href="https://indexes.kymatalabs.com/">← All 17 indexes</a></div><div class="controls">
     <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
     <div class="search-wrap">
       <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -94,7 +76,7 @@
     <span class="r3"><button class="sortable" type="button" data-sort="stars" disabled>Stars <span class="ind" aria-hidden="true">▾</span></button></span>
     <span aria-hidden="true"></span>
   </div>
-  <h2 class="fleet-list-title">Browse the catalog</h2><div class="rows" id="rows" aria-live="polite" aria-busy="false"><!-- catalog:entries:start -->
+  <div class="rows" id="rows" aria-live="polite" aria-busy="false"><!-- catalog:entries:start -->
 <p class="catalog-guide-jump"><a href="#catalog-guidance">How to choose: scope, evidence and limitations</a></p><ol class="catalog-snapshot">
 <li value="1"><a href="https://stacktracker.kymatalabs.com/p/pydantic-pydantic-ai/">pydantic/pydantic-ai</a><span class="catalog-category">Agents</span><p>Type-safe agent framework from the Pydantic team.</p><small>Momentum 97/100 · 20,998 GitHub stars</small></li>
 <li value="2"><a href="https://stacktracker.kymatalabs.com/p/unslothai-unsloth/">unslothai/unsloth</a><span class="catalog-category">LLMOps</span><p>2x faster, 70% less memory LLM fine-tuning.</p><small>Momentum 96/100 · 78,964 GitHub stars</small></li>
@@ -157,23 +139,7 @@
 <!-- catalog:about:end -->
 
 <aside data-portfolio-ad="after-content" aria-label="Advertisement" hidden></aside>
-</main><footer id="how" data-reveal><div class="wrap">
-  <span class="mono" style="color:var(--phos)">How it's made</span>
-  <h2>A self-updating intelligence instrument, <em>ranked by public source signals.</em></h2>
-  <p>StackTracker recomputes project momentum from public GitHub API signals every day. The scoring method is described below. Published by <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
-  <div class="how">
-    <div><div class="mono">01 · Sample</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
-    <div><div class="mono">02 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + change versus the prior 30-day window (20%).</p></div>
-    <div><div class="mono">03 · Sweep</div><p>The public data and rankings refresh daily.</p></div>
-  </div>
-  <div class="foot-row">
-    <span id="footgen">Data regenerated daily</span>
-    <span>© 2026 Kymata Labs · StackTracker</span>
-    <a href="/feed.json">/feed.json — public API</a>
-    <a href="https://kymatalabs.com/">kymatalabs ↗</a>
-  </div>
-</div><p class="wrap"><a href="/privacy.html">Privacy and advertising</a> · <button type="button" data-ad-privacy hidden>Advertising privacy choices</button></p>
-</footer>
+</main><footer class="atlas-footer"><div class="wrap"><div class="atlas-footer-grid"><div><a class="atlas-brand" href="https://indexes.kymatalabs.com/"><span class="atlas-mark"><svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="M7 31V11h6v9l9-9h8L19 22l13 9h-9l-10-7v7H7Z" fill="currentColor"/><path d="M29 9h6v6h-6z" fill="currentColor" opacity=".55"/></svg></span><span>KYMATA<small>THE LIVING INDEXES</small></span></a><p>A clearer view of the tools, models and infrastructure behind your next project.</p><p class="atlas-updated" id="how"></p><p class="atlas-updated" id="footgen"></p></div><div><h2>The network</h2><a href="https://indexes.kymatalabs.com/">All 17 indexes ↗</a><a href="https://www.kymatalabs.com/">Kymata Labs ↗</a><a href="/#catalog-methodology">Sources & methodology</a><a href="/#catalog-guidance">Selection guidance</a></div><div><h2>Open resources</h2><a href="/sitemap.xml">Sitemap</a><a href="/llms.txt">Machine-readable overview</a><a href="/ai.txt">AI usage guidance</a><a href="https://github.com/tekvisions/stacktracker">Source on GitHub ↗</a></div></div><div class="atlas-footer-bottom"><span>© Kymata Labs LLC · Public sources. Clear context.</span><div><a href="/privacy.html">Privacy and advertising</a><button type="button" data-ad-privacy hidden>Advertising privacy choices</button></div></div></div></footer>
 
 <script>
 /* light/dark toggle — persist to localStorage, re-theme the canvas live */
