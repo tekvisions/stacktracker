@@ -166,8 +166,8 @@ def release_cadence_days(full: str) -> float | None:
 
 def momentum(recent4: int, prior4: int, days_release: float | None) -> int:
     """Momentum 0-100 from real commit velocity + release recency + trend.
-    recent4 = commits in last 28d, prior4 = commits in the prior 28d."""
-    # activity: 400 commits / 28d ≈ very hot
+    recent4 = commits in last 30d, prior4 = commits in the prior 30d."""
+    # activity: 400 commits / 30d ≈ very hot
     act = min(recent4 / 400.0, 1.0)
     # release recency: <30d full, decays to 0 by 270d; no release → low floor
     if days_release is None:

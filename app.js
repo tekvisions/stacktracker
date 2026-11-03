@@ -56,7 +56,7 @@
     if(delta < -3) return '<span class="trend dn">▼ '+Math.abs(delta)+'/mo</span>';
     return '<span class="trend flat">→ steady</span>';
   }
-  // small inline trend cell for the dedicated "4-wk trend" column
+  // small inline trend cell for the dedicated "30-day trend" column
   function trendCell(delta){
     if(delta > 3) return '<span class="tcell up">▲ +'+delta+'</span>';
     if(delta < -3) return '<span class="tcell dn">▼ '+delta+'</span>';
@@ -75,7 +75,7 @@
     trend:function(r){return r.commit_delta||0;},
     name:function(r){return (r.name||"").toLowerCase();}
   };
-  var SORT_LABEL={momentum:"momentum",stars:"stars",commits:"commits/mo",trend:"4-week trend",name:"name"};
+  var SORT_LABEL={momentum:"momentum",stars:"stars",commits:"commits/mo",trend:"30-day trend",name:"name"};
 
   function matchesQuery(r,q){
     if(!q) return true;
@@ -129,11 +129,11 @@
     host.innerHTML = rows.map(rowHTML).join("");
     host.setAttribute("aria-busy","false");
 
-    // header indicators + aria-sort
+    // header indicators + data-sort-direction
     D.querySelectorAll(".colhead .sortable").forEach(function(btn){
       var k=btn.getAttribute("data-sort"), ind=btn.querySelector(".ind");
-      if(k===sortKey){ btn.setAttribute("aria-sort", sortDir==="asc"?"ascending":"descending"); if(ind) ind.textContent=sortDir==="asc"?"▲":"▼"; }
-      else { btn.setAttribute("aria-sort","none"); if(ind) ind.textContent="▾"; }
+      if(k===sortKey){ btn.setAttribute("aria-pressed", "true"); if(ind) ind.textContent=sortDir==="asc"?"▲":"▼"; }
+      else { btn.setAttribute("aria-pressed","false"); if(ind) ind.textContent="▾"; }
     });
 
     // empty state + live result note
@@ -150,20 +150,7 @@
   }
 
   // count-up animation for the hero stat numbers (respects reduced-motion)
-  function animateCount(el, target){
-    var isK = /k$/.test(String(target));
-    var num = parseFloat(String(target).replace(/[^0-9.]/g,""));
-    if(REDUCED || !isFinite(num) || num===0){ el.textContent=target; return; }
-    var start=performance.now(), dur=900;
-    function step(now){
-      var t=Math.min((now-start)/dur,1);
-      var e=1-Math.pow(1-t,3); // easeOutCubic
-      var cur=num*e;
-      el.textContent = isK ? (cur>=10? Math.round(cur)+"k" : cur.toFixed(1).replace(/\.0$/,"")+"k") : String(Math.round(cur));
-      if(t<1) requestAnimationFrame(step); else el.textContent=target;
-    }
-    requestAnimationFrame(step);
-  }
+  function animateCount(el, target){ el.textContent=target; }
 
   // shared sparkline tooltip — one floating node, delegated over the rows container
   function initSparkTooltip(){
@@ -191,12 +178,12 @@
     // meta (numbers animate from 0 on first paint)
     var totalStars=repos.reduce(function(a,r){return a+(r.stars||0);},0);
     var topMom=repos.length?Math.max.apply(null,repos.map(function(r){return r.momentum||0;})):0;
-    var updated=relDate(data.generated_at)||data.generated_date;
+    var updated=(String(data.generated_at||"unknown").slice(0,10)+" UTC")||data.generated_date;
     D.getElementById("metarow").innerHTML =
       meta(data.repo_count, "Projects tracked", true) +
       meta(fmtStars(totalStars), "Combined stars", true) +
       meta(topMom, "Top momentum", true) +
-      meta(updated, "Last updated", false);
+      meta(updated, "Source snapshot (UTC)", false);
     D.getElementById("liveline").textContent = "Live · last recomputed "+updated;
     var fg=D.getElementById("footgen"); if(fg) fg.textContent="Data regenerated "+updated;
     // fire the counters
@@ -235,8 +222,8 @@
       });
       var ld={"@context":"https://schema.org","@type":"ItemList","name":"StackTracker — AI-infra momentum index","numberOfItems":list.length,"itemListOrder":"https://schema.org/ItemListOrderDescending","itemListElement":list};
       var el=D.getElementById("ld-itemlist");
-      if(!el){ el=D.createElement("script"); el.type="application/ld+json"; el.id="ld-itemlist"; D.head.appendChild(el); }
-      el.textContent=JSON.stringify(ld);
+      if(!el && !D.getElementById("catalog-schema")){ el=D.createElement("script"); el.type="application/ld+json"; el.id="ld-itemlist"; D.head.appendChild(el); }
+      if(el) el.textContent=JSON.stringify(ld);
     }catch(e){}
 
     // filter behavior — re-render so sort + count stay correct
@@ -321,9 +308,10 @@
     return '<div class="m">'+b+'<span>'+esc(l)+'</span></div>';
   }
 
-  fetch("data.json", {cache:"no-store"}).then(function(r){return r.json();}).then(render).catch(function(e){
+  fetch("data.json", {cache:"no-store"}).then(function(r){return r.json();}).then(render).then(function(){if(window.dispatchEvent&&window.Event)window.dispatchEvent(new window.Event("catalog:ready"));}).catch(function(e){
+    if(window.dispatchEvent&&window.Event)window.dispatchEvent(new window.Event("catalog:error"));
     var host=D.getElementById("rows");
     host.setAttribute("aria-busy","false");
-    host.innerHTML='<div class="loading">Could not load the index. Refresh to retry.</div>';
+    D.getElementById("sortnote").textContent="Could not load fresh data. Showing the published snapshot. Refresh to retry.";
   });
 })();

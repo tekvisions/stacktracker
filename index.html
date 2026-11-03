@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StackTracker — the live momentum index for AI infrastructure</title>
-<meta name="description" content="A live, momentum-ranked tracker of open-source AI infrastructure — agent frameworks, inference engines, vector DBs, gateways, LLMOps — recomputed daily from real GitHub velocity.">
+<meta name="description" content="A live, momentum-ranked tracker of open-source AI infrastructure — agent frameworks, inference engines, vector DBs, gateways, LLMOps — recomputed on successful refresh from real GitHub velocity.">
 <meta property="og:title" content="StackTracker — live AI-infra momentum index">
 <meta property="og:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub commit velocity, release cadence, and trend.">
 <meta property="og:type" content="website">
@@ -15,33 +15,33 @@
 <meta name="twitter:description" content="Who's actually shipping in AI infra? Ranked daily by real GitHub velocity.">
 <meta name="twitter:image" content="https://stacktracker.kymatalabs.com/og-20261030.png">
 <meta name="theme-color" content="#070a09">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://stacktracker.kymatalabs.com/">
 <link rel="icon" href="favicon.svg">
 <link rel="alternate" type="application/rss+xml" title="StackTracker — live AI-infra momentum" href="/rss.xml">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 <!-- theme init: set before paint to avoid flash; first visit respects prefers-color-scheme else dark -->
 <script>(function(){try{var s=localStorage.getItem("theme");var t=s||(window.matchMedia&&window.matchMedia("(prefers-color-scheme:light)").matches?"light":"dark");document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
 <script type="application/ld+json" id="ld-site">{
   "@context":"https://schema.org",
   "@graph":[
-    {"@type":"WebSite","@id":"https://stacktracker.kymatalabs.com/#website","url":"https://stacktracker.kymatalabs.com/","name":"StackTracker","description":"A live, momentum-ranked tracker of open-source AI infrastructure, recomputed daily from real GitHub velocity.","inLanguage":"en","publisher":{"@id":"https://kymatalabs.com/#org"}},
+    {"@type":"WebSite","@id":"https://stacktracker.kymatalabs.com/#website","url":"https://stacktracker.kymatalabs.com/","name":"StackTracker","description":"A live, momentum-ranked tracker of open-source AI infrastructure, recomputed on successful refresh from real GitHub velocity.","inLanguage":"en","publisher":{"@id":"https://kymatalabs.com/#org"}},
     {"@type":"Organization","@id":"https://kymatalabs.com/#org","name":"Kymata Labs","url":"https://kymatalabs.com/"}
   ]
 }</script>
-<script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is StackTracker?", "acceptedAnswer": {"@type": "Answer", "text": "StackTracker is a live momentum index for AI-infrastructure tools — inference servers, orchestration frameworks, vector databases and ops tooling — ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs."}}, {"@type": "Question", "name": "How is momentum scored?", "acceptedAnswer": {"@type": "Answer", "text": "A 0–100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet — momentum, not legacy."}}, {"@type": "Question", "name": "How often is it updated?", "acceptedAnswer": {"@type": "Answer", "text": "Every day. The index recomputes each tool's momentum from live GitHub signals and republishes automatically."}}, {"@type": "Question", "name": "Part of The Living Indexes", "acceptedAnswer": {"@type": "Answer", "text": "A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at indexes.kymatalabs.com."}}]}
-</script>
+
+<!-- catalog:schema:start -->
+<script type="application/ld+json" id="catalog-schema">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://stacktracker.kymatalabs.com/#catalog","url":"https://stacktracker.kymatalabs.com/","name":"StackTracker","dateModified":"2026-11-03","inLanguage":"en","mainEntity":{"@id":"https://stacktracker.kymatalabs.com/#entries"},"isPartOf":{"@type":"WebSite","url":"https://stacktracker.kymatalabs.com/","name":"StackTracker"}},{"@type":"ItemList","@id":"https://stacktracker.kymatalabs.com/#entries","name":"StackTracker catalog snapshot","numberOfItems":24,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://stacktracker.kymatalabs.com/p/pydantic-pydantic-ai/","name":"pydantic/pydantic-ai"},{"@type":"ListItem","position":2,"url":"https://stacktracker.kymatalabs.com/p/unslothai-unsloth/","name":"unslothai/unsloth"},{"@type":"ListItem","position":3,"url":"https://stacktracker.kymatalabs.com/p/sgl-project-sglang/","name":"sgl-project/sglang"},{"@type":"ListItem","position":4,"url":"https://stacktracker.kymatalabs.com/p/qdrant-qdrant/","name":"qdrant/qdrant"},{"@type":"ListItem","position":5,"url":"https://stacktracker.kymatalabs.com/p/langfuse-langfuse/","name":"langfuse/langfuse"},{"@type":"ListItem","position":6,"url":"https://stacktracker.kymatalabs.com/p/arize-ai-phoenix/","name":"Arize-ai/phoenix"},{"@type":"ListItem","position":7,"url":"https://stacktracker.kymatalabs.com/p/vllm-project-vllm/","name":"vllm-project/vllm"},{"@type":"ListItem","position":8,"url":"https://stacktracker.kymatalabs.com/p/ggml-org-llama-cpp/","name":"ggml-org/llama.cpp"},{"@type":"ListItem","position":9,"url":"https://stacktracker.kymatalabs.com/p/berriai-litellm/","name":"BerriAI/litellm"},{"@type":"ListItem","position":10,"url":"https://stacktracker.kymatalabs.com/p/weaviate-weaviate/","name":"weaviate/weaviate"},{"@type":"ListItem","position":11,"url":"https://stacktracker.kymatalabs.com/p/milvus-io-milvus/","name":"milvus-io/milvus"},{"@type":"ListItem","position":12,"url":"https://stacktracker.kymatalabs.com/p/nvidia-tensorrt-llm/","name":"NVIDIA/TensorRT-LLM"},{"@type":"ListItem","position":13,"url":"https://stacktracker.kymatalabs.com/p/crewaiinc-crewai/","name":"crewAIInc/crewAI"},{"@type":"ListItem","position":14,"url":"https://stacktracker.kymatalabs.com/p/langchain-ai-langchain/","name":"langchain-ai/langchain"},{"@type":"ListItem","position":15,"url":"https://stacktracker.kymatalabs.com/p/langchain-ai-langgraph/","name":"langchain-ai/langgraph"},{"@type":"ListItem","position":16,"url":"https://stacktracker.kymatalabs.com/p/ollama-ollama/","name":"ollama/ollama"},{"@type":"ListItem","position":17,"url":"https://stacktracker.kymatalabs.com/p/comfyanonymous-comfyui/","name":"comfyanonymous/ComfyUI"},{"@type":"ListItem","position":18,"url":"https://stacktracker.kymatalabs.com/p/browser-use-browser-use/","name":"browser-use/browser-use"},{"@type":"ListItem","position":19,"url":"https://stacktracker.kymatalabs.com/p/pgvector-pgvector/","name":"pgvector/pgvector"},{"@type":"ListItem","position":20,"url":"https://stacktracker.kymatalabs.com/p/run-llama-llama-index/","name":"run-llama/llama_index"},{"@type":"ListItem","position":21,"url":"https://stacktracker.kymatalabs.com/p/flowiseai-flowise/","name":"flowiseai/Flowise"},{"@type":"ListItem","position":22,"url":"https://stacktracker.kymatalabs.com/p/chroma-core-chroma/","name":"chroma-core/chroma"},{"@type":"ListItem","position":23,"url":"https://stacktracker.kymatalabs.com/p/microsoft-autogen/","name":"microsoft/autogen"},{"@type":"ListItem","position":24,"url":"https://stacktracker.kymatalabs.com/p/portkey-ai-gateway/","name":"Portkey-AI/gateway"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does this catalog cover?","acceptedAnswer":{"@type":"Answer","text":"StackTracker contains 24 records in the snapshot dated 2026-11-02T19:36:13.602967+00:00. Coverage is defined by its published data source and collection rules; inclusion is not an endorsement."}},{"@type":"Question","name":"How is the default order determined?","acceptedAnswer":{"@type":"Answer","text":"Momentum uses recent 30-day commit volume (55%), latest stable-release recency (25%), and change versus the prior 30-day commit window (20%), rounded and clamped to 0–100. Six 30-day windows supply the sparkline. This measures public repository activity, not product quality or private development; API failures can produce missing or zero-valued signals."}},{"@type":"Question","name":"When was this snapshot collected?","acceptedAnswer":{"@type":"Answer","text":"The recorded snapshot time is 2026-11-02T19:36:13.602967+00:00. The refresh workflow is scheduled daily; this timestamp records the available data rather than guaranteeing a successful refresh every day."}}]}]}</script>
+<!-- catalog:schema:end -->
+<link rel="alternate" type="application/json" href="/data.json" title="Current catalog snapshot">
+<script defer src="/guidance.js"></script>
+<script defer src="/fleet.js"></script>
 </head>
-<body>
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="geo-kstrip"><div class="wrap">
   <a href="https://www.kymatalabs.com" target="_blank" rel="noopener"><span class="d"></span>Kymata Labs</a>
   <span class="s">/</span>
   <a href="https://indexes.kymatalabs.com" target="_blank" rel="noopener">The Living Indexes</a>
-  <span class="g"></span>
-  <a href="https://www.kymatalabs.com/live" target="_blank" rel="noopener">Built by tekvisions ↗</a>
+
 </div></div>
 
 <canvas id="scope" aria-hidden="true"></canvas>
@@ -61,13 +61,13 @@
       <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
     </button>
   </div>
-</div></nav>
+</div></nav><main id="main-content">
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow"><span class="dot"></span><span id="liveline">Live · recomputed daily</span></div>
-  <h1>The live <em>momentum signal</em> for AI infrastructure.</h1>
-  <p class="lede">Who's actually shipping — and who's flatlining? StackTracker reads the open-source AI-infra stack like an instrument: commit cadence, release recency, and 6-month trend, sampled daily from real GitHub velocity. No vibes, no static maps.</p>
-  <div class="meta-row" id="metarow"></div>
+  <div class="eyebrow"><span class="dot"></span><span id="liveline">Live · recomputed on successful refresh</span></div>
+  <h1>The live <em>momentum signal</em> for AI infrastructure.</h1><div class="fleet-context" role="navigation" aria-label="Index resources"><a href="https://indexes.kymatalabs.com/">All indexes</a><a href="#catalog-guidance">Selection guide</a><a href="#catalog-methodology">Methodology</a></div>
+  <p class="lede">Who's actually shipping — and who's flatlining? StackTracker reads the open-source AI-infra stack like an instrument: commit cadence, release recency, and change versus the prior 30-day window, sampled daily from real GitHub velocity. No vibes, no static maps.</p>
+  <div class="meta-row" id="metarow"><div class="m"><b>24</b><span>Projects tracked</span></div><div class="m"><b>1.5M</b><span>Combined stars</span></div><div class="m"><b>97</b><span>Top momentum</span></div><div class="m"><b>2026-11-02</b><span>Source snapshot (UTC)</span></div></div>
 </div></header>
 
 <section class="trending" data-reveal><div class="wrap">
@@ -81,20 +81,49 @@
     <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
     <div class="search-wrap">
       <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="search" class="search" type="search" placeholder="Probe the index…" aria-label="Search projects by name, owner, category, or language" autocomplete="off" spellcheck="false">
+      <input id="search" class="search" type="search" placeholder="Probe the index…" aria-label="Search projects by name, owner, category, or language" autocomplete="off" spellcheck="false" disabled>
       <button id="searchClear" class="search-clear" type="button" aria-label="Clear search" hidden>✕</button>
     </div>
   </div>
-  <div class="colhead" role="row">
-    <span role="columnheader">#</span>
-    <span role="columnheader"><button class="sortable" type="button" data-sort="name" aria-sort="none">Project <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span class="c-mom" role="columnheader"><button class="sortable" type="button" data-sort="momentum" aria-sort="descending">Momentum <span class="ind" aria-hidden="true">▼</span></button></span>
-    <span class="c-mom" role="columnheader"><button class="sortable" type="button" data-sort="commits" aria-sort="none">Commits/mo <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span class="c-trend" role="columnheader"><button class="sortable" type="button" data-sort="trend" aria-sort="none">4-wk trend <span class="ind" aria-hidden="true">▾</span></button></span>
-    <span class="r3" role="columnheader"><button class="sortable" type="button" data-sort="stars" aria-sort="none">Stars <span class="ind" aria-hidden="true">▾</span></button></span>
+  <div class="colhead">
+    <span>#</span>
+    <span><button class="sortable" type="button" data-sort="name" disabled>Project <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span class="c-mom"><button class="sortable" type="button" data-sort="momentum" disabled>Momentum <span class="ind" aria-hidden="true">▼</span></button></span>
+    <span class="c-mom"><button class="sortable" type="button" data-sort="commits" disabled>Commits/mo <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span class="c-trend"><button class="sortable" type="button" data-sort="trend" disabled>30-day trend <span class="ind" aria-hidden="true">▾</span></button></span>
+    <span class="r3"><button class="sortable" type="button" data-sort="stars" disabled>Stars <span class="ind" aria-hidden="true">▾</span></button></span>
     <span aria-hidden="true"></span>
   </div>
-  <div class="rows" id="rows" role="rowgroup" aria-live="polite" aria-busy="true"><div class="loading">Acquiring signal…</div></div>
+  <h2 class="fleet-list-title">Browse the catalog</h2><div class="rows" id="rows" aria-live="polite" aria-busy="false"><!-- catalog:entries:start -->
+<p class="catalog-guide-jump"><a href="#catalog-guidance">How to choose: scope, evidence and limitations</a></p><ol class="catalog-snapshot">
+<li value="1"><a href="https://stacktracker.kymatalabs.com/p/pydantic-pydantic-ai/">pydantic/pydantic-ai</a><span class="catalog-category">Agents</span><p>Type-safe agent framework from the Pydantic team.</p><small>Momentum 97/100 · 20,998 GitHub stars</small></li>
+<li value="2"><a href="https://stacktracker.kymatalabs.com/p/unslothai-unsloth/">unslothai/unsloth</a><span class="catalog-category">LLMOps</span><p>2x faster, 70% less memory LLM fine-tuning.</p><small>Momentum 96/100 · 78,964 GitHub stars</small></li>
+<li value="3"><a href="https://stacktracker.kymatalabs.com/p/sgl-project-sglang/">sgl-project/sglang</a><span class="catalog-category">Inference</span><p>Fast serving runtime with RadixAttention for structured generation.</p><small>Momentum 94/100 · 38,383 GitHub stars</small></li>
+<li value="4"><a href="https://stacktracker.kymatalabs.com/p/qdrant-qdrant/">qdrant/qdrant</a><span class="catalog-category">Vector DB</span><p>Rust-built vector database optimized for filtered search.</p><small>Momentum 93/100 · 35,389 GitHub stars</small></li>
+<li value="5"><a href="https://stacktracker.kymatalabs.com/p/langfuse-langfuse/">langfuse/langfuse</a><span class="catalog-category">LLMOps</span><p>Open-source LLM observability, tracing, and evals.</p><small>Momentum 93/100 · 36,898 GitHub stars</small></li>
+<li value="6"><a href="https://stacktracker.kymatalabs.com/p/arize-ai-phoenix/">Arize-ai/phoenix</a><span class="catalog-category">LLMOps</span><p>ML/LLM observability and evaluation in a notebook or server.</p><small>Momentum 93/100 · 12,106 GitHub stars</small></li>
+<li value="7"><a href="https://stacktracker.kymatalabs.com/p/vllm-project-vllm/">vllm-project/vllm</a><span class="catalog-category">Inference</span><p>High-throughput, memory-efficient LLM serving (PagedAttention).</p><small>Momentum 92/100 · 96,157 GitHub stars</small></li>
+<li value="8"><a href="https://stacktracker.kymatalabs.com/p/ggml-org-llama-cpp/">ggml-org/llama.cpp</a><span class="catalog-category">Inference</span><p>LLM inference in C/C++ — the engine behind local AI everywhere.</p><small>Momentum 92/100 · 133,178 GitHub stars</small></li>
+<li value="9"><a href="https://stacktracker.kymatalabs.com/p/berriai-litellm/">BerriAI/litellm</a><span class="catalog-category">Gateway</span><p>One API for 100+ LLM providers — the universal gateway.</p><small>Momentum 87/100 · 62,567 GitHub stars</small></li>
+<li value="10"><a href="https://stacktracker.kymatalabs.com/p/weaviate-weaviate/">weaviate/weaviate</a><span class="catalog-category">Vector DB</span><p>Open-source vector database with built-in hybrid search.</p><small>Momentum 85/100 · 16,934 GitHub stars</small></li>
+<li value="11"><a href="https://stacktracker.kymatalabs.com/p/milvus-io-milvus/">milvus-io/milvus</a><span class="catalog-category">Vector DB</span><p>Cloud-native vector database for billion-scale similarity search.</p><small>Momentum 77/100 · 46,563 GitHub stars</small></li>
+<li value="12"><a href="https://stacktracker.kymatalabs.com/p/nvidia-tensorrt-llm/">NVIDIA/TensorRT-LLM</a><span class="catalog-category">Inference</span><p>NVIDIA&#x27;s toolkit for the fastest LLM inference on its GPUs.</p><small>Momentum 73/100 · 14,992 GitHub stars</small></li>
+<li value="13"><a href="https://stacktracker.kymatalabs.com/p/crewaiinc-crewai/">crewAIInc/crewAI</a><span class="catalog-category">Agents</span><p>Role-playing multi-agent crews that collaborate on tasks.</p><small>Momentum 71/100 · 60,428 GitHub stars</small></li>
+<li value="14"><a href="https://stacktracker.kymatalabs.com/p/langchain-ai-langchain/">langchain-ai/langchain</a><span class="catalog-category">Agents</span><p>The framework that defined LLM app composition — chains, tools, agents.</p><small>Momentum 64/100 · 148,887 GitHub stars</small></li>
+<li value="15"><a href="https://stacktracker.kymatalabs.com/p/langchain-ai-langgraph/">langchain-ai/langgraph</a><span class="catalog-category">Agents</span><p>Graph-based stateful agent orchestration from the LangChain team.</p><small>Momentum 64/100 · 44,336 GitHub stars</small></li>
+<li value="16"><a href="https://stacktracker.kymatalabs.com/p/ollama-ollama/">ollama/ollama</a><span class="catalog-category">Inference</span><p>Run open models locally with one command.</p><small>Momentum 58/100 · 185,696 GitHub stars</small></li>
+<li value="17"><a href="https://stacktracker.kymatalabs.com/p/comfyanonymous-comfyui/">comfyanonymous/ComfyUI</a><span class="catalog-category">LLMOps</span><p>Node-graph backend for diffusion pipelines — the power-user&#x27;s canvas.</p><small>Momentum 58/100 · 144,652 GitHub stars</small></li>
+<li value="18"><a href="https://stacktracker.kymatalabs.com/p/browser-use-browser-use/">browser-use/browser-use</a><span class="catalog-category">Agents</span><p>Let agents drive a real browser — the fastest-rising agent tool.</p><small>Momentum 48/100 · 119,856 GitHub stars</small></li>
+<li value="19"><a href="https://stacktracker.kymatalabs.com/p/pgvector-pgvector/">pgvector/pgvector</a><span class="catalog-category">Vector DB</span><p>Vector similarity search inside Postgres.</p><small>Momentum 31/100 · 23,568 GitHub stars</small></li>
+<li value="20"><a href="https://stacktracker.kymatalabs.com/p/run-llama-llama-index/">run-llama/llama_index</a><span class="catalog-category">Agents</span><p>Data framework for connecting LLMs to your private data.</p><small>Momentum 29/100 · 52,779 GitHub stars</small></li>
+<li value="21"><a href="https://stacktracker.kymatalabs.com/p/flowiseai-flowise/">flowiseai/Flowise</a><span class="catalog-category">Agents</span><p>Drag-and-drop builder for LLM apps and agents.</p><small>Momentum 28/100 · 55,542 GitHub stars</small></li>
+<li value="22"><a href="https://stacktracker.kymatalabs.com/p/chroma-core-chroma/">chroma-core/chroma</a><span class="catalog-category">Vector DB</span><p>The embedding database that made RAG prototyping trivial.</p><small>Momentum 15/100 · 29,625 GitHub stars</small></li>
+<li value="23"><a href="https://stacktracker.kymatalabs.com/p/microsoft-autogen/">microsoft/autogen</a><span class="catalog-category">Agents</span><p>Multi-agent conversation framework from Microsoft Research.</p><small>Momentum 14/100 · 61,680 GitHub stars</small></li>
+<li value="24"><a href="https://stacktracker.kymatalabs.com/p/portkey-ai-gateway/">Portkey-AI/gateway</a><span class="catalog-category">Gateway</span><p>Fast, open-source AI gateway with routing and guardrails.</p><small>Momentum 10/100 · 13,302 GitHub stars</small></li>
+</ol>
+<!-- catalog:entries:end --></div><!-- catalog:pagination:start -->
+
+<!-- catalog:pagination:end -->
   <div class="noresults" id="noresults" hidden>
     <span class="nr-line">— no signal matches <b id="nr-q"></b> —</span>
     <button class="nr-reset" id="nr-reset" type="button">Reset filters</button>
@@ -102,25 +131,39 @@
   <div class="sortnote resultnote" id="sortnote" aria-live="polite">Ranked by momentum ↓</div>
 </div></section>
 
-<section class="geo-about">
-  <h2>About StackTracker</h2>
-  <p class="intro">StackTracker is the live momentum index for AI infrastructure &mdash; the serving engines, orchestration frameworks, vector stores and ops tooling that run AI in production. Every tool is ranked daily from live GitHub signals, so the index reflects which infrastructure the ecosystem is actually building on right now. It is one of The Living Indexes, a fleet published by Kymata Labs.</p>
-  <div class="geo-faq">
-      <div class="q"><h3>What is StackTracker?</h3><p>StackTracker is a live momentum index for AI-infrastructure tools &mdash; inference servers, orchestration frameworks, vector databases and ops tooling &mdash; ranked by GitHub momentum and recomputed daily. It surfaces the infrastructure the ecosystem is adopting now. It is one of The Living Indexes by Kymata Labs.</p></div>
-      <div class="q"><h3>How is momentum scored?</h3><p>A 0&ndash;100 score blending log-scaled GitHub stars (55%), push-recency (32%, decaying to zero by about 180 days) and rising-newness (13%). A tool that shipped this week can outrank a larger tool that has gone quiet &mdash; momentum, not legacy.</p></div>
-      <div class="q"><h3>How often is it updated?</h3><p>Every day. The index recomputes each tool's momentum from live GitHub signals and republishes automatically.</p></div>
-      <div class="q"><h3>Part of The Living Indexes</h3><p>A fleet of self-updating maps of the AI-builder ecosystem. Explore them all at <a href="https://indexes.kymatalabs.com">indexes.kymatalabs.com</a>.</p></div>
-  </div>
-</section>
+<!-- catalog:about:start -->
+<section class="catalog-about selection-guide" id="catalog-guidance"><h2>Choose AI infrastructure by its role in your request path</h2>
+<p>Use public shipping activity to discover maintained candidates, then shortlist by the component your system needs. This tracker does not measure production reliability or benchmark performance.</p>
+<p class="guide-date">Guide sources reviewed <time datetime="2026-11-03">2026-11-03</time>. Catalog snapshot: <time datetime="2026-11-02T19:36:13.602967+00:00">2026-11-02T19:36:13.602967+00:00</time>. Source review does not mean runtime testing.</p>
+<div class="selection-choices">
+<div><h3>Serve model requests</h3><p>Verify model compatibility, runtime/hardware requirements and the request features your application uses.</p>
+<p><strong>Current catalog categories:</strong> Inference.</p>
+</div>
+<div><h3>Orchestrate or retrieve context</h3><p>Define state/retrieval requirements and evaluate the component using representative task or corpus data.</p>
+<p><strong>Current catalog categories:</strong> Agents; Vector DB.</p>
+</div>
+<div><h3>Operate the request path</h3><p>Check deployment, request routing, observability, failure handling and data-retention requirements.</p>
+<p><strong>Current catalog categories:</strong> LLMOps; Gateway.</p>
+</div>
+</div><h3>Evidence to check before choosing</h3><ul>
+<li>Record deployed versions and the workload behind any benchmark.</li>
+<li>Exercise failures and upgrades in an isolated environment.</li>
+<li>Treat public commits and releases as activity evidence, not proof of production quality.</li>
+</ul>
+<h3>What remains unknown</h3><p>Throughput, uptime, latency, operating cost and integration fit are not independently tested by this tracker.</p>
+<h3>Sources and scope</h3><ul>
+<li><a href="https://github.com/tekvisions/stacktracker/blob/e90f8ea885d2a269c91f80f0caa0d4002038f54a/build_data.py">Published collection and scoring rules</a></li>
+</ul><p>Continue by task: <a href="https://gateway.kymatalabs.com/">gateway</a> · <a href="https://observability.kymatalabs.com/">observability</a> · <a href="https://localllm.kymatalabs.com/">localllm</a>.</p></section><section class="catalog-about" id="catalog-methodology"><h2>About StackTracker</h2><p>Snapshot: <time datetime="2026-11-02T19:36:13.602967+00:00">2026-11-02T19:36:13.602967+00:00</time> · 24 catalog records.</p><p>Source: <a href="https://docs.github.com/en/rest/repos">Public GitHub repository API signals</a>. <a href="https://github.com/tekvisions/stacktracker/blob/main/build_data.py">Collection and scoring source</a> · <a href="/data.json">Current JSON snapshot</a> · <a href="/sitemap.xml">Page inventory</a>.</p><h3>What does this catalog cover?</h3><p>StackTracker contains 24 records in the snapshot dated 2026-11-02T19:36:13.602967+00:00. Coverage is defined by its published data source and collection rules; inclusion is not an endorsement.</p><h3>How is the default order determined?</h3><p>Momentum uses recent 30-day commit volume (55%), latest stable-release recency (25%), and change versus the prior 30-day commit window (20%), rounded and clamped to 0–100. Six 30-day windows supply the sparkline. This measures public repository activity, not product quality or private development; API failures can produce missing or zero-valued signals.</p><h3>When was this snapshot collected?</h3><p>The recorded snapshot time is 2026-11-02T19:36:13.602967+00:00. The refresh workflow is scheduled daily; this timestamp records the available data rather than guaranteeing a successful refresh every day.</p><p>Browse <a href="https://indexes.kymatalabs.com/">The Living Indexes</a> by topic. Published by <a href="https://www.kymatalabs.com/">Kymata Labs</a>.</p><p>Entry descriptions come from upstream publishers or the configured catalog. Promotional claims have not been independently tested by this index.</p></section>
+<!-- catalog:about:end -->
 
 <aside data-portfolio-ad="after-content" aria-label="Advertisement" hidden></aside>
-<footer id="how" data-reveal><div class="wrap">
+</main><footer id="how" data-reveal><div class="wrap">
   <span class="mono" style="color:var(--phos)">How it's made</span>
   <h2>A self-updating intelligence instrument, <em>ranked by public source signals.</em></h2>
   <p>StackTracker recomputes project momentum from public GitHub API signals every day. The scoring method is described below. Published by <a href="https://kymatalabs.com/" style="color:var(--phos)">Kymata Labs</a>.</p>
   <div class="how">
     <div><div class="mono">01 · Sample</div><p>Daily GitHub API fetch: stars, releases, and commit history for every tracked repo.</p></div>
-    <div><div class="mono">02 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + 6-month trend (20%).</p></div>
+    <div><div class="mono">02 · Score</div><p>Momentum = commit velocity (55%) + release recency (25%) + change versus the prior 30-day window (20%).</p></div>
     <div><div class="mono">03 · Sweep</div><p>The public data and rankings refresh daily.</p></div>
   </div>
   <div class="foot-row">
@@ -148,6 +191,7 @@
 /* oscilloscope hero — phosphor trace on a sweeping beam, with persistence trails. Theme-aware. */
 (function(){
   if(window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  if(window.matchMedia && window.matchMedia("(max-width:800px)").matches) return;
   var cv=document.getElementById("scope"); if(!cv) return;
   var ctx=cv.getContext("2d"), W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2), t=0, raf;
   // read active theme colors from CSS vars so dark + light both look right; re-read on toggle

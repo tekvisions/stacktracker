@@ -1,3 +1,4 @@
+from _public_fixture import make_sealed_fixture
 import importlib.util
 from pathlib import Path
 import json
@@ -13,7 +14,7 @@ class PrivateBuildInventoryTests(unittest.TestCase):
             calls.append((url,data))
             return (201,json.dumps({'url':'fixture.invalid','readyState':'READY'}).encode()) if '/deployments' in url else (200,b'')
         with tempfile.TemporaryDirectory() as folder:
-            root=Path(folder);(root/'index.html').write_text('public fixture')
+            root=Path(folder);make_sealed_fixture(root)
             for name in ['.build-assets','.og-venv','.venv']:
                 (root/name).mkdir();(root/name/'private.json').write_text('private fixture')
             with patch.object(deployment,'ROOT',folder),patch.object(deployment,'TOKEN','fixture'),patch.object(deployment,'_preflight_overwrite_guard'),patch.object(deployment,'req',side_effect=request):

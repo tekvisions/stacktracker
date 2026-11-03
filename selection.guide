@@ -1,0 +1,58 @@
+{
+  "host": "stacktracker.kymatalabs.com",
+  "reviewed_on": "2026-11-03",
+  "title": "Choose AI infrastructure by its role in your request path",
+  "answer": "Use public shipping activity to discover maintained candidates, then shortlist by the component your system needs. This tracker does not measure production reliability or benchmark performance.",
+  "choices": [
+    {
+      "categories": [
+        "Inference"
+      ],
+      "task": "Serve model requests",
+      "guidance": "Verify model compatibility, runtime/hardware requirements and the request features your application uses."
+    },
+    {
+      "categories": [
+        "Agents",
+        "Vector DB"
+      ],
+      "task": "Orchestrate or retrieve context",
+      "guidance": "Define state/retrieval requirements and evaluate the component using representative task or corpus data."
+    },
+    {
+      "categories": [
+        "LLMOps",
+        "Gateway"
+      ],
+      "task": "Operate the request path",
+      "guidance": "Check deployment, request routing, observability, failure handling and data-retention requirements."
+    }
+  ],
+  "checks": [
+    "Record deployed versions and the workload behind any benchmark.",
+    "Exercise failures and upgrades in an isolated environment.",
+    "Treat public commits and releases as activity evidence, not proof of production quality."
+  ],
+  "unknowns": "Throughput, uptime, latency, operating cost and integration fit are not independently tested by this tracker.",
+  "related": [
+    {
+      "url": "https://gateway.kymatalabs.com/",
+      "label": "gateway"
+    },
+    {
+      "url": "https://observability.kymatalabs.com/",
+      "label": "observability"
+    },
+    {
+      "url": "https://localllm.kymatalabs.com/",
+      "label": "localllm"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Published collection and scoring rules",
+      "url": "https://github.com/tekvisions/stacktracker/blob/e90f8ea885d2a269c91f80f0caa0d4002038f54a/build_data.py",
+      "reviewed_on": "2026-11-03"
+    }
+  ]
+}

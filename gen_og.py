@@ -10,7 +10,7 @@ CARDS = {
  'model-radar': {'name':'Model Radar','host':'modelradar.kymatalabs.com','key':'models','kicker':'TRENDING ON HUGGING FACE · UPDATED DAILY','lines':[("What's ", 'surging', ' on Hugging'),('Face right now','','')],'description':'{count} trending AI models ranked by public Hugging Face signals — downloads, likes and freshness. Updated daily.'},
  'agent-velocity': {'name':'Agent Velocity','host':'agentvelocity.kymatalabs.com','key':'repos','kicker':'THE CODING-AGENT RACE · UPDATED DAILY','lines':[("Who's ",'shipping fastest',' in the'),('coding-agent race?','','')],'description':'{count} open-source coding agents ranked by public GitHub signals. Updated daily.'},
  'stacktracker': {'name':'StackTracker','host':'stacktracker.kymatalabs.com','key':'repos','kicker':'PUBLIC SOURCE SIGNALS · UPDATED DAILY','lines':[('The live ','momentum index',' for'),('AI infrastructure','','')],'description':'{count} projects ranked by public GitHub signals. Recomputed daily.'},
- 'mcp-index': {'name':'The MCP Index','host':'mcp.kymatalabs.com','key':'servers','kicker':'OFFICIAL REGISTRY · UPDATED DAILY','lines':[('Every ','MCP server',', in one'),('living index','','')],'description':'{count} servers from the official registry. Searchable and freshness-tracked.'},
+ 'mcp-index': {'name':'The MCP Index','host':'mcp.kymatalabs.com','key':'servers','kicker':'OFFICIAL REGISTRY · DATED SNAPSHOT','lines':[('Discover ','MCP servers',''),('with source context','','')],'description':'{count} servers from the official registry. Searchable and freshness-tracked.'},
 }
 
 def font(name, size, weight=400):

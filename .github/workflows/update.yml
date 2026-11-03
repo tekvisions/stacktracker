@@ -43,12 +43,27 @@ jobs:
           .og-venv/bin/python -m unittest discover -s tests -p test_og_content.py
           python -m unittest discover -s tests -p test_deploy_private_assets.py
 
+      - name: Render and verify the public catalog snapshot
+        run: |
+          python url_lifecycle.py --render-retained
+          python sanitize_detail_schema.py
+          python render_home.py
+          python url_lifecycle.py --verify
+          python -m unittest discover -s tests -p test_discoverability.py
+          python -m unittest discover -s tests -p test_indexnow_receipts.py
+          python -m unittest discover -s tests -p test_selection_guidance.py
+          node --test tests/guidance.test.mjs
+          python -m unittest discover -s tests -p test_public_assets.py
+          python -m unittest discover -s tests -p test_site_quality.py
+          python -m unittest discover -s tests -p test_indexnow_backoff.py
+          python public_assets.py --seal
+
       - name: Commit data if changed
         run: |
           git config user.name  "stacktracker-bot"
           git config user.email "actions@users.noreply.github.com"
-          if ! git diff --quiet -- data.json og.png og-20261030.png; then
-            git add data.json og.png og-20261030.png
+          if ! git diff --quiet -- index.html sitemap.xml llms.txt data.json og.png og-20261030.png; then
+            git add index.html sitemap.xml llms.txt data.json og.png og-20261030.png
             git commit -m "data: daily momentum refresh ($(date -u +%Y-%m-%d))"
             git push
           else

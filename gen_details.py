@@ -16,6 +16,7 @@ slugify() MUST stay byte-for-byte equivalent to app.js's slugify() so the hub
 rows' internal hrefs resolve.
 """
 from __future__ import annotations
+import html_json
 import json, os, re, html, shutil
 from datetime import datetime, timezone
 
@@ -598,18 +599,18 @@ def detail_html(r: dict, all_repos: list | None = None) -> str:
         "@context": "https://schema.org", "@type": "SoftwareSourceCode",
         "name": r["name"], "codeRepository": r.get("html_url"),
         "url": url, "description": blurb,
-        "programmingLanguage": r.get("language") or "—",
-        "author": {"@type": "Organization", "name": r["owner"]},
-        "isAccessibleForFree": True,
+        "programmingLanguage": r.get("language"),
+
         "applicationCategory": cat,
         "interactionStatistic": {
             "@type": "InteractionCounter",
             "interactionType": "https://schema.org/LikeAction",
             "userInteractionCount": int(r.get("stars", 0)),
         },
-        "publisher": {"@type": "Organization", "name": ORG, "url": "https://kymatalabs.com/"},
     }
-    ld = json.dumps([breadcrumb, software], separators=(",", ":"))
+    if not software.get("programmingLanguage"):
+        software.pop("programmingLanguage", None)
+    ld = html_json.dumps([breadcrumb, software], separators=(",", ":"))
 
     stat = lambda v, l, accent="": f'<div class="s{accent}"><b>{v}</b><span>{l}</span></div>'
 
@@ -812,7 +813,7 @@ def _write_llms(here: str, data: dict, slugs: list[str]) -> None:
         "- Operator: Kymata Labs (https://kymatalabs.com/).",
         "",
         "## Routes",
-        "- `/` — the full momentum-ranked index. Filter by category; sort by momentum, stars, commits/mo, 4-week trend, or name; instant client-side search.",
+        "- `/` — the full momentum-ranked index. Filter by category; sort by momentum, stars, commits/mo, 30-day trend, or name; instant client-side search.",
         "- `/p/<slug>` — per-repo deep-dive: stat grid (momentum, rank, stars, commits/30d), the weighted score breakdown (velocity 55% + release recency 25% + commit trend 20%), a 6-month commit-volume chart, latest-release detail, category peers (linked), full repository metadata, and outbound links. Slug is the lowercased `owner-name`.",
         "",
         "## Index (current ranking)",
