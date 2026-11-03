@@ -63,7 +63,7 @@ jobs:
           git config user.name  "stacktracker-bot"
           git config user.email "actions@users.noreply.github.com"
           if ! git diff --quiet -- index.html sitemap.xml llms.txt data.json og.png og-20261030.png; then
-            git add index.html sitemap.xml llms.txt data.json og.png og-20261030.png
+            git add capabilities.json ai.txt index.html sitemap.xml llms.txt data.json og.png og-20261030.png
             git commit -m "data: daily momentum refresh ($(date -u +%Y-%m-%d))"
             git push
           else
