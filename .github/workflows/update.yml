@@ -44,11 +44,15 @@ jobs:
           python -m unittest discover -s tests -p test_deploy_private_assets.py
 
       - name: Render and verify the public catalog snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          python auto_retain.py
           python url_lifecycle.py --render-retained
           python sanitize_detail_schema.py
           python render_home.py
           python url_lifecycle.py --verify
+          python -m unittest discover -s tests -p test_auto_retain.py
           python -m unittest discover -s tests -p test_discoverability.py
           python -m unittest discover -s tests -p test_indexnow_receipts.py
           python -m unittest discover -s tests -p test_selection_guidance.py
@@ -62,8 +66,8 @@ jobs:
         run: |
           git config user.name  "stacktracker-bot"
           git config user.email "actions@users.noreply.github.com"
-          if ! git diff --quiet -- index.html sitemap.xml llms.txt data.json og.png og-20261030.png; then
-            git add capabilities.json ai.txt index.html sitemap.xml llms.txt data.json og.png og-20261030.png
+          if ! git diff --quiet -- index.html sitemap.xml llms.txt data.json og.png og-20261030.png url.lifecycle; then
+            git add capabilities.json ai.txt index.html sitemap.xml llms.txt data.json og.png og-20261030.png url.lifecycle
             git commit -m "data: daily momentum refresh ($(date -u +%Y-%m-%d))"
             git push
           else

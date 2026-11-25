@@ -34,6 +34,9 @@ def render_retained(root=ROOT):
     rules = policy(root)
     data = json.loads((root / 'data.json').read_text(encoding='utf-8'))
     current = {row['slug'] for row in data.get('items', [])}
+    # Tracked repos carry no slug field; mirror gen_details.slugify() so a repo
+    # that re-enters the tracked set keeps its live generated page.
+    current |= {re.sub(r'[^a-z0-9]+', '-', f"{row.get('owner', '')}-{row.get('name', '')}".lower()).strip('-') for row in data.get('repos', [])}
     xml_path = root / 'sitemap.xml'
     xml = xml_path.read_text(encoding='utf-8')
     existing = urls(root)
